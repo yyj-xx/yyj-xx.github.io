@@ -24,9 +24,9 @@
 <meta property="article:tag" content="记录,学习,分享">
 <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1631364783942">
+    <link rel="stylesheet" href="/css/style.css?v=1631692984566">
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1631364783942">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1631692984566">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -50,8 +50,8 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>3</div>
-        <div><span>标签</span>1</div>
+        <div><span>文章</span>4</div>
+        <div><span>标签</span>2</div>
         <div><span>分类</span>0</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
@@ -110,7 +110,7 @@
     
   <div class="nexmoe-widget-wrap">
     <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%86%99%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">学习写博客</a>
+      <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%86%99%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">学习写博客</a>
     </div>
     
   </div>
@@ -131,6 +131,133 @@
     <div id="nexmoe-content">
         <div class="nexmoe-primary">
             <section class="nexmoe-posts">
+    
+    <div class="nexmoe-post">
+        <a href="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg" data-sizes="auto" alt="python语言基础学习" class="lazyload">
+                    <h1>python语言基础学习</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2021年09月13日</a>
+            <a><i class="nexmoefont icon-areachart"></i>841 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+        </div>
+
+        <article>
+            
+                <h1 id="python基础"><a href="#python基础" class="headerlink" title="python基础"></a>python基础</h1><h2 id="python中的数据类型："><a href="#python中的数据类型：" class="headerlink" title="python中的数据类型："></a>python中的数据类型：</h2><p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png"></p>
+<h3 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h3><h4 id="整形："><a href="#整形：" class="headerlink" title="整形："></a>整形：</h4><p>Python中的整形不限制大小：</p>
+<ul>
+<li><p>十进制 10                                       int() 其他类型转十进制整型</p>
+</li>
+<li><p>二进制    0b1010或0B1010            bin()其他类型转二进制</p>
+</li>
+<li><p>八进制    0O12                                oct()其他类型转八进制</p>
+</li>
+<li><p>十六进制    0xa                                hex()其他类型转十六进制</p>
+</li>
+</ul>
+<p>​    练习：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> __name__==<span class="hljs-string">&#x27;__main__&#x27;</span>:<br> a=<span class="hljs-number">123</span><br> <span class="hljs-built_in">print</span>(a)<br> <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;二进制:&quot;</span>,<span class="hljs-built_in">bin</span>(a))<br> <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;八进制:&quot;</span>,<span class="hljs-built_in">oct</span>(a))<br> <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;十六进制:&quot;</span>,<span class="hljs-built_in">hex</span>(a))<br></code></pre></td></tr></table></figure>
+
+<h4 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h4><ul>
+<li><p>十进制浮点数：1080.00        %f    (格式化输出符)</p>
+</li>
+<li><p> 科学计数法浮点数：1.08e3        %e    (格式化输出符)</p>
+</li>
+<li><p> python支持大约17位的精度和范围从-308到308的指数（双精度）</p>
+</li>
+<li><p> 不分单精度和双精度</p>
+</li>
+</ul>
+<p>​    练习：将华氏温度转为摄氏温度：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br> f=<span class="hljs-number">100.00</span><br> c=(f-<span class="hljs-number">32.00</span>)/<span class="hljs-number">1.8</span><br> <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;摄氏度:%f&quot;</span>%c)<br></code></pre></td></tr></table></figure>
+
+<p>​    浮点型的比较运算：</p>
+<p>​    比较运算：浮点数可以直接比较大小 由于精度的原因执行以下代码时会输出else的结果</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = <span class="hljs-number">0.2</span><br>b = <span class="hljs-number">0.1</span><br><span class="hljs-keyword">if</span>((a + b) == <span class="hljs-number">0.3</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;(a + b) == 0.3&quot;</span>)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;(a + b) != 0.3&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="复数类型"><a href="#复数类型" class="headerlink" title="复数类型"></a>复数类型</h4><p>complex(实部, 虚部)</p>
+<p>例：c1=1.2+5.3j为complex(1.2, 5.3)</p>
+<h4 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h4><p>取值True、False，在python中0、空字符串表实False</p>
+<h4 id="类型函数"><a href="#类型函数" class="headerlink" title="类型函数"></a>类型函数</h4><p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/5.jpg"></p>
+<p>练习：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x=<span class="hljs-number">25</span><br>y=<span class="hljs-number">30</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">int</span>(x))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">float</span>(x))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bool</span>(x))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">complex</span>(x))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">complex</span>(x, y))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/8.jpg"></p>
+<h4 id="常用数学函数："><a href="#常用数学函数：" class="headerlink" title="常用数学函数："></a>常用数学函数：</h4><p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/14.jpg"></p>
+<h3 id="组合数据"><a href="#组合数据" class="headerlink" title="组合数据"></a>组合数据</h3><h4 id="字符串："><a href="#字符串：" class="headerlink" title="字符串："></a>字符串：</h4><ul>
+<li><p>成对的单引号(‘)或双引号(“)括起来</p>
+</li>
+<li><p>如：”中国制造”，’Python’</p>
+</li>
+<li><p>成对的三引号(‘’’’’’)或(“‘)创建跨多行的字符串</p>
+</li>
+<li><p>也可以是多行注释</p>
+</li>
+</ul>
+<h4 id="字符串索引"><a href="#字符串索引" class="headerlink" title="字符串索引"></a>字符串索引</h4><p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/9.jpg"></p>
+<p>练习：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> __name__==<span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    a=<span class="hljs-string">&#x27;success&#x27;</span><br>    <span class="hljs-built_in">print</span>(a[<span class="hljs-number">1</span>],a[<span class="hljs-number">2</span>:],a[:<span class="hljs-number">4</span>],a[<span class="hljs-number">2</span>:<span class="hljs-number">4</span>],a[:])<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/%E7%BB%93%E6%9E%9C.jpg" alt="结果" class="lazyload"></p>
+<h4 id="字符串创建函数："><a href="#字符串创建函数：" class="headerlink" title="字符串创建函数："></a>字符串创建函数：</h4><ul>
+<li><p>str()          转义</p>
+</li>
+<li><p>repr()        原样</p>
+</li>
+</ul>
+<p>运行图：</p>
+<p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/2.jpg"></p>
+<h4 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h4><p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/3.jpg"></p>
+<p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/4.jpg"></p>
+<p>​                    比较时判断的是字符串的编码大小</p>
+<h4 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h4><p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/6.jpg"></p>
+<p>字符串格式化输出方式：</p>
+<ul>
+<li>print(‘{0}, {1}.’.format(‘Hello’,’world’))</li>
+<li>print(‘{}, I am {}.’.format(‘Hello’,’Python’))</li>
+<li>print(‘{0} {1}, {1} is a new prgramming language.’.format(‘Hello’,’Python’))</li>
+<li>print(“网站名：{name}, 地址 {url}”.format(name=”name”, url=”<a target="_blank" rel="noopener" href="http://www.xxxx.xx/&quot;">http://www.xxxx.xx/&quot;</a>))</li>
+</ul>
+<p>字典格式化：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">site = &#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;xxxx&quot;</span>, <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;http://www.xxxx.cn/&quot;</span>&#125;<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;网站名：&#123;name&#125;, 地址 &#123;url&#125;&quot;</span>.<span class="hljs-built_in">format</span>(**site))<br></code></pre></td></tr></table></figure>
+
+<p>列表格式化：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">list</span> = [<span class="hljs-string">&#x27;world&#x27;</span>,<span class="hljs-string">&#x27;python&#x27;</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;hello &#123;names[0]&#125;, I am &#123;names[1]&#125;.&#x27;</span>.<span class="hljs-built_in">format</span>(names=<span class="hljs-built_in">list</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;hello &#123;0[0]&#125;, I am &#123;0[1]&#125;.&#x27;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">list</span>))<br></code></pre></td></tr></table></figure>
+
+<p>练习：判断输入的手机号码是否正确</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> __name__==<span class="hljs-string">&#x27;__main__&#x27;</span>:<br> <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>):<br>    a = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;请输入手机号：&quot;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(a)!=<span class="hljs-number">11</span>:<br>       <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;手机号长度不合法，请重新输入！&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">if</span> a.isdecimal():<br>         <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;输入正确!&quot;</span>)<br>         <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">else</span>:<br>         <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;输入不正确！请重新输入！&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/15.jpg" alt="结果" class="lazyload"></p>
+<h4 id="常用转义字符"><a href="#常用转义字符" class="headerlink" title="常用转义字符"></a>常用转义字符</h4><p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/7.jpg"></p>
+<h4 id="常量和变量"><a href="#常量和变量" class="headerlink" title="常量和变量"></a>常量和变量</h4><ul>
+<li><p>常量：Python中没有专门定义常量的方式，通常使用大写变量名表示。其本质还是变量。</p>
+</li>
+<li><p>例：PI = 3.14</p>
+</li>
+<li><p>变量：</p>
+<p>变量的值可以变，类型也可以变。</p>
+<p>当用变量的时候，必须给这个变量赋值。</p>
+<p>如果只声明一个变量而没有赋值，则Python认为这个变量没有定义。</p>
+</li>
+</ul>
+<p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/10.jpg"></p>
+<h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/11.jpg"></p>
+<p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/12.jpg"></p>
+<h4 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h4><ul>
+<li>内置函数(Built-In Functions，BIF)是Python的内置对象类型之一，封装在标准库模块_ <em>builtins</em> _中 如：input（），print（）</li>
+</ul>
+<h4 id="特殊内置函数"><a href="#特殊内置函数" class="headerlink" title="特殊内置函数"></a>特殊内置函数</h4><p><img src="/2021/09/13/python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/13.jpg"></p>
+<h3 id="本次学习结束"><a href="#本次学习结束" class="headerlink" title="本次学习结束"></a>本次学习结束</h3>
+            
+        </article>
+    </div>
     
     <div class="nexmoe-post">
         <a href="/2021/09/11/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%86%99%E5%8D%9A%E5%AE%A2/">
@@ -253,7 +380,7 @@
 
  
 
-<script async src="/js/app.js?v=1631364783943"></script>
+<script async src="/js/app.js?v=1631692984568"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
