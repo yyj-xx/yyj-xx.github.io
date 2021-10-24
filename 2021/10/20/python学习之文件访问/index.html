@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>python学习之文件访问 - Jay的个人博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="记录分享学习">
+    <meta name="keywords" content="记录,学习,分享">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="文件访问文件的分类： 按文件内容分： 程序文件:存储的是程序，包括源文件和可执行文件如：.py、.cpp、.exe等文件 数据文件:存储的是程序运行时所需的各种数据如：.txt、.docx、.xlsx等文件   按信息存储形式分类： 文本文件:基于字符编码的文件，常见编码方式:asscll、Unicode编码可以使用文本编辑软件进行修改，常见为:.txt、.html文件 二进制文件:存放各种数据的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习之文件访问">
+<meta property="og:url" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/index.html">
+<meta property="og:site_name" content="Jay的个人博客">
+<meta property="og:description" content="文件访问文件的分类： 按文件内容分： 程序文件:存储的是程序，包括源文件和可执行文件如：.py、.cpp、.exe等文件 数据文件:存储的是程序运行时所需的各种数据如：.txt、.docx、.xlsx等文件   按信息存储形式分类： 文本文件:基于字符编码的文件，常见编码方式:asscll、Unicode编码可以使用文本编辑软件进行修改，常见为:.txt、.html文件 二进制文件:存放各种数据的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/1.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/2.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/3.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/4.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/5.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/6.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/7.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/8.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/9.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/10.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/11.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/12.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/13.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/14.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/15.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/16.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/17.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/18.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/19.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/20.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/21.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/22.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/23.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/24.jpg">
+<meta property="article:published_time" content="2021-10-20T07:03:46.000Z">
+<meta property="article:modified_time" content="2021-10-24T06:50:07.319Z">
+<meta property="article:author" content="Jay jay">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/1.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1635059569639">
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1635059569639">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Jay jay" class="mdui-btn mdui-btn-icon"><img src="https://avatars.githubusercontent.com/u/52961008?s=400&amp;u=6058780ba30b3206dac2b45bf3aaa9ded29d6237&amp;v=4# 网站 Logo" alt="Jay jay"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Jay jay">
+            <img src="https://avatars.githubusercontent.com/u/52961008?s=400&amp;u=6058780ba30b3206dac2b45bf3aaa9ded29d6237&amp;v=4# 网站 Logo" alt="Jay jay" alt="Jay jay">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>11</div>
+        <div><span>标签</span>2</div>
+        <div><span>分类</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://www.baidu.com/s?wd=" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/436182677" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/yyj-xx/yyj-xx.github.io" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%86%99%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">学习写博客</a>
+    </div>
+    
+  </div>
+
+    
+    
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 Jay jay
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br>人生需要不断的探索
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg" data-sizes="auto" alt="python学习之文件访问" class="lazyload">
+              <h1>python学习之文件访问</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年10月20日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.8k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 12 分钟</a>
+</div>
+
+      
+
+      <h1 id="文件访问"><a href="#文件访问" class="headerlink" title="文件访问"></a>文件访问</h1><h2 id="文件的分类："><a href="#文件的分类：" class="headerlink" title="文件的分类："></a>文件的分类：</h2><ol>
+<li>按文件内容分：<ul>
+<li>程序文件:存储的是程序，包括源文件和可执行文件如：.py、.cpp、.exe等文件</li>
+<li>数据文件:存储的是程序运行时所需的各种数据如：.txt、.docx、.xlsx等文件</li>
+</ul>
+</li>
+<li>按信息存储形式分类：<ul>
+<li>文本文件:基于字符编码的文件，常见编码方式:asscll、Unicode编码可以使用文本编辑软件进行修改，常见为:.txt、.html文件</li>
+<li>二进制文件:存放各种数据的二进制编码，含有特殊的格式及计算机代码，必须用专用程序打开。常见的二进制编码文件有：数据库文件、图像文件、可执行文件、音频文件</li>
+</ul>
+</li>
+</ol>
+<h2 id="文本的访问："><a href="#文本的访问：" class="headerlink" title="文本的访问："></a>文本的访问：</h2><p><strong>访问步骤：</strong></p>
+<ol>
+<li>用open()函数打开一个文件，返回一个文件对象</li>
+<li>调用文件对象中的函数对文件内容进行读或写等操作</li>
+<li>调用文件对象的close()函数关闭文件</li>
+</ol>
+<h3 id="打开文件："><a href="#打开文件：" class="headerlink" title="打开文件："></a>打开文件：</h3><ol>
+<li><p>open（）函数：python内置函数用于打开一个文件，返回一个文件对象，格式：open(filename[，mode])，filename为要打开文件的名称和路径，mode为文件访问的模式，如只读、写入、追加等，默认为只读(r).</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/1.jpg" alt="文件访问模式" class="lazyload"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">file=<span class="hljs-built_in">open</span>(<span class="hljs-string">r&quot;2.py&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;文件名：&quot;</span>,file.name)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;访问模式：&quot;</span>,file.mode)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;是否已关闭：&quot;</span>,file.closed)<br>file.closed<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/2.jpg"></p>
+</li>
+<li><p>with-as语句进行文本访问：在用open（）函数对文件打开或者进行读写扽操作的过程中都有可能发生错误，即使写了关闭文件的语句也不一定能正常执行，从而导致不能正常关闭文件，缓存信息可能会意外丢失，文件可能损坏，所以推荐使用with-as语句减少这种情况，它适用于对资源进行访问的场合，可确保不管在使用过程中是否发生异常都会执行清理操作，释放资源，文件使用后自动关闭</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用with-as访问文本文件</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./1.txt&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>) <span class="hljs-keyword">as</span> file:  <span class="hljs-comment">#注意要给权限</span><br>    num=file.write(<span class="hljs-string">&quot;Go its own way,let others say!&quot;</span>) <span class="hljs-comment">#向文件写入字符串</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;写入字符%d个！&quot;</span>%num)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/3.jpg"></p>
+</li>
+</ol>
+<h3 id="文件操作："><a href="#文件操作：" class="headerlink" title="文件操作："></a>文件操作：</h3><ol>
+<li><p>写文件：</p>
+<ul>
+<li><p>file.write(str字符串)和file.writelines(seuence字符序列)向文件中写内容</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#文件操作</span><br><span class="hljs-comment">#写文件：</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./1.txt&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>,encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> file:<br>    num=file.write(<span class="hljs-string">&quot;天空再怎么黑暗\n我的内心依旧光明&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;写了%d个字符&quot;</span>%num)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/4.jpg"></p>
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/5.jpg"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#向文件中追加内容:</span><br><span class="hljs-built_in">str</span>=<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;请输入内容：&quot;</span>)<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./1.txt&quot;</span>,<span class="hljs-string">&quot;a&quot;</span>,encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> file:<span class="hljs-comment">#参数a是以追加方式打开</span><br>    file.write(<span class="hljs-string">&quot;\n&quot;</span>)<br>    num=file.write(<span class="hljs-built_in">str</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;写了%d个字符&quot;</span> % num)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/6.jpg"></p>
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/7.jpg"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#向文件中写入元组：</span><br>mingtuple=(<span class="hljs-string">&quot;王阳明&quot;</span>,<span class="hljs-string">&quot;郑和&quot;</span>,<span class="hljs-string">&quot;戚继光&quot;</span>)<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./ming.txt&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>,encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> file:<br>    num=file.write(<span class="hljs-built_in">str</span>(mingtuple))<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;将元组写入文件&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/8.jpg"></p>
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/9.jpg"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用file.writelines(sequence)向文件中写入字符序列：</span><br><span class="hljs-built_in">str</span>=[<span class="hljs-string">&quot;好雨知时节，当春乃发生.\n&quot;</span>,<span class="hljs-string">&quot;随风潜入夜，润物细无声&quot;</span>]<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;杜甫.txt&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>,encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> file:<br>    file.writelines(<span class="hljs-built_in">str</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;写入字符序列成功！&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/10.jpg"></p>
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/11.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>读文件：三个函数file.read(),file.readline(),file.readlines()</p>
+<ul>
+<li><p>file.read([size]):读取一个文件的内容，返回一个字符串对象size是要读取内容的数目是可选参数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#文件读取：</span><br><span class="hljs-comment">#file.read()和for循环读取文件内容:</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./杜甫.txt&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> file:<br>    <span class="hljs-built_in">str</span>=file.read()<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">str</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;分割线&quot;</span>,<span class="hljs-string">&#x27;-&#x27;</span>*<span class="hljs-number">20</span>)<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;1.txt&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> file:<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> file:<br>        <span class="hljs-built_in">print</span>(i,end=<span class="hljs-string">&#x27; &#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/12.jpg"></p>
+<ul>
+<li><p>file.readline([size])函数从文件中读取一行返回一个字符串对象size为内容的数目可选</p>
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/13.jpg"></p>
+</li>
+<li><p>file.readlines([sizeint]):功能是读取并返回该文件中包含的所有行，以字符串列表形式返回sizeint为读取的字节数，可选参数</p>
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/14.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>其他文件操作：</p>
+<ul>
+<li>file.close():关闭文件。关闭文件后不能进行读写操作。</li>
+<li>file.flash():刷新文件内部缓冲，直接把内部缓冲区的数据立刻写入文件，而不是被动地等待输出缓冲区写入</li>
+<li>file.fileno():返回一个整型的文件描述符</li>
+<li>file.isatty():如果文件连接到一个终端设备则返回true，否则返回false</li>
+<li>file.tell():返回文件当前位置</li>
+<li>file.seek():重定位文件对象的指针位置</li>
+<li>file.truncate([size]):从文件的首行首字符开始截断，截断文件为size个字符，无size表示从当前位置截断：截断之后后面的所有字符被删除</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用file.tell()和file.seek()重定位</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./1.txt&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> file:<br>    data=file.readline()<br>    <span class="hljs-built_in">print</span>(data.strip())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;输出一行后的文件指针在：&#x27;</span>,file.tell())<span class="hljs-comment">#查看指针位置</span><br>    file.seek(<span class="hljs-number">0</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;用seek()将文件指针放回开始处：&#x27;</span>,file.tell())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;再次输出：&#x27;</span>,file.readlines())<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/15.jpg"></p>
+</li>
+</ol>
+<h3 id="二进制文件访问："><a href="#二进制文件访问：" class="headerlink" title="二进制文件访问："></a>二进制文件访问：</h3><p>对二进制文件不能直接用记事本等文本编辑软件直接进行读写，也无法通过python的文件对象直接读取和理解二进制文件中的内容，要想正确读写二进制文件必须理解二进制文件的结构，序列化，反序列化。</p>
+<ul>
+<li>序列化：指的是把内存中的数据对象在不丢失其类型的情况下转换成对应的二进制信息</li>
+<li>反序列化：将二进制信息准确无误地恢复到原来的数据对象的过程</li>
+</ul>
+<p>二进制文件访问的三步：</p>
+<ol>
+<li>打开二进制文件</li>
+<li>访问二进制文件，写操作是将要写入的内容序列化后写入文件的过程，操作是将二进制文件内容读出反序列化的过程</li>
+<li>关闭二进制文件</li>
+</ol>
+<h3 id="使用pickle模块读写二进制文件："><a href="#使用pickle模块读写二进制文件：" class="headerlink" title="使用pickle模块读写二进制文件："></a>使用pickle模块读写二进制文件：</h3><p>pickle模块只能在python中使用，几乎python中所有的数据类型都可以用pickle模块实现序列化。</p>
+<p>pickle模块有两个函数：pickle.dump()序列化数据对象，并将该对象写入二进制文件：格式“pickle.dump(data，file[,protocoll])”data为写入二进制文件的数据对象，file创建或打开的文件对象，protocol为序列化的模式。</p>
+<p>pickle.load(file):反序列化函数，将二进制文件中的内容解析为一个数据对象，file为打开二进制文件对象</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用pickle模块读写二进制文件：</span><br><span class="hljs-keyword">import</span> pickle<br>list1=[<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">8</span>]<br>tuple1=(<span class="hljs-string">&quot;music&quot;</span>,<span class="hljs-string">&quot;game&quot;</span>,<span class="hljs-string">&quot;sports&quot;</span>)<br>data = [list1,tuple1]<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./二进制文件读写.txt&quot;</span>,<span class="hljs-string">&quot;wb&quot;</span>)<span class="hljs-keyword">as</span> pickle_file:<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> data:<br>        pickle.dump(i,pickle_file)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;写入数据成功！&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/16.jpg"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#读：</span><br><span class="hljs-keyword">import</span> pickle<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./二进制文件读写.txt&quot;</span>,<span class="hljs-string">&quot;rb&quot;</span>) <span class="hljs-keyword">as</span> picklef:<br>    data1=pickle.load(picklef)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;data1:&quot;</span>,data1)<br>    data2=pickle.load(picklef)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;data2:&quot;</span>,data2)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/17.jpg"></p>
+<h3 id="使用struct模块读写二进制文件："><a href="#使用struct模块读写二进制文件：" class="headerlink" title="使用struct模块读写二进制文件："></a>使用struct模块读写二进制文件：</h3><p>方法：</p>
+<ol>
+<li>向二进制文件中写数据，先使用pack（）函数对数据对象按指定的格式进行序列化，然后使用文件对象write()函数将序列化的结果写入二进制文件</li>
+<li>从二进制文件中读数据，先使用文件对象的read()函数读取二进制文件中的内容然后使用struct模块的unpack()函数完成反序列化后得到原来的数据对象</li>
+</ol>
+<p>函数格式：</p>
+<p>struct.pack(fmt,data1,data2…):fmt给定格式化字符串，data1、data2为要写入的数据对象</p>
+<p>struct.unpack(fmt,string):fmt为给定格式化字符串，string为反序列化的字符串</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#读</span><br><span class="hljs-keyword">import</span> struct<br>a=<span class="hljs-string">&quot;hello&quot;</span><br>b=<span class="hljs-number">32</span><br>c=<span class="hljs-number">89.6</span><br>binary1=struct.pack(<span class="hljs-string">&#x27;5sif&#x27;</span>,a.encode(<span class="hljs-string">&quot;utf-8&quot;</span>),b,c)<span class="hljs-comment">#5字符串长度s类型if也是类型</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./struct二进制文件读写.txt&quot;</span>,<span class="hljs-string">&quot;wb&quot;</span>) <span class="hljs-keyword">as</span> struct_file:<br>    struct_file.write(binary1)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;写入数据成功！&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/18.jpg"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#写：</span><br><span class="hljs-keyword">import</span>  struct<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./struct二进制文件读写.txt&quot;</span>,<span class="hljs-string">&quot;rb&quot;</span>) <span class="hljs-keyword">as</span> file:<br>    binary1=file.read()<br>    a,b,c=struct.unpack(<span class="hljs-string">&quot;5sif&quot;</span>,binary1)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;%s   %d   %f&quot;</span>%(a,b,c))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/19.jpg"></p>
+<h3 id="使用marshal模块读写二进制文件："><a href="#使用marshal模块读写二进制文件：" class="headerlink" title="使用marshal模块读写二进制文件："></a>使用marshal模块读写二进制文件：</h3><p>marshal.dump(data,file):将数据对象序列化后写入二进制文件中，data待序列化数据对象，file为创建或打开文件对象</p>
+<p>marshal.load(file)：将二进制文件中的内容反序列化为数据对象</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用marshal模块读写二进制文件</span><br><span class="hljs-comment">#写</span><br><span class="hljs-keyword">import</span> marshal<br>data1=[<span class="hljs-string">&#x27;def&#x27;</span>,<span class="hljs-number">34</span>,<span class="hljs-number">89</span>]<br>data2=&#123;<span class="hljs-number">1</span>:<span class="hljs-string">&quot;优秀&quot;</span>,<span class="hljs-number">2</span>:<span class="hljs-string">&quot;良好&quot;</span>,<span class="hljs-number">3</span>:<span class="hljs-string">&quot;合格&quot;</span>,<span class="hljs-number">4</span>:<span class="hljs-string">&quot;不合格&quot;</span>&#125;<br>data3=(<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>)<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./marshal二进制文件读写.txt&quot;</span>,<span class="hljs-string">&quot;wb&quot;</span>)<span class="hljs-keyword">as</span> file:<br>    marshal.dump(data1,file)<br>    marshal.dump(data2,file)<br>    marshal.dump(data3,file)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;写入数据成功！&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/20.jpg"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#读：</span><br><span class="hljs-keyword">import</span> marshal<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./marshal二进制文件读写.txt&quot;</span>,<span class="hljs-string">&quot;rb&quot;</span>)<span class="hljs-keyword">as</span> file:<br>    data1=marshal.load(file)<br>    data2 = marshal.load(file)<br>    data3 = marshal.load(file)<br>    <span class="hljs-built_in">print</span>(data1)<br>    <span class="hljs-built_in">print</span>(data2)<br>    <span class="hljs-built_in">print</span>(data3)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/21.jpg"></p>
+<h3 id="使用shelve模块读写二进制文件："><a href="#使用shelve模块读写二进制文件：" class="headerlink" title="使用shelve模块读写二进制文件："></a>使用shelve模块读写二进制文件：</h3><p>shelve模块提供一种类似字典方式操作二进制文件的功能，如向二进制文件中写入、读出、修改数据。提供一个简单的数据存储方案，只有一个open()函数，它接收一个文件名作为参数，返回一个shelf对象.</p>
+<p>shelve.open(filename,mode,protocol=None,writeback=False)</p>
+<p>filename:打开或创建二进制文件</p>
+<p>model:文件打开模式：</p>
+<ol>
+<li>‘c’:如果文件不存在则创建允许读写</li>
+<li>‘r’:只读</li>
+<li>‘w’:可读可写</li>
+<li>‘n’:每次调用open()函数都重新创建一个空文件，可读可写。</li>
+</ol>
+<p>protocol:序列化模式，可以是1或2，默认None</p>
+<p>writeback:是否将所有从二进制文件中读取的对象存放到一个内存缓存，默认False</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用shelve模块读写二进制文件</span><br><span class="hljs-comment">#写：</span><br><span class="hljs-keyword">import</span> shelve<br>tg=<span class="hljs-built_in">dict</span>(<span class="hljs-built_in">zip</span>([<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>],[<span class="hljs-string">&#x27;dong&#x27;</span>,<span class="hljs-number">31</span>]))<span class="hljs-comment">#zip()是Python的一个内建函数，它接受一系列可迭代的对象作为参数，将对象中对应的元素打包成一个个tuple（元组），然后返回由这些tuples组成的list（列表）</span><br>tj=<span class="hljs-built_in">dict</span>(<span class="hljs-built_in">zip</span>([<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>],[<span class="hljs-string">&#x27;li&#x27;</span>,<span class="hljs-number">42</span>]))<br><span class="hljs-keyword">with</span> shelve.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;shelve_file&#x27;</span>)<span class="hljs-keyword">as</span> shelve_file:<br>    shelve_file[<span class="hljs-string">&#x27;tg&#x27;</span>]=tg<br>    shelve_file[<span class="hljs-string">&#x27;tj&#x27;</span>]=tj<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;写入数据成功！&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/22.jpg"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#读：</span><br><span class="hljs-keyword">import</span>  shelve<br><span class="hljs-keyword">with</span> shelve.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;shelve_file&#x27;</span>)<span class="hljs-keyword">as</span> shelve_file:<br>    <span class="hljs-built_in">print</span>(shelve_file[<span class="hljs-string">&#x27;tg&#x27;</span>])<br>    <span class="hljs-built_in">print</span>(shelve_file[<span class="hljs-string">&#x27;tj&#x27;</span>])<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/23.jpg"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#修改：</span><br><span class="hljs-keyword">import</span>  shelve<br><span class="hljs-keyword">with</span> shelve.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;shelve_file&#x27;</span>)<span class="hljs-keyword">as</span> file:<br>    tg=file[<span class="hljs-string">&#x27;tg&#x27;</span>]<br>    tg[<span class="hljs-string">&#x27;name&#x27;</span>]=<span class="hljs-string">&#x27;kei&#x27;</span><br>    file[<span class="hljs-string">&#x27;tg&#x27;</span>]=tg<br>    <span class="hljs-built_in">print</span>(file[<span class="hljs-string">&#x27;tg&#x27;</span>])<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/24.jpg"></p>
+<h3 id="csv文件操作："><a href="#csv文件操作：" class="headerlink" title="csv文件操作："></a>csv文件操作：</h3><p>csv(comma separated values,逗号分隔值)文件是一种常用的文本格式文件，用于存储表格数据，包括数字，字符等。python内置了csv模块处理csv文件常用函数如下：</p>
+<ol>
+<li>csv.writer(csvfile):返回一个witer对象。csvfile为打开的csv文件对象</li>
+<li>writer.writerow(row):写入一行到csv文件</li>
+<li>writer.writerows(rows):写入多行到csv文件</li>
+<li>csv.reader(csvfile):返回一个reader对象来读文件</li>
+</ol>
+<h1 id="本文结束"><a href="#本文结束" class="headerlink" title="本文结束"></a>本文结束</h1>
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>Jay jay<br>
+        <strong>本文链接：</strong><a href="https://yyj-xx.github.io/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/" title="https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2021&#x2F;10&#x2F;20&#x2F;python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2021&#x2F;10&#x2F;20&#x2F;python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '906d60a925bbfc786e36',
+        clientSecret: 'eef34b48d710958974d793333753521d0474c243',
+        id: window.location.pathname,
+        repo: 'yyj-xx.github.io',
+        owner: 'yyj-xx',
+        admin: 'yyj-xx'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE"><span class="toc-number">1.</span> <span class="toc-text">文件访问</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">文件的分类：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%9A%84%E8%AE%BF%E9%97%AE%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">文本的访问：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">打开文件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">1.2.2.</span> <span class="toc-text">文件操作：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE%EF%BC%9A"><span class="toc-number">1.2.3.</span> <span class="toc-text">二进制文件访问：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8pickle%E6%A8%A1%E5%9D%97%E8%AF%BB%E5%86%99%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-number">1.2.4.</span> <span class="toc-text">使用pickle模块读写二进制文件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8struct%E6%A8%A1%E5%9D%97%E8%AF%BB%E5%86%99%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-number">1.2.5.</span> <span class="toc-text">使用struct模块读写二进制文件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8marshal%E6%A8%A1%E5%9D%97%E8%AF%BB%E5%86%99%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-number">1.2.6.</span> <span class="toc-text">使用marshal模块读写二进制文件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8shelve%E6%A8%A1%E5%9D%97%E8%AF%BB%E5%86%99%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-number">1.2.7.</span> <span class="toc-text">使用shelve模块读写二进制文件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">1.2.8.</span> <span class="toc-text">csv文件操作：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E7%BB%93%E6%9D%9F"><span class="toc-number">2.</span> <span class="toc-text">本文结束</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1635059569651"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>python学习之模块、包、库的使用 - Jay的个人博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="记录分享学习">
+    <meta name="keywords" content="记录,学习,分享">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="模块在python中一个模块（module）是一个以.py结尾的python文件，包含了python对象和语句。 模块的好处：  方便组织代码 提高代码的重用性 增加代码的重用性 避免函数名和变量名冲突  模块的导入方式：  模块就是.py类型的Python文件  导入时不需要.py后缀，直接导入文件名即可 1、**利用import**直接导入：  语法：**import** module_nam">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习之模块、包、库的使用">
+<meta property="og:url" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Jay的个人博客">
+<meta property="og:description" content="模块在python中一个模块（module）是一个以.py结尾的python文件，包含了python对象和语句。 模块的好处：  方便组织代码 提高代码的重用性 增加代码的重用性 避免函数名和变量名冲突  模块的导入方式：  模块就是.py类型的Python文件  导入时不需要.py后缀，直接导入文件名即可 1、**利用import**直接导入：  语法：**import** module_nam">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/4.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/5.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/6.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/7.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/8.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/9.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/10.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/11.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/12.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/13.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/14.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/15.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/16.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/1.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/2.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/3.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/17.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/18.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/19.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/20.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/21.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/22.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/23.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/24.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/25.jpg">
+<meta property="article:published_time" content="2021-10-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-24T07:12:18.918Z">
+<meta property="article:author" content="Jay jay">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/4.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1635059569653">
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1635059569653">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Jay jay" class="mdui-btn mdui-btn-icon"><img src="https://avatars.githubusercontent.com/u/52961008?s=400&amp;u=6058780ba30b3206dac2b45bf3aaa9ded29d6237&amp;v=4# 网站 Logo" alt="Jay jay"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Jay jay">
+            <img src="https://avatars.githubusercontent.com/u/52961008?s=400&amp;u=6058780ba30b3206dac2b45bf3aaa9ded29d6237&amp;v=4# 网站 Logo" alt="Jay jay" alt="Jay jay">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>11</div>
+        <div><span>标签</span>2</div>
+        <div><span>分类</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://www.baidu.com/s?wd=" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/436182677" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/yyj-xx/yyj-xx.github.io" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%86%99%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">学习写博客</a>
+    </div>
+    
+  </div>
+
+    
+    
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 Jay jay
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br>人生需要不断的探索
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg" data-sizes="auto" alt="python学习之模块、包、库的使用" class="lazyload">
+              <h1>python学习之模块、包、库的使用</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年10月17日</a>
+    <a><i class="nexmoefont icon-areachart"></i>3.6k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 16 分钟</a>
+</div>
+
+      
+
+      <h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1><p>在python中一个模块（module）是一个以.py结尾的python文件，包含了python对象和语句。</p>
+<p>模块的好处：</p>
+<ol>
+<li>方便组织代码</li>
+<li>提高代码的重用性</li>
+<li>增加代码的重用性</li>
+<li>避免函数名和变量名冲突</li>
+</ol>
+<p>模块的导入方式：</p>
+<ul>
+<li><p>模块就是.py类型的Python文件</p>
+</li>
+<li><p>导入时不需要.py后缀，直接导入文件名即可</p>
+<p>1、**利用<code>import</code>**直接导入：</p>
+</li>
+<li><p>语法：**<code>import</code>** module_name</p>
+</li>
+<li><p>使用方式：module_name.class_name或者module.func_name</p>
+<p>2、利用**<code>import</code>**导入模块并设置一个别名</p>
+</li>
+<li><p>语法：**<code>import</code>** module_name <strong><code>as</code></strong> XXX</p>
+</li>
+<li><p>使用方式：XXX.class_name或者XXX.funct_name</p>
+<p>3、借助**<code>from</code>**复制模块的属性，可以实现只导入模块中的部分类或函数或变量</p>
+</li>
+<li><p>语法：**<code>from</code>** module_name <strong><code>import</code></strong> class_name， funct_name</p>
+</li>
+<li><p>使用方式：直接调用函数或实例化类即可</p>
+</li>
+<li><p>但要注意，from把变量从模块中导入后，会导致<strong>相同名称的变量被覆盖</strong>，也就是说不同模块的命名空间会在此处重叠。</p>
+<p>4、借助**<code>from...import</code> ***导入模块全部内容</p>
+</li>
+<li><p>语法：**<code>from</code>** module_name <strong><code>import</code> *</strong></p>
+</li>
+<li><p>使用时直接调用函数或实例化类即可</p>
+<p>5、借助importlib模块实现导入以数字开头的模块</p>
+</li>
+<li><p>语法：**<code>import importlib</code>**</p>
+</li>
+<li><p>XXX = <strong><code>importlib.import_module</code></strong>(“module_name”)</p>
+</li>
+<li><p>使用时XXX.class_name或者XXX.func_name</p>
+</li>
+</ul>
+<h2 id="自带模块："><a href="#自带模块：" class="headerlink" title="自带模块："></a>自带模块：</h2><h3 id="Turtle模块："><a href="#Turtle模块：" class="headerlink" title="Turtle模块："></a>Turtle模块：</h3><p>Turtle是python内嵌的绘制线、圆及其他形状（包括文本）的图形模块，它可以创建一个画笔，在一个横轴为x纵轴为y的坐标系原点位置开始，根据一组函数指令控制，在这个平面绘制图形</p>
+<p>画布（Canvas）:是Turple模块展开用于绘制图形的区域，默认一个坐标原点为画布中心的坐标轴，可以使用turtle.screensize(width,height,bg(bg代表背景颜色))和turtle.setup设置它的大小和初始位置</p>
+<p>turtle.setup(width,height,startx,starty)其中startx，starty是画布左上角顶点在窗口的坐标位置</p>
+<p>画笔:</p>
+<p>画笔状态：使用位置方向描述画笔状态</p>
+<p>画笔属性：包括画笔颜色、宽度移动速度，</p>
+<p>​                turtle.pencolor(color)、turtle.pensize(width)、 tu                                                                                                           rtle.speed(speed)</p>
+<p>绘图命令：</p>
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/4.jpg"></p>
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/5.jpg"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#Turtle模块：</span><br><span class="hljs-keyword">import</span> turtle<br><span class="hljs-comment">#绘制一个圆和一个填充正方形</span><br>turtle.penup()<br>turtle.goto(-<span class="hljs-number">150</span>,<span class="hljs-number">0</span>)<br>turtle.pendown()<br>turtle.pencolor(<span class="hljs-string">&#x27;blue&#x27;</span>)<br>turtle.begin_fill()<br>turtle.fillcolor(<span class="hljs-string">&#x27;blue&#x27;</span>)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>    turtle.forward(<span class="hljs-number">100</span>)<br>    turtle.left(<span class="hljs-number">90</span>)<br>turtle.end_fill()<br><span class="hljs-comment">#画圆</span><br>turtle.penup()<br>turtle.goto(<span class="hljs-number">100</span>,<span class="hljs-number">0</span>)<br>turtle.pendown()<br>turtle.color(<span class="hljs-string">&#x27;red&#x27;</span>)<br>turtle.pensize(<span class="hljs-number">3</span>)<br>turtle.circle(<span class="hljs-number">50</span>)<br>turtle.done()<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/6.jpg"></p>
+<p>用turtle在画布上写字：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#在画布上写文字</span><br>t=turtle.Turtle()<br>t.penup()<br>t.goto(-<span class="hljs-number">80</span>,<span class="hljs-number">20</span>)<br>t.write(<span class="hljs-string">&quot;望庐山瀑布&quot;</span>,font=(<span class="hljs-string">&quot;黑体&quot;</span>,<span class="hljs-number">14</span>,<span class="hljs-string">&quot;normal&quot;</span>))<br>t.sety(-<span class="hljs-number">10</span>) <span class="hljs-comment">#画笔向下移</span><br>t.write(<span class="hljs-string">&quot;你很牛&quot;</span>,font=(<span class="hljs-string">&quot;宋体&quot;</span>,<span class="hljs-number">16</span>,<span class="hljs-string">&quot;normal&quot;</span>))<br>t.hideturtle()<br>turtle.done()<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/7.jpg"></p>
+<h3 id="Random模块："><a href="#Random模块：" class="headerlink" title="Random模块："></a>Random模块：</h3><p>random模块用于生成随机数：</p>
+<ol>
+<li><p>random.random()函数用于生成[0，1）之间的随机浮点数。</p>
+</li>
+<li><p>random.uniform(start，end)函数用于生成一个指定范围内的随机浮点数</p>
+</li>
+<li><p>random.randint(start，end)函数用于生成一个指定范围内的整数</p>
+</li>
+<li><p>random.randrange(start，end，step)函数用于生成指定范围指定步长的随机整数</p>
+</li>
+<li><p>random.choice(序列对象)函数的功能是从序列对象中获取一个随机元素</p>
+</li>
+<li><p>random.shuffle(序列对象[,random])函数用于将一个序列对象中的元素打乱</p>
+</li>
+<li><p>random.sample(序列对象，k)从指定序列对象中随机获取指定长度（k）的片的</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#random模块</span><br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>):<br>   <span class="hljs-built_in">print</span>(random.random())<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;*&quot;</span>*<span class="hljs-number">10</span>)<br>random.uniform(<span class="hljs-number">2</span>,<span class="hljs-number">6</span>)<br>random.uniform(<span class="hljs-number">8</span>,<span class="hljs-number">6</span>)<br>random.uniform(-<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;*&quot;</span>*<span class="hljs-number">10</span>)<br><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>):<br>    <span class="hljs-built_in">print</span>(random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">100</span>))<br><span class="hljs-built_in">print</span>()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;*&quot;</span>*<span class="hljs-number">10</span>)<br>list1=[]<br><span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">11</span>):<br>    list1.append(random.randrange(<span class="hljs-number">1</span>,<span class="hljs-number">100</span>,<span class="hljs-number">2</span>))<br><span class="hljs-built_in">print</span>(list1)<br><span class="hljs-built_in">print</span>()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;*&quot;</span>*<span class="hljs-number">10</span>)<br><span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>):<br>    <span class="hljs-built_in">print</span>(random.choice(list1))<br><span class="hljs-built_in">print</span>()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;*&quot;</span>*<span class="hljs-number">10</span>)<br><span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>):<br>    <span class="hljs-built_in">print</span>(random.shuffle(list1))<br><span class="hljs-built_in">print</span>()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;*&quot;</span> * <span class="hljs-number">10</span>)<br>list2=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>]<br>slice1=random.sample(list2,<span class="hljs-number">4</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;slice1:&quot;</span>,slice1)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/8.jpg"></p>
+</li>
+</ol>
+<h3 id="Time和Datetime模块："><a href="#Time和Datetime模块：" class="headerlink" title="Time和Datetime模块："></a>Time和Datetime模块：</h3><p>time模块主要用于时间访问和转换提供了各种相关函数：</p>
+<ol>
+<li>time.time():返回时间戳（自1970-1-1 0：00：00至今所经历的浮点秒数）</li>
+<li>time.asctime([t]):将一个tuple或struct_time形式的时间转换为一个表示当前本地时间的字符串</li>
+<li>time.ctime([secs]):将一个秒数时间戳表示的时间转换为一个表示当地时间的字符串</li>
+<li>time.localtime([secs]):返回以指定时间戳对应的本地时间struct——time对象</li>
+<li>time.strftime(s,t):将struct_time对象转换成字符串</li>
+<li>time.altzone：返回与utc时间的时间差以秒为单位</li>
+</ol>
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/9.jpg"></p>
+<p>datetime模块为日期和事件处理同时提供了简单复杂的方法，其中有</p>
+<p>日期类（date类）：d=datetime.date(year,mouth,day)</p>
+<p>时间类（time类）:t=time(hour,[minute,[second,[,tzinfo]]])</p>
+<p>日期时间类(datetime类):dt=datetime(year,month,day,hout,minute,second,microsecond,tzinfo)</p>
+<p>时间差类（timedelta类):td=datetime.timedelta(days,seconds,microseconds,milliseconds,hours,weeks)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#datetime类的使用：</span><br><span class="hljs-comment">#date类：</span><br><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> date<br>d=date.today()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;当前日期：&quot;</span>,d)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;日期：&#123;&#125;年&#123;&#125;月&#123;&#125;日&quot;</span>.<span class="hljs-built_in">format</span>(d.year,d.month,d.day))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;今天是周&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(d.isoweekday()))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;*&quot;</span> * <span class="hljs-number">10</span>)<br><span class="hljs-comment">#time类：</span><br><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> time<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;时间最大值：&quot;</span>,time.<span class="hljs-built_in">max</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;时间最小值：&quot;</span>,time.<span class="hljs-built_in">min</span>)<br>t=time(<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">50</span>,<span class="hljs-number">8888</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;时间：&#123;&#125;时&#123;&#125;分&#123;&#125;秒&#123;&#125;微妙&quot;</span>.<span class="hljs-built_in">format</span>(t.hour,t.minute,t.second,t.microsecond))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;*&quot;</span> * <span class="hljs-number">10</span>)<br><span class="hljs-comment">#datetime类</span><br><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime<br>dt=datetime.now()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;当前日期：&quot;</span>,dt.date())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;当前时间：&#123;&#125;  当前年份：&#123;&#125;年  当前月份：&#123;&#125;月   当前日期：&#123;&#125;日&quot;</span>.<span class="hljs-built_in">format</span>(dt.time(),dt.year,dt.month,dt.day))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;时间：&quot;</span>,datetime(<span class="hljs-number">2018</span>,<span class="hljs-number">9</span>,<span class="hljs-number">16</span>,<span class="hljs-number">12</span>,<span class="hljs-number">20</span>,<span class="hljs-number">36</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;*&quot;</span> * <span class="hljs-number">10</span>)<br><span class="hljs-comment">#timedelta类</span><br><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime,timedelta<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;1周包含的秒数：&quot;</span>,timedelta(days=<span class="hljs-number">7</span>).total_seconds())<br>d=datetime.now()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;当前本地系统时间:&quot;</span>,d)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;一天后：&quot;</span>,d+timedelta(days=<span class="hljs-number">1</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;一天前：&quot;</span>,d+timedelta(days=-<span class="hljs-number">1</span>))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/10.jpg"></p>
+<h3 id="OS模块："><a href="#OS模块：" class="headerlink" title="OS模块："></a>OS模块：</h3><p>​    os模块是一个用于访问操作系统功能的模块，通过os模块中提供的接口可以实现以下功能：</p>
+<ol>
+<li><p>获取平台信息</p>
+<ul>
+<li>os.getcwd():获取当前工作目录</li>
+<li>os.sep:查看操作系统特定的路径分隔符</li>
+<li>os.linesep:查看当前平台使用的行终结符</li>
+<li>os.pathsep:查看用于分隔文件路径的字符串</li>
+<li>os.name:查看当前系统平台</li>
+<li>os.environ:查看当前系统的环境变量</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;分隔符：&quot;</span>,os.sep)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;操作系统平台：&quot;</span>,os.name)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;环境变量path：&quot;</span>,os.getenv(<span class="hljs-string">&#x27;path&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/11.jpg"></p>
+</li>
+<li><p>目录文件操作：</p>
+<ul>
+<li><p>os.mkdir(newdir):创建新目录</p>
+</li>
+<li><p>os.rmdir(dir):删除目录</p>
+</li>
+<li><p>os.listdir(path):列出指定目录path下所有文件</p>
+</li>
+<li><p>os.chdir(path)：改变当前脚本的工作目录为指定路径path</p>
+</li>
+<li><p>os.remove(file)：删除一个指定文件file</p>
+</li>
+<li><p>os.rename(oldname,newname):重命名一个文件</p>
+<p>os模块获取文件属性：</p>
+</li>
+<li><p>os.path.abspath(path):返回绝对路径</p>
+</li>
+<li><p>os.path.split(path):将path分割成包含目录和文件名的元组返回</p>
+</li>
+<li><p>os.path.exists(path):如果path存在则返回true否则返回false</p>
+</li>
+<li><p>os.path.isfile(file):如果file是一个存在的文件则返回true否则返回false</p>
+</li>
+<li><p>os.path.isdir(dir)：如果dir是一个存在的目录则返回true否则返回false、</p>
+</li>
+<li><p>os.path.getsize(file);返回指定文件大小</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#os文件操作：</span><br><span class="hljs-keyword">import</span> os<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;当前工作路径：&quot;</span>,os.getcwd())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;当前路径的目录和文件列表：&quot;</span>,os.listdir())<br>os.rename(<span class="hljs-string">&quot;1.py&quot;</span>,<span class="hljs-string">&quot;11.py&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;重命名文件夹后当前路径的目录和文件列表&quot;</span>,os.listdir())<br>os.mkdir(<span class="hljs-string">&quot;newDir&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;创建文件目录后当前目录和文件列表：&quot;</span>,os.listdir())<br>os.chdir(<span class="hljs-string">&quot;newDir&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;改变当前工作路径后，当前工作路径：&quot;</span>,os.getcwd())<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;(路径，文件)&quot;</span>,os.path.split(<span class="hljs-string">r&quot;d:\OS模块\1.py&quot;</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;目录存在？：&quot;</span>,os.path.exists(<span class="hljs-string">r&quot;d:\OS模块&quot;</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;文件存在？&quot;</span>,os.path.isfile(<span class="hljs-string">r&quot;d:\OS模块\1.py&quot;</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;文件大小：&quot;</span>,os.path.getsize(<span class="hljs-string">r&quot;d:\OS模块\1.py&quot;</span>))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/12.jpg"></p>
+</li>
+<li><p>调用系统命令：</p>
+<p>os模块中用于调用系统命令的常用函数：</p>
+<ul>
+<li><p>os.popen(cmd[,mode[,bufsize]]):用于由一个命令打开一个管道。cmd为系统命令，mode为模式（r或w），bufsize为文件需要的缓冲大小</p>
+</li>
+<li><p>os.sysem(shell):运行shell命令</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br>os.system(<span class="hljs-string">&quot;rmdir d:\\python学习\\大四学习\\newDir&quot;</span>)<br>os.popen(<span class="hljs-string">r&quot;c:\windows\notepad.exe&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;程序执行成功&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/13.jpg"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Sys模块："><a href="#Sys模块：" class="headerlink" title="Sys模块："></a>Sys模块：</h2><p>sys模块提供对python解释器相关的操作</p>
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/14.jpg"></p>
+<h3 id="Timeit模块："><a href="#Timeit模块：" class="headerlink" title="Timeit模块："></a>Timeit模块：</h3><p>是一个计时功能的模块，用于测试一段代码运行时间 </p>
+<p>timeit()函数返回执行代码所用的时间单位为秒：t=timeit(stmt=’code’,setup=’code’,timer=<defaulttimer>,number=n),stmt是要执行的代码，setup为执行代码的准备工作，timer一般为time.clock(),number为执行代码次数</defaulttimer></p>
+<p>repeat()函数比timeit函数多了一个repeat参数控制执行多少遍格式：</p>
+<p>t=repeat(stmt=’code’,setup=’code’,timer=<defaulttimer>,repeat=m,number=n)</defaulttimer></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> timeit<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myfun</span>():</span><br>    <span class="hljs-built_in">sum</span>=<span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">100</span>):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">100</span>):<br>            <span class="hljs-built_in">sum</span>=<span class="hljs-built_in">sum</span>+i+j<br><br>t1=timeit.timeit(stmt=myfun,number=<span class="hljs-number">1000</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;t1=&quot;</span>,t1)<br>t2=timeit.repeat(stmt=myfun,repeat=<span class="hljs-number">6</span>,number=<span class="hljs-number">1000</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;t2=&quot;</span>,t2)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/15.jpg"></p>
+<h3 id="Zlib模块："><a href="#Zlib模块：" class="headerlink" title="Zlib模块："></a>Zlib模块：</h3><p>用来进行数据打包解包常用函数如下：</p>
+<ol>
+<li><p>zlib.compress(string):对string进行压缩</p>
+</li>
+<li><p>zlib.decompress(string):对string进行解压</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用zlib模块对字符串进行压缩解压</span><br><span class="hljs-keyword">import</span> zlib<br><span class="hljs-built_in">str</span>=<span class="hljs-string">b&#x27;贾程林是个猪头，大猪头&#x27;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;压缩前：&#123;&#125;字符个数：&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">str</span>,<span class="hljs-built_in">len</span>(<span class="hljs-built_in">str</span>)))<br>str_com=zlib.compress(<span class="hljs-built_in">str</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;压缩后：&#123;&#125;字符个数：&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(str_com,<span class="hljs-built_in">len</span>(str_com)))<br>str_dec=zlib.decompress(str_com)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;解压后：&#123;&#125;字符个数：&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(str_dec,<span class="hljs-built_in">len</span>(str_dec)))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/16.jpg"></p>
+</li>
+</ol>
+<p>模块的使用简单总结就是将模块导入，知道模块中函数的功能与传递参数的含义熟练的使用就可以掌握。</p>
+<h2 id="第三方库模块："><a href="#第三方库模块：" class="headerlink" title="第三方库模块："></a>第三方库模块：</h2><h3 id="Pyinstaller库"><a href="#Pyinstaller库" class="headerlink" title="Pyinstaller库:"></a>Pyinstaller库:</h3><p>可以用这个库来打包程python应用程序，打包时pyinstaller库会扫描python程序的所有文档，分析所有代码找出代码运行所需的模块，然后将所有这些模块和代码放在一个文件夹里或一个可执行文件里这样用户不需要下载各种软件运行环境就可以执行这个可执行程序</p>
+<p>下载和安装：</p>
+<p>pip install pyinstaller</p>
+<p>打包应用程序：</p>
+<ol>
+<li>创建一个python源文件</li>
+<li>打开命令行界面进入源文件所在路径</li>
+<li>在命令行界面运行命令：”pyinstaller -F  源文件名“ 打包源文件，成功执行后生成可执行文件源文件名.exe在源文件所在路径的dist中就可以让别人使用</li>
+</ol>
+<p>第三方库模块还有Numpy库开源的数值计算库、Pandas库一种解决数据分析任务的工具库、SciPy库一款方便易于使用专为科学和工程设计的库、Matplotlib库一个基于python跨平台交互式2D绘图库Jieba库优秀的中文分词库这些库的需要参考使用文档学会调用其内部函数就可以了。</p>
+<h1 id="包"><a href="#包" class="headerlink" title="包"></a>包</h1><p>为了对同一类型的模块进行有效的管理，引入了包（package）来组织模块，包是模块所在文件的目录，并且在该目录下必须有一个名为__init__.py的文件；否则python就将该目录视作为普通目录，而不是一个包。__init__.py可以是一个空文件，也可以包含python代码。</p>
+<p>包的导入：</p>
+<p>​    1.利用**<code>import</code><strong>直接导入包（</strong>仅仅导入__init__.py中的内容**）</p>
+<ul>
+<li><p>语法：import package_name</p>
+</li>
+<li><p>直接导入一个包，仅仅可以使用_<em>init</em>_.py中的全部内容</p>
+</li>
+<li><p>使用：package_name.func_name 或者 package_name.class</p>
+<p>2.导入包中的某一个模块</p>
+</li>
+<li><p>语法：<code>import</code> package_name.module_name</p>
+</li>
+<li><p>使用：package_name.module_na112afme.func_name或<br>package_name.module_name.class_name</p>
+</li>
+</ul>
+<h1 id="库"><a href="#库" class="headerlink" title="库"></a>库</h1><p>具有相关功能的包和模块集合则形成了库如：python标准库、numpy库等</p>
+<p>按照库的来源可分为三种库：</p>
+<ol>
+<li><p>标准库（python自带）</p>
+<p>常用标准库：</p>
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/1.jpg"></p>
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/2.jpg"></p>
+</li>
+<li><p>第三方库（由第三方机构发布具有特定功能）</p>
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/3.jpg"></p>
+<p>第三方库的使用和自带的库使用类似不过首先需要在terminal中用pip安装相关库然后导入库和模块按照模块使用方法使用即可</p>
+</li>
+<li><p>自定义库（用户创建）</p>
+<p>用户自己可以编写具有特定功能的模块，保存到扩展名为.py的文件中。由用户自己编写的模块称为自定义模块。和标准库模块第三方库中的模块一样。如果要调用自定义模块中的类、函数、属性也必须用import语句导入后在使用</p>
+<p>以一个项目名称为P1的例子介绍自定义模块创建和使用：</p>
+<ul>
+<li><p>场景1：</p>
+<p>在源文件A11.py中调用包package1中的模块A12：</p>
+<p>实现步骤：</p>
+<ol>
+<li>在package1下添加A11.py和模块A12中的程序代码</li>
+<li>分别编写源文件A11.py和A2中的程序代码</li>
+</ol>
+<p>目录结构如下：</p>
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/17.jpg"></p>
+<p>方法一：源文件A11.py中的程序代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> A12<br><span class="hljs-built_in">print</span>(A12.func_A12()) <span class="hljs-comment">#使用A12中的函数func_A12()</span><br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/18.jpg" alt="结果" class="lazyload"></p>
+<p>方法二：源文件A11中的程序代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#方法二</span><br><span class="hljs-keyword">from</span> A12 <span class="hljs-keyword">import</span> *<br><span class="hljs-built_in">print</span>(func_A12())<span class="hljs-comment">#使用A12中的函数func_A12()</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/19.jpg"></p>
+<p>方法三：源文件A11中的程序代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#方法三：</span><br><span class="hljs-keyword">from</span> A12 <span class="hljs-keyword">import</span> func_A12<br><span class="hljs-built_in">print</span>(func_A12())<span class="hljs-comment">#使用A12中的函数func_A12()</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/20.jpg"></p>
+<p>方法四：源文件A11中的程序代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#方法四</span><br><span class="hljs-keyword">import</span> A12 <span class="hljs-keyword">as</span> a<br><span class="hljs-built_in">print</span>(a.func_A12())<span class="hljs-comment">#使用A12中的函数func_A12()</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/21.jpg"></p>
+</li>
+<li><p>场景二：在源文件main.py中调用包pack2中的模块A2</p>
+<p>实现步骤：</p>
+<ol>
+<li>在pack2文件夹中创建__init__.py</li>
+<li>分别编写模块A2和源文件main.py中的程序代码</li>
+</ol>
+<p>方法一：</p>
+<p>源文件main.py中的程序代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#方法一：</span><br><span class="hljs-keyword">from</span> pack2.A2 <span class="hljs-keyword">import</span> *<span class="hljs-comment">#或者from pack2.A2 import func_A2()</span><br><span class="hljs-built_in">print</span>(func_A2())<span class="hljs-comment">#调用函数</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/22.jpg"></p>
+<p>方法二：</p>
+<p>源文件main.py中的程序代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#方法2</span><br><span class="hljs-keyword">import</span> pack2.A2<br><span class="hljs-built_in">print</span>(pack2.A2.func_A2())<span class="hljs-comment">#调用函数</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/23.jpg"></p>
+</li>
+<li><p>场景三：在源文件A11中调用模块A2</p>
+<p>在本场景中源文件A11.py和模块A2分别在两个不同路径的包中实现步骤：</p>
+<ol>
+<li>在pack2中添加__init__.py</li>
+<li>分别编写源文件A11和模块A2</li>
+</ol>
+</li>
+</ul>
+<p>方法一：</p>
+<p>源文件A11中的程序代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#方法一：</span><br><span class="hljs-keyword">import</span> sys<br>sys.path.append(<span class="hljs-string">&#x27;d:\\python学习\\大四学习\\pack\\pack2&#x27;</span>)<span class="hljs-comment">#引入pack2所在路径</span><br><span class="hljs-keyword">import</span> A12  <span class="hljs-comment">#导入模块</span><br><span class="hljs-built_in">print</span>(A12.func_A12())   <span class="hljs-comment">#调用函数</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/24.jpg"></p>
+<p>方法二：</p>
+<p>源文件A11中的程序代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 方法2：</span><br><span class="hljs-keyword">import</span> sys<br><br>sys.path.append(<span class="hljs-string">&#x27;d:\\python学习\\大四学习\\pack&#x27;</span>)  <span class="hljs-comment"># 引入pack所在路径</span><br><span class="hljs-keyword">import</span> pack2.A2<br><span class="hljs-built_in">print</span>(pack2.A2.func_A2())<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/25.jpg"></p>
+</li>
+</ol>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>Jay jay<br>
+        <strong>本文链接：</strong><a href="https://yyj-xx.github.io/2021/10/17/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" title="https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2021&#x2F;10&#x2F;17&#x2F;python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2021&#x2F;10&#x2F;17&#x2F;python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A8%A1%E5%9D%97%E3%80%81%E5%8C%85%E3%80%81%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '906d60a925bbfc786e36',
+        clientSecret: 'eef34b48d710958974d793333753521d0474c243',
+        id: window.location.pathname,
+        repo: 'yyj-xx.github.io',
+        owner: 'yyj-xx',
+        admin: 'yyj-xx'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97"><span class="toc-number">1.</span> <span class="toc-text">模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%B8%A6%E6%A8%A1%E5%9D%97%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">自带模块：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Turtle%E6%A8%A1%E5%9D%97%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">Turtle模块：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Random%E6%A8%A1%E5%9D%97%EF%BC%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">Random模块：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Time%E5%92%8CDatetime%E6%A8%A1%E5%9D%97%EF%BC%9A"><span class="toc-number">1.1.3.</span> <span class="toc-text">Time和Datetime模块：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OS%E6%A8%A1%E5%9D%97%EF%BC%9A"><span class="toc-number">1.1.4.</span> <span class="toc-text">OS模块：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sys%E6%A8%A1%E5%9D%97%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">Sys模块：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Timeit%E6%A8%A1%E5%9D%97%EF%BC%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">Timeit模块：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zlib%E6%A8%A1%E5%9D%97%EF%BC%9A"><span class="toc-number">1.2.2.</span> <span class="toc-text">Zlib模块：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E6%A8%A1%E5%9D%97%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">第三方库模块：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pyinstaller%E5%BA%93"><span class="toc-number">1.3.1.</span> <span class="toc-text">Pyinstaller库:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%85"><span class="toc-number">2.</span> <span class="toc-text">包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%93"><span class="toc-number">3.</span> <span class="toc-text">库</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1635059569686"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

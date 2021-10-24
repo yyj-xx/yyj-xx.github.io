@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>python学习之函数 - Jay的个人博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="记录分享学习">
+    <meta name="keywords" content="记录,学习,分享">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="函数定义函数：完成特定功能的一个语句组，通过调用函数名来完成语句组的功能，可以反馈结果，提供不           同的参数实现对不同数据的处理。 自定义函数由用户自己编写，系统自带函数有python中内嵌的函数和标准库函数 使用函数的目的：降低编程难度，代码重用。 函数定义语句：  函数关键字：函数以关键字def开头，后接函数名和圆括号() 函数名：必循遵循标识符的命名规则，最好有意义增加可读性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习之函数">
+<meta property="og:url" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="Jay的个人博客">
+<meta property="og:description" content="函数定义函数：完成特定功能的一个语句组，通过调用函数名来完成语句组的功能，可以反馈结果，提供不           同的参数实现对不同数据的处理。 自定义函数由用户自己编写，系统自带函数有python中内嵌的函数和标准库函数 使用函数的目的：降低编程难度，代码重用。 函数定义语句：  函数关键字：函数以关键字def开头，后接函数名和圆括号() 函数名：必循遵循标识符的命名规则，最好有意义增加可读性">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/16.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/17.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/1.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/2.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/3.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/4.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/5.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/6.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/7.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/8.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/9.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/10.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/11.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/12.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/13.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/14.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/15.jpg">
+<meta property="article:published_time" content="2021-09-24T07:44:38.000Z">
+<meta property="article:modified_time" content="2021-10-24T06:58:14.678Z">
+<meta property="article:author" content="Jay jay">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/16.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1635059569715">
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1635059569715">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Jay jay" class="mdui-btn mdui-btn-icon"><img src="https://avatars.githubusercontent.com/u/52961008?s=400&amp;u=6058780ba30b3206dac2b45bf3aaa9ded29d6237&amp;v=4# 网站 Logo" alt="Jay jay"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Jay jay">
+            <img src="https://avatars.githubusercontent.com/u/52961008?s=400&amp;u=6058780ba30b3206dac2b45bf3aaa9ded29d6237&amp;v=4# 网站 Logo" alt="Jay jay" alt="Jay jay">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>11</div>
+        <div><span>标签</span>2</div>
+        <div><span>分类</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://www.baidu.com/s?wd=" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/436182677" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/yyj-xx/yyj-xx.github.io" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%86%99%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">学习写博客</a>
+    </div>
+    
+  </div>
+
+    
+    
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 Jay jay
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br>人生需要不断的探索
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg" data-sizes="auto" alt="python学习之函数" class="lazyload">
+              <h1>python学习之函数</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年09月24日</a>
+    <a><i class="nexmoefont icon-areachart"></i>3k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 13 分钟</a>
+</div>
+
+      
+
+      <h1 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h1><p>函数：完成特定功能的一个语句组，通过调用函数名来完成语句组的功能，可以反馈结果，提供不           同的参数实现对不同数据的处理。</p>
+<p>自定义函数由用户自己编写，系统自带函数有python中内嵌的函数和标准库函数</p>
+<p>使用函数的目的：降低编程难度，代码重用。</p>
+<p>函数定义语句：</p>
+<ol>
+<li>函数关键字：函数以关键字def开头，后接函数名和圆括号()</li>
+<li>函数名：必循遵循标识符的命名规则，最好有意义增加可读性</li>
+<li>参数：必须放在圆括号中间，成为形式参数（形参），形参是可选的，可以有一个也可以有多个，多个参数间用‘，’分隔</li>
+<li>函数说明：函数第一行的语句可以选择性地使用文档字符串，用于存放函数说明</li>
+<li>函数内容：以冒号起始并且缩进</li>
+<li>返回值：使用“return [表达式]”结束函数，返回一个值给调用方，若没有renturn返回值则默认返回None，当函数返回多个值时其本质是把这些值作为一个元组返回。</li>
+<li>函数体：当函数体为pass语句，表示什么工作也不做，如抽象类中的抽象函数</li>
+</ol>
+<figure class="highlight tex"><table><tr><td class="code"><pre><code class="hljs tex">def 函数名([参数1,参数2,...]):<br>	&quot;&quot;&quot;函数说明&quot;&quot;&quot;<br>	函数体<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/16.jpg" alt="以sum函数定义为例" class="lazyload"></p>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myHello</span>():</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello，everone！&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>函数有自己的成员，也可以为函数动态增减删除成员，在函数外部删除函数内部定义成员是无效的。</p>
+<h1 id="函数调用："><a href="#函数调用：" class="headerlink" title="函数调用："></a>函数调用：</h1><p>函数调用时需要指出函数名称，并传入相应的函数调用时传入的参数称实参，默认情况下传入的实参必须等于定义时形参个数，顺序一制</p>
+<p>函数调用顺序：</p>
+<ol>
+<li>执行函数调用前语句</li>
+<li>执行函数调用，运行被调用函数内语句，并返回结果</li>
+<li>执行函数调用后的语句</li>
+</ol>
+<p>函数调用的两种方法：</p>
+<ol>
+<li>调用函数传入实参</li>
+<li>把函数对象赋给变量</li>
+</ol>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/17.jpg" alt="以sum函数调用为例" class="lazyload"></p>
+<h2 id="定义一个求梯形面积函数并调用"><a href="#定义一个求梯形面积函数并调用" class="headerlink" title="定义一个求梯形面积函数并调用"></a>定义一个求梯形面积函数并调用</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#求梯形面积</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">echelonArra</span>(<span class="hljs-params">top,bottom,height</span>):</span><br>    area=<span class="hljs-number">1</span> / <span class="hljs-number">2</span> * (top+bottom) *height<br>    <span class="hljs-keyword">return</span> area<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    t=<span class="hljs-number">3.6</span>;b=<span class="hljs-number">6.2</span>;h=<span class="hljs-number">4.5</span><br>    area1=echelonArra(t,b,h)   <span class="hljs-comment">#第一种调用</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;area1=&quot;</span>,area1)<br>    area2=echelonArra<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;area2=&quot;</span>,area2(t,b,h))  <span class="hljs-comment">#第二种调用</span><br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/1.jpg" alt="结果" class="lazyload"></p>
+<h1 id="函数参数传递"><a href="#函数参数传递" class="headerlink" title="函数参数传递"></a>函数参数传递</h1><p>python中的对象分为不可变对象（数字、字符串、元组）和可变对象（列表、字典、集合）</p>
+<ol>
+<li>实参为不可变对象，函数调用时将实参的值复制一份给形参，在函数调用中修改形参时不会影响函数外面的实参</li>
+<li>实参为可变对象，函数调用时将实参引用复制给形参，在函数调用中修改形参时会影响函数外面的实参</li>
+</ol>
+<p>实参为不可变对象调用：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Swap</span>(<span class="hljs-params">x,y</span>):</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;交换前:x=&#123;&#125;,y=&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(x,y))<br>    x,y=y,x<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;交换后:x=&#123;&#125;,y=&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(x,y))<br>    <br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>     a=<span class="hljs-number">6</span>;b=<span class="hljs-number">5</span><br>    Swap(a,b)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;a=&#123;&#125;,b=&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(a,b))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/2.jpg"></p>
+<p>实参为可变对象调用：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">changeList</span>(<span class="hljs-params">myList</span>):</span><br>    myList.append(<span class="hljs-number">4</span>)<br>    <br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>      <span class="hljs-built_in">list</span>=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;调用前list:&quot;</span>,<span class="hljs-built_in">list</span>)<br>    changeList(<span class="hljs-built_in">list</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;调用后list:&quot;</span>,<span class="hljs-built_in">list</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/3.jpg"></p>
+<h1 id="参数类型"><a href="#参数类型" class="headerlink" title="参数类型"></a>参数类型</h1><h2 id="必须参数"><a href="#必须参数" class="headerlink" title="必须参数"></a>必须参数</h2><p>要求调用时传入的实参个数、顺序和函数定义时形参的个数、顺序完全一致</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myAdd</span>(<span class="hljs-params">x,y,z</span>):</span><br>    <span class="hljs-keyword">return</span> x+y+z<br> a=<span class="hljs-number">1</span>;b=<span class="hljs-number">2</span>;c=<span class="hljs-number">3</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;结果：&quot;</span>,myAdd(a,b,c))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/4.jpg"></p>
+<h2 id="关键字参数"><a href="#关键字参数" class="headerlink" title="关键字参数"></a>关键字参数</h2><p>在函数调用时使用形参作为关键字来确定传入的参数值，允许函数调用时实参的顺序与函数定义时形参的顺序不一致</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">stuInfo</span>(<span class="hljs-params">sno,sname</span>):</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;学号：&quot;</span>+sno+<span class="hljs-string">&quot;\n&quot;</span>+<span class="hljs-string">&quot;姓名：&quot;</span>+sname<br>  <br><span class="hljs-built_in">print</span>(stuInfo(sname=<span class="hljs-string">&quot;假的&quot;</span>,sno=<span class="hljs-string">&quot;66666&quot;</span>))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/5.jpg"></p>
+<h2 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h2><p>调用函数时，如果没有传递实参，则会使用函数定义时赋予的参数的默认值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">stuInfo1</span>(<span class="hljs-params">sno,sname,age=<span class="hljs-number">18</span></span>):</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;学号：&quot;</span>+sno+<span class="hljs-string">&quot;\n&quot;</span>+<span class="hljs-string">&quot;姓名：&quot;</span>+sname+<span class="hljs-string">&quot;\n&quot;</span>+<span class="hljs-built_in">str</span>(age)<br>    <br><span class="hljs-built_in">print</span>(stuInfo1(sname=<span class="hljs-string">&quot;假的&quot;</span>,sno=<span class="hljs-string">&quot;66666&quot;</span>))<br><span class="hljs-built_in">print</span>(stuInfo1(sname=<span class="hljs-string">&quot;假的&quot;</span>,sno=<span class="hljs-string">&quot;66666&quot;</span>,age=<span class="hljs-number">25</span>))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/6.jpg"></p>
+<h2 id="不定长参数"><a href="#不定长参数" class="headerlink" title="不定长参数"></a>不定长参数</h2><p>在实际使用中有可能需要一个函数能处理比当初声明时更多的参数，这种参数成为不定长参数</p>
+<p>两种形式：</p>
+<ul>
+<li>*args:将接受的多个参数放在一个元组中</li>
+<li>**args：将显示赋值的多个参数放入字典中</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">addFunc</span>(<span class="hljs-params">x,y,*args</span>):</span><br>    res=x+y<br>    <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> args:<br>        res +=k<br>    <span class="hljs-keyword">return</span> res<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span>(<span class="hljs-params">**args</span>):</span><br>    <span class="hljs-keyword">for</span> key,value <span class="hljs-keyword">in</span> args.items():<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&#123;&#125;,&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(key,value))<br>        <br> <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;调用结果：&quot;</span>,addFunc(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>))<br>    func(新发明<span class="hljs-number">1</span>=<span class="hljs-string">&quot;高铁&quot;</span>,新发明<span class="hljs-number">2</span>=<span class="hljs-string">&quot;扫码支付&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/7.jpg"></p>
+<h1 id="参数传递的序列解包"><a href="#参数传递的序列解包" class="headerlink" title="参数传递的序列解包"></a>参数传递的序列解包</h1><p>参数传递的序列解包针对的是实参，有*或**两种形式，加了后会将列表、元组、字典等迭代对象中的元素分别传递给形参中的多个变量</p>
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/8.jpg"></p>
+<p>将列表、元组、字典中的值分别迭代取出赋值给形参</p>
+<h1 id="特殊函数"><a href="#特殊函数" class="headerlink" title="特殊函数"></a>特殊函数</h1><h2 id="1、匿名函数"><a href="#1、匿名函数" class="headerlink" title="1、匿名函数"></a>1、匿名函数</h2><p>​            匿名函数是指没有函数名的简单函数，只可以包含一个表达式，不允许包含其他复杂语句，表达式的结果就是函数的返回值</p>
+<p>​    一般格式：</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><code class="hljs tex">lambda [arg1[,arg2,...,argn]]:expression<br></code></pre></td></tr></table></figure>
+
+<p>arg1,arg2,…:形参，可以没有，可以有一个或多个</p>
+<p>expression：表达式</p>
+<p>默认情况下调用匿名函数时传入实参个数与顺序同样要和匿名函数定义时形参个数顺序一致</p>
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/9.jpg"></p>
+<p>map()会根据提供的函数对指定序列做映射。</p>
+<p>第一个参数 function 以参数序列中的每一个元素调用 function 函数，返回包含每次 function 函数返回值的新列表。</p>
+<h2 id="2、递归函数"><a href="#2、递归函数" class="headerlink" title="2、递归函数"></a>2、递归函数</h2><p>​        如果一个函数在函数体中直接或间接的调用自身，那么这个函数就是递归函数，在执行的过程中可能会返回以再次调用该函数</p>
+<p>​        函数a调用函数a自身为直接递归，函数a调用b，函数b在函数体中调用a则称简介递归</p>
+<ul>
+<li><p>​    递归函数求前n项的和：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs pytho">#递归求前n项的和<br>def fac(n):<br>    if n==1:<br>        return 1<br>    else:<br>        return fac(n-1)+n<br> if __name__ == &#x27;__main__&#x27;:<br> 	    print(&quot;前&#123;&#125;项的和为：&#123;&#125;&quot;.format(9,fac(9)))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/10.jpg"></p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><code class="hljs tex">在递归时需要注意的两点：<br>1、递归函数就是在函数里调用自身<br>2、递归函数必须有一个明确的递归结束条件，称递归出口，否则造成死循环<br>3、前n-1项的和再加第n项，当n=1时为递归出口返回一<br></code></pre></td></tr></table></figure></li>
+<li><p>使用递归求斐波那契数列前20项和</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#递归求斐波那契数列20项的和</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fib</span>(<span class="hljs-params">n</span>):</span><br>    <span class="hljs-keyword">if</span> n==<span class="hljs-number">1</span> <span class="hljs-keyword">or</span> n==<span class="hljs-number">2</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> fib(n-<span class="hljs-number">1</span>)+fib(n-<span class="hljs-number">2</span>)<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>	 <span class="hljs-comment">#求前20项：</span><br>    <span class="hljs-built_in">sum</span>=<span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">21</span>):<br>        <span class="hljs-built_in">sum</span>=<span class="hljs-built_in">sum</span>+fib(<span class="hljs-number">20</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;前20项的和为&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">sum</span>))<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/11.jpg"></p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><code class="hljs tex">递归函数的优点：<br>1、递归函数使代码看起来更整洁优雅<br>2、可以用递归将复杂任务分解成更简单的子问题<br>3、使用递归比使用一些嵌套迭代更容易<br>递归函数缺点：<br>1、递归逻辑很难调试跟进<br>2、递归调用的代价高效率低，占用了大量的内存和时间<br>递归层数太多时不适合使用递归函数完成程序<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、嵌套函数"><a href="#3、嵌套函数" class="headerlink" title="3、嵌套函数"></a>3、嵌套函数</h2><p>​    嵌套函数是指在一个函数（外函数）中定义了另一个函数（内函数），称为内函数，嵌套函数中的内函数只能在外函数中调用，不能在外函数外面直接调用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#嵌套函数</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outfunc</span>():</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">infunc</span>():</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;我是内函数&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;我是外函数&quot;</span>)<br>    infunc()<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outerFunc</span>(<span class="hljs-params">x</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">innerFunc</span>(<span class="hljs-params">y</span>):</span><br>        <span class="hljs-keyword">return</span> x+y;<br>    <span class="hljs-keyword">return</span> innerFunc   <span class="hljs-comment">#调用内函数</span><br>    <br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>	outfunc()<br>  	 <span class="hljs-comment"># infunc() #此句报红内函数在外部不可见出现语法错误</span><br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;方法一调用结果：&quot;</span>,outerFunc(<span class="hljs-number">3</span>)(<span class="hljs-number">4</span>))  <span class="hljs-comment">#调用时参数从最外层开始传递（最外层层参数）（内层参数）</span><br>    wai=outerFunc(<span class="hljs-number">3</span>)                        <span class="hljs-comment">#调用外函数，传递外函数参数</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;方法二调用结果&quot;</span>,wai(<span class="hljs-number">4</span>))             <span class="hljs-comment">#间接调用内函数传递参数</span><br></code></pre></td></tr></table></figure>
+
+<img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/12.jpg" style="zoom: 100%;">
+
+<h2 id="4、装饰器"><a href="#4、装饰器" class="headerlink" title="4、装饰器"></a>4、装饰器</h2><p>​        装饰器是python中的一个比较特殊的功能，是用来包装函数的函数，装饰器可以是程序代码更简洁</p>
+<p>使用的情况：</p>
+<ul>
+<li>将多个函数中的重复代码拿出来整理成一个装饰器，对每个函数使用装饰器，从而实现代码的重用</li>
+<li>对多个函数的共同功能进行处理</li>
+</ul>
+<p>定义装饰器的一般格式：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decorator</span>(<span class="hljs-params">func</span>):</span><br>	<span class="hljs-keyword">pass</span><br><span class="hljs-meta">@decorator</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span>():</span><br>	<span class="hljs-keyword">pass</span><br></code></pre></td></tr></table></figure>
+
+<p>其中decorator为装饰器。@decorator为函数装饰器的修饰符。func为装饰器的函数对象参数，装饰器可以返回一个值、一个函数、一个装饰器或其他对象</p>
+<p>如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 装饰器</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decorator</span>(<span class="hljs-params">func</span>):</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;I am in deco.&quot;</span>)<br>    func()<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;deco return value.&quot;</span><br><br><span class="hljs-meta">@decorator</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">funca</span>():</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;I am in func!&quot;</span>)<br><span class="hljs-built_in">print</span>(funca)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/13.jpg"></p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><code class="hljs tex">执行原理：<br>1、装饰器deco（）的参数为一个函数对象func<br>2、在函数前使用@deco修饰相当于将函数对象func作为参数调用装饰器deco（func）<br>3、func的值为调用装饰器deco（func）返回的结果<br></code></pre></td></tr></table></figure>
+
+<p>使用装饰器修改网页文本格式：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">deco</span>(<span class="hljs-params">f</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">modify_text</span>(<span class="hljs-params"><span class="hljs-built_in">str</span></span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&lt;string&gt;&quot;</span>+f(<span class="hljs-built_in">str</span>)+<span class="hljs-string">&quot;&lt;/string&gt;&quot;</span><br>    <span class="hljs-keyword">return</span> modify_text<br><br><span class="hljs-meta">@deco</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">texfun</span>(<span class="hljs-params"><span class="hljs-built_in">str</span></span>):</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">str</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">print</span>(texfun(<span class="hljs-string">&quot;text&quot;</span>))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/14.jpg"></p>
+<h2 id="5、带参数的装饰器"><a href="#5、带参数的装饰器" class="headerlink" title="5、带参数的装饰器"></a>5、带参数的装饰器</h2><p>​        装饰器除了默认函数对象参数还可以定义带参数的装饰器，带来更多的灵活性</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">DECO</span>(<span class="hljs-params">args</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">deco</span>(<span class="hljs-params">func</span>):</span><br>        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">call_func</span>(<span class="hljs-params">x,y</span>):</span><br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;%d %s %d=&quot;</span>%(x,args,y),end=<span class="hljs-string">&#x27; &#x27;</span>)<br>            <span class="hljs-keyword">return</span> func(x,y)<br>        <span class="hljs-keyword">return</span> call_func<br>    <span class="hljs-keyword">return</span> deco<br><br><span class="hljs-meta">@DECO(<span class="hljs-params"><span class="hljs-string">&#x27;&amp;&#x27;</span></span>)</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">andfunc</span>(<span class="hljs-params">x,y</span>):</span><br>    <span class="hljs-keyword">return</span> x&amp;y<br><br><span class="hljs-meta">@DECO(<span class="hljs-params"><span class="hljs-string">&#x27;|&#x27;</span></span>)</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">orfunc</span>(<span class="hljs-params">x,y</span>):</span><br>    <span class="hljs-keyword">return</span> x|y<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">print</span>(andfunc(<span class="hljs-number">5</span>,<span class="hljs-number">6</span>))<br>    <span class="hljs-built_in">print</span>(orfunc(<span class="hljs-number">5</span>,<span class="hljs-number">6</span>))<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/15.jpg"></p>
+<p>若一个函数有多个装饰器装饰，则称为多重装饰器，多重装饰器的执行顺序是：先执行后面的装饰器，在执行前面的装饰器。</p>
+<h2 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h2><p>python中不同位置定义的变量决定了这个变量的访问权限和作用范围：</p>
+<ul>
+<li>局部变量和局部作用域L(Local)：包含在def关键字定义的语句块中即函数中定义的变量，局部变量在函数结束就消失了，调用时创建新的，结束时消失</li>
+<li>全局变量和全局作用域G（Global）：在模块的函数外定义的变量，在模块顶层声明的变量具有全局作用域，从外部看全局变量是模块对象的属性，全局作用域的作用仅限于单个模块文件内</li>
+<li>闭包变量和闭包作用域E（Enclosing）：定义在嵌套函数的外函数内、内函数外的变量，闭包变量作用域为嵌套函数内定义它的位置开始的整个函数内</li>
+<li>内建变量和内建作用域B（Built-in）：系统内固定模块里定义的变量一般预定义在内建模块内的变量</li>
+</ul>
+<p>按照L→E→G→B的顺序查找，局部变量和全局变量使用的多，内建变量使用的最少</p>
+<p>局部变量只能在其声明的函数内使用，全局变量在整个模块内访问</p>
+<p>修改变量作用域的关键字：</p>
+<ol>
+<li>global：加上global即可将变量设置为全局变量</li>
+<li>nonlocal：加上即可将嵌套函数中的内函数局部变量变为闭包变量</li>
+</ol>
+<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1>
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>Jay jay<br>
+        <strong>本文链接：</strong><a href="https://yyj-xx.github.io/2021/09/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0/" title="https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2021&#x2F;09&#x2F;24&#x2F;python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2021&#x2F;09&#x2F;24&#x2F;python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%87%BD%E6%95%B0&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '906d60a925bbfc786e36',
+        clientSecret: 'eef34b48d710958974d793333753521d0474c243',
+        id: window.location.pathname,
+        repo: 'yyj-xx.github.io',
+        owner: 'yyj-xx',
+        admin: 'yyj-xx'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">函数定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">函数调用：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%B1%82%E6%A2%AF%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%87%BD%E6%95%B0%E5%B9%B6%E8%B0%83%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">定义一个求梯形面积函数并调用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="toc-number">3.</span> <span class="toc-text">函数参数传递</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">参数类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%85%E9%A1%BB%E5%8F%82%E6%95%B0"><span class="toc-number">4.1.</span> <span class="toc-text">必须参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97%E5%8F%82%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text">关键字参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text">默认参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%AE%9A%E9%95%BF%E5%8F%82%E6%95%B0"><span class="toc-number">4.4.</span> <span class="toc-text">不定长参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E7%9A%84%E5%BA%8F%E5%88%97%E8%A7%A3%E5%8C%85"><span class="toc-number">5.</span> <span class="toc-text">参数传递的序列解包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">特殊函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="toc-number">6.1.</span> <span class="toc-text">1、匿名函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0"><span class="toc-number">6.2.</span> <span class="toc-text">2、递归函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%B5%8C%E5%A5%97%E5%87%BD%E6%95%B0"><span class="toc-number">6.3.</span> <span class="toc-text">3、嵌套函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="toc-number">6.4.</span> <span class="toc-text">4、装饰器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="toc-number">6.5.</span> <span class="toc-text">5、带参数的装饰器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">6.6.</span> <span class="toc-text">变量作用域</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F"><span class="toc-number">7.</span> <span class="toc-text">结束</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1635059569718"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

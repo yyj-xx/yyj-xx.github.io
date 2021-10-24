@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>python学习三面向对象的程序设计 - Jay的个人博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="记录分享学习">
+    <meta name="keywords" content="记录,学习,分享">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="面向对象程序设计两种程序设计方式： 面向过程程序设计（POP）：把计算机程序视为一系列集合即一组函数按事先顺序执行，函数为基本单位。 面向对象程序设计（OOP）：把计算机程序视为一组对象的集合，每个对象可以接受其他对象发送的消息，程序的执行指的是消息在各个对象之间的传递，对象是基本单位。  python支持POP、OOP。 OOP：基本思想将数据以及对数据的操作封装在一起组成一个相互依存不可分割的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习三面向对象的程序设计">
+<meta property="og:url" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="Jay的个人博客">
+<meta property="og:description" content="面向对象程序设计两种程序设计方式： 面向过程程序设计（POP）：把计算机程序视为一系列集合即一组函数按事先顺序执行，函数为基本单位。 面向对象程序设计（OOP）：把计算机程序视为一组对象的集合，每个对象可以接受其他对象发送的消息，程序的执行指的是消息在各个对象之间的传递，对象是基本单位。  python支持POP、OOP。 OOP：基本思想将数据以及对数据的操作封装在一起组成一个相互依存不可分割的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/1.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/2.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/3.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/4.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/5.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/6.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/7.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/8.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/9.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/10.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/11.jpg">
+<meta property="og:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/12.jpg">
+<meta property="article:published_time" content="2021-10-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-24T07:11:26.551Z">
+<meta property="article:author" content="Jay jay">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/1.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1635059569687">
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1635059569687">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Jay jay" class="mdui-btn mdui-btn-icon"><img src="https://avatars.githubusercontent.com/u/52961008?s=400&amp;u=6058780ba30b3206dac2b45bf3aaa9ded29d6237&amp;v=4# 网站 Logo" alt="Jay jay"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Jay jay">
+            <img src="https://avatars.githubusercontent.com/u/52961008?s=400&amp;u=6058780ba30b3206dac2b45bf3aaa9ded29d6237&amp;v=4# 网站 Logo" alt="Jay jay" alt="Jay jay">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>11</div>
+        <div><span>标签</span>2</div>
+        <div><span>分类</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://www.baidu.com/s?wd=" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/436182677" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/yyj-xx/yyj-xx.github.io" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%86%99%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">学习写博客</a>
+    </div>
+    
+  </div>
+
+    
+    
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 Jay jay
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br>人生需要不断的探索
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg" data-sizes="auto" alt="python学习三面向对象的程序设计" class="lazyload">
+              <h1>python学习三面向对象的程序设计</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年10月08日</a>
+    <a><i class="nexmoefont icon-areachart"></i>3.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
+</div>
+
+      
+
+      <h1 id="面向对象程序设计"><a href="#面向对象程序设计" class="headerlink" title="面向对象程序设计"></a>面向对象程序设计</h1><h2 id="两种程序设计方式："><a href="#两种程序设计方式：" class="headerlink" title="两种程序设计方式："></a>两种程序设计方式：</h2><ul>
+<li>面向过程程序设计（POP）：把计算机程序视为一系列集合即一组函数按事先顺序执行，函数为基本单位。</li>
+<li>面向对象程序设计（OOP）：把计算机程序视为一组对象的集合，每个对象可以接受其他对象发送的消息，程序的执行指的是消息在各个对象之间的传递，对象是基本单位。</li>
+</ul>
+<p>python支持POP、OOP。</p>
+<p><strong>OOP：</strong>基本思想将数据以及对数据的操作封装在一起组成一个相互依存不可分割的整体，及对象。对相同，类型的对象进行分类、抽象后得出共同特征而形成类。基本概念包括对象、类、消息、<strong>封装、继承和多态</strong>。</p>
+<p>对象是要研究的任何事物，类是一组具有相同特征和相同操作对象的定义，一个类所包含的数据和方法描述一组对象的共同特征和行为。不同类之间可以有继承关联依赖等关系。</p>
+<p>消息：消息是一个对象要求另一个对象实施某项操作的请求。</p>
+<h2 id="类的定义："><a href="#类的定义：" class="headerlink" title="类的定义："></a>类的定义：</h2><p>类是一种类型，对象是该类型的一个变量，类是抽象的，一般不占用内存空间，对象是具体的，创建对象时系统会为其分配相应的内存空间。</p>
+<p>格式：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> 类名：</span><br><span class="hljs-class">	&quot;&quot;&quot;类说明&quot;&quot;&quot;</span><br><span class="hljs-class">    类体			包含数据成员（成员）成员方法（行为）</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="对象创建和使用"><a href="#对象创建和使用" class="headerlink" title="对象创建和使用"></a>对象创建和使用</h2><p>格式：</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><code class="hljs tex">对象名=类名([参数列表])<br></code></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<p>对象.成员        对象.方法()  </p>
+<h2 id="类的成员："><a href="#类的成员：" class="headerlink" title="类的成员："></a>类的成员：</h2><h3 id="成员类型："><a href="#成员类型：" class="headerlink" title="成员类型："></a>成员类型：</h3><h4 id="按照访问权限分类："><a href="#按照访问权限分类：" class="headerlink" title="按照访问权限分类："></a>按照访问权限分类：</h4><ol>
+<li><p>公有成员：（类内外均可访问）</p>
+<p>不以下划线开头</p>
+</li>
+<li><p>私有成员：</p>
+<p>以单下划线或双下划线开头</p>
+<ul>
+<li>单下划线开头的私有成员：类和派生类可以访问这些成员，在类外不建议直接访问</li>
+<li>双下划线开头的私有成员（但不能以两个或更多下划线结束）：只有类自己可以访问，派生类不能访问</li>
+</ul>
+</li>
+</ol>
+<h4 id="按照属于类还是属于对象分类："><a href="#按照属于类还是属于对象分类：" class="headerlink" title="按照属于类还是属于对象分类："></a>按照属于类还是属于对象分类：</h4><ol>
+<li>类成员：定义在类体中且在所有方法外的成员为类成员，类成员属于类本身，一般通过类名调用，不建议使用对象名调用。</li>
+<li>实例成员：在类的方法中定义的成员为实例成员。实例成员只能被对象调用，实例成员一般在构造方法”_<em>init_</em>()”中创建，或在其他方法中创建</li>
+</ol>
+<h4 id="对类成员访问："><a href="#对类成员访问：" class="headerlink" title="对类成员访问："></a>对类成员访问：</h4><ol>
+<li><p>公有的类成员：在类的方法中通”类名.类成员”或”self.类成员”访问，在类外通过”类名.类成员”或“对象名.类成员”访问。</p>
+</li>
+<li><p>公有的实例成员：在类的方法中通过“self.实例成员”访问，在类外通过“对象名.实例成员”访问</p>
+</li>
+<li><p>私有的类成员：在类的方法中通过”类名.类成员“或”self.类成员”访问。在类外面不能直接访问</p>
+</li>
+<li><p>私有的实力成员：在类方法中通过“self.实力成员”访问，在类外不能直接访问。</p>
+</li>
+</ol>
+<p><strong>注意：</strong></p>
+<ol>
+<li>当用对象名调用类成员时“对象名.类成员名”只是“类.类成员”的一份拷贝，修改“对象名.类成员名”不会修改“类.类成员”。</li>
+<li>当类成员和实例成员名同名时，在类的方法中和外面，“类名.类成员”调用的是同名的类成员，“self.实例成员”（在类方法中）或“对象名.实例成员”（在类的外面）调用的是同名的实例成员。</li>
+<li>定义在类的方法中，且不以self为前缀的变量是该方法的局部变量，不能在方法外使用。</li>
+</ol>
+<p><strong>例子：</strong>定义一个Women类</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Woman</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self,name,sex,age</span>):</span><br>        self.name=name<br>        self._sex=sex<br>        self.__age=age<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getAge</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> self.__age<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    w=Woman(<span class="hljs-string">&quot;小贾&quot;</span>,<span class="hljs-string">&quot;Female&quot;</span>,<span class="hljs-number">18</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;姓名：%s,性别：%s,年龄：%d.&quot;</span>%(w.name,w._sex,w.getAge()))<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/1.jpg" alt="结果" class="lazyload"></p>
+<p>例2：类成员和实例成员的创建和使用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span>:</span><br>    chinese=<span class="hljs-number">142</span>	<span class="hljs-comment">#类成员</span><br>    maths=<span class="hljs-number">1</span><br>    english=<span class="hljs-number">141</span><br>    <span class="hljs-comment">#定义构造方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self,name</span>):</span> <br>        self.name=name	<span class="hljs-comment">#实例成员</span><br>        <br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    s1=Student(<span class="hljs-string">&quot;加魔&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&#123;&#125;的语文成绩&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(s1.name,<span class="hljs-built_in">str</span>(Student.chinese)))<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&#123;&#125;的数学成绩&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(s1.name, <span class="hljs-built_in">str</span>(Student.maths)))<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&#123;&#125;的英语成绩&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(s1.name, <span class="hljs-built_in">str</span>(Student.english)))<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/2.jpg" alt="结果" class="lazyload"></p>
+<p><strong>内置成员：</strong></p>
+<p>所有的类（无论是系统内置的类还是自定义的类）都有一组特殊的成员，其前后各有两个下划线时类的内置成员：</p>
+<ol>
+<li>__name__:类的名字，用字符串表示</li>
+<li>__doc__：类的文档字符串</li>
+<li>__bases__:由所有父类组成的元组</li>
+<li>__dict__:由类的成员组成的字典</li>
+<li>__module__:类所属模块</li>
+</ol>
+<p>查看异常类Exception的内置成员：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;类的名字:&quot;</span>,Exception.__name__)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;类的父类:&quot;</span>,Exception.__bases__)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;类的文档:&quot;</span>,Exception.__doc__)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;类的成员:&quot;</span>,Exception.__dict__)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;类所属模块:&quot;</span>,Exception.__module__)<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/3.jpg" alt="结果" class="lazyload"></p>
+<h2 id="类的方法："><a href="#类的方法：" class="headerlink" title="类的方法："></a>类的方法：</h2><ol>
+<li><p>公有方法：公有方法的名字不以下划线开头，可以在类的外面通过类名或对象名调用</p>
+</li>
+<li><p>私有方法：私有方法以两个或更多下划线开头，可以在类的方法中通过self调用，不能在类的外面直接调用。</p>
+</li>
+<li><p>静态方法和类方法：</p>
+<ul>
+<li><p>静态方法和类方法成员可以通过类名和对象名调用，但不能直接访问属于对象的成员只能访问属于类的成员，不属于任何对象</p>
+</li>
+<li><p>静态方法使用装饰器@staticmethod声明，类方法使用装饰器@classmethod声明</p>
+</li>
+</ul>
+</li>
+<li><p>抽象方法：抽象方法一般定义在抽象类中并要求派生类对抽象方法进行实现</p>
+</li>
+</ol>
+<p><strong>使用类方法：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用类方法</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span>   <span class="hljs-comment">#派生自object类</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function_p</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;在公有方法中调用：&quot;</span>,self.__function())   <span class="hljs-comment">#调用私有方法</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;公有方法 &#x27;function_p&#x27;&quot;</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__function</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;私有方法 &#x27;__function&#x27;&quot;</span><br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function_c</span>(<span class="hljs-params">cls</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;类方法 &#x27;function_c&#x27;&quot;</span><br><span class="hljs-meta">    @staticmethod</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function_s</span>():</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;静态方法 &#x27;function_s&#x27;&quot;</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    a1 = A()<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;对象调用：&quot;</span> + a1.function_p())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;对象调用：&quot;</span> + a1.function_c())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;对象调用：&quot;</span> + a1.function_s())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;对象调用：&quot;</span> + A.function_p(a1))      <span class="hljs-comment">#传递对象a1作为参数</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;对象调用：&quot;</span> + A.function_c())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;对象调用：&quot;</span> + A.function_s())<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/4.jpg" alt="结果" class="lazyload"></p>
+<p><strong>属性：</strong></p>
+<ul>
+<li><p>一种特殊形式的方法，结合了成员和方法的各自优点，既可以通过属性访问类中的成员，也可以在访问前对用户为成员提供数据的合法性进行检测，还可以设置成员的访问机制</p>
+</li>
+<li><p>属性通常包括get()方法和se()方法。前者用于获取成员的值，后者用于设置成员的值</p>
+</li>
+<li><p>也可以包含其他方法如删除方法del()</p>
+</li>
+</ul>
+<p>例：使用属性访问并检查私有成员值的合法性：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用属性访问并检查私有成员值的合法性：</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set</span>(<span class="hljs-params">self,radius</span>):</span><br>        <span class="hljs-keyword">if</span> radius&gt;=<span class="hljs-number">0</span>:<br>            self.__radius=radius<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;圆的面积为：&#123;0&#125;.&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-number">3.14</span>*self.__radius**<span class="hljs-number">2</span>))<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;半径 %f 不在规定范围内（&gt;=0）,请重新设置！&quot;</span>%radius)<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> self.__radius<br>        <br> <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    c=Circle()<br>    c.<span class="hljs-built_in">set</span>(<span class="hljs-number">2.5</span>)<br>    c.<span class="hljs-built_in">set</span>(-<span class="hljs-number">2.5</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/5.jpg" alt="结果" class="lazyload"></p>
+<p>使用装饰器@property设置类的属性访问方式</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用装饰器@property设置类的属性访问方式</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Woman</span>():</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self,birth</span>):</span><br>        self.__birth=birth<br><span class="hljs-meta">    @property       </span><span class="hljs-comment">#设置属性可读</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">salary</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> self.__salary<br><span class="hljs-meta">    @salary.setter      </span><span class="hljs-comment">#设置属性为可写</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">salary</span>(<span class="hljs-params">self,salary</span>):</span><br>        self.__salary=salary<br><span class="hljs-meta">    @property           </span><span class="hljs-comment">#设置属性为只读8</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">birth</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> self.__birth<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br> 	w1=Woman(<span class="hljs-string">&quot;1992.06.06&quot;</span>)<br>    w1.salary=<span class="hljs-number">10800.00</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;您的出生日期%s，薪水：%.2f元&quot;</span>%(w1.birth,w1.salary))<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/6.jpg" alt="结果" class="lazyload"></p>
+<p>使用属性访问私有成员：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使用属性访问私有成员</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span>():</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__get</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> self.__value<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__set</span>(<span class="hljs-params">self,value</span>):</span><br>        self.__value=value<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__del</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">del</span> self.__value<br>    value=<span class="hljs-built_in">property</span>(__get,__<span class="hljs-built_in">set</span>,__<span class="hljs-keyword">del</span>)<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br> 	t=Test()<br>    t.value=<span class="hljs-number">100</span> <span class="hljs-comment">#写成员</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;value=%d.&quot;</span> %t.value) <span class="hljs-comment">#读成员</span><br>    <span class="hljs-keyword">del</span> t.value<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;value=%d.&quot;</span> %t.value)<br><br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/7.jpg" alt="结果" class="lazyload"></p>
+<p>特殊方法：</p>
+<ul>
+<li><p>在python中，类有大量的特殊方法，其中比较常见的是构造方法__init__()和析构方法__del__()</p>
+</li>
+<li><p>构造方法__init__()用来为类中的成员设置初始值或进行必要的初始化工作，在类实例化时被自动调用和执行</p>
+</li>
+<li><p>析构方法：__del__()一般用来释放对象占用的资源，在删除对象和回收对象空间时被自动调用和执行</p>
+</li>
+</ul>
+<p>构造方法和析构方法的使用：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rectangle</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self,w,h</span>):</span><br>        self.w=w<br>        self.h=h<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;执行构造方法&#x27;</span>)<br>    <span class="hljs-comment">#定义求面积</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getArea</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> self.w*self.h<br>    <span class="hljs-comment">#定义析构方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__del__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;执行析构方法&#x27;</span>)<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br> 	rect =Rectangle(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)    <span class="hljs-comment">#创建对象，调用构造方法__init__()</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;面积为：&quot;</span>,rect.getArea())<br>    <span class="hljs-keyword">del</span> rect        <span class="hljs-comment">#删除对象，调用析构方法__del__()</span><br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/8.jpg" alt="结果" class="lazyload"></p>
+<h2 id="类的继承："><a href="#类的继承：" class="headerlink" title="类的继承："></a>类的继承：</h2><ul>
+<li><p>继承类称为派生类或子类，被继承类成为父类或基类</p>
+</li>
+<li><p>在python中，派生类可以继承一个父类（单继承）或多个父类（多继承）。</p>
+</li>
+<li><p>派生类可以继承父类的成员和方法，也可以定义自己的成员方法</p>
+</li>
+<li><p>如果父类方法不能满足要求，派生类也可以重写父类方法</p>
+</li>
+<li><p>当派生类继承多个父类时，多个父类之间用逗号隔开</p>
+</li>
+<li><p>创建派生类的一般格式为：</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><code class="hljs tex">class 派生类（父类1，父类2，。。。）<br>	类体<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>类的继承</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#类的继承：</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self,n,a</span>):</span><br>        self.name=n<br>        self.age=a<br><br>    <span class="hljs-comment">#定义公有方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">speak</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;我是&#123;&#125;,今年&#123;&#125;岁&quot;</span>.<span class="hljs-built_in">format</span>(self.name,self.age))<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span>(<span class="hljs-params">People</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self,n,a,g</span>):</span><br>        People.__init__(self, n, a)<span class="hljs-comment">#调用父类构造方法</span><br>        self.grade=g<br>        <span class="hljs-comment">#重写父类方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">speak</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;我是&#123;&#125;,今年&#123;&#125;岁,今年&#123;&#125;年级&quot;</span>.<span class="hljs-built_in">format</span>(self.name, self.age,self.grade))<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>	s=Student(<span class="hljs-string">&#x27;贾程林&#x27;</span>,<span class="hljs-number">40</span>,<span class="hljs-number">2</span>)<br>    s.speak();<span class="hljs-comment">#调用student类中的speak方法</span><br>    <span class="hljs-built_in">super</span>(Student,s).speak()<span class="hljs-comment">#调用父类people的speak方法</span><br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/9.jpg" alt="结果" class="lazyload"></p>
+<p>类的多继承：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#类的继承：</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self,n,a</span>):</span><br>        self.name=n<br>        self.age=a<br><br>    <span class="hljs-comment">#定义公有方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">speak</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;我是&#123;&#125;,今年&#123;&#125;岁&quot;</span>.<span class="hljs-built_in">format</span>(self.name,self.age))<br><span class="hljs-comment">#类的多继承</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Speaker</span>():</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self,n,t</span>):</span><br>        self.name=n<br>        self.topic=t<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">speak</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;我是&#123;&#125;,是一名科学家，今天我演讲的主题是&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(self.name, self.topic))<br><br><span class="hljs-comment">#定义科学家类继承于people和seapker</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Scientist</span>(<span class="hljs-params">Speaker,People</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self,n,a,t</span>):</span><br>        People.__init__(self,n,a)<br>        Speaker.__init__(self,n,t)<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>        Hawkin=Scientist(<span class="hljs-string">&#x27;霍金&#x27;</span>,<span class="hljs-number">50</span>,<span class="hljs-string">&quot;时间简史&quot;</span>)<br>    	Hawkin.speak()<span class="hljs-comment">#调用继承时排在前面的Speaker类的speak（）方法</span><br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/10.jpg" alt="结果" class="lazyload"></p>
+<p>类的多态：</p>
+<ul>
+<li><p>多态一般指的是父类的一个方法在不同的派生类对象中具有不同的表现和行为</p>
+</li>
+<li><p>派生类在继承了父类的行为和属性之后还可能增加某些特性的行为和属性，也可能会对继承父类的行为进行一定的改变，这些都是多态的表现</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#类的多态：</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span>():</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getInfo</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;I am an Animal&quot;</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Lion</span>(<span class="hljs-params">Animal</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getInfo</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;I am a Lion&quot;</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tiger</span>(<span class="hljs-params">Animal</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getInfo</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;I am a Tiger&quot;</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Leopard</span>(<span class="hljs-params">Animal</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getInfo</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;I am a Leopard&quot;</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>  objectList=[item()<span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> (Animal,Lion,Tiger,Leopard)]<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">object</span> <span class="hljs-keyword">in</span> objectList:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">object</span>.getInfo())<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/11.jpg" alt="结果" class="lazyload"></p>
+</li>
+</ul>
+<p>抽象类和抽象方法：</p>
+<ul>
+<li>抽象类往往用来表征对问题领域进行分析、设计中得出的抽象概念，是对一系列看上去不同但本质上相同的概念抽象</li>
+<li>抽象类的特点：抽象类中通常包含抽象方法（没有实现功能），该类不能被实例化，只能被继承，且派生类必须实现抽象类中的抽象方法</li>
+<li>Python中一般使用抽象基类（Abstract Base Class，ABC）来实现抽象类</li>
+<li>ABC主要定义了基本类和最基本的抽象方法，可以派生类定义公有API，不需要具体实现，相当Java的接口或抽象类</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#定义抽象类:</span><br><span class="hljs-keyword">import</span> abc<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People1</span>(<span class="hljs-params">metaclass=abc.ABCMeta</span>):</span><br>    <span class="hljs-comment">#定义抽象方法</span><br><span class="hljs-meta">    @abc.abstractmethod</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">working</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">pass</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Chinese</span>(<span class="hljs-params">People1</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">working</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;中国人都在勤奋的工作&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>  	c1=Chinese()<br>    c1.working()<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/12.jpg" alt="结果" class="lazyload"></p>
+<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1>
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>Jay jay<br>
+        <strong>本文链接：</strong><a href="https://yyj-xx.github.io/2021/10/08/python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2021&#x2F;10&#x2F;08&#x2F;python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2021&#x2F;10&#x2F;08&#x2F;python%E5%AD%A6%E4%B9%A0%E4%B8%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '906d60a925bbfc786e36',
+        clientSecret: 'eef34b48d710958974d793333753521d0474c243',
+        id: window.location.pathname,
+        repo: 'yyj-xx.github.io',
+        owner: 'yyj-xx',
+        admin: 'yyj-xx'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">面向对象程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">两种程序设计方式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">类的定义：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">对象创建和使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">类的成员：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%91%98%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-number">1.4.1.</span> <span class="toc-text">成员类型：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">按照访问权限分类：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E5%B1%9E%E4%BA%8E%E7%B1%BB%E8%BF%98%E6%98%AF%E5%B1%9E%E4%BA%8E%E5%AF%B9%E8%B1%A1%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">按照属于类还是属于对象分类：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E7%B1%BB%E6%88%90%E5%91%98%E8%AE%BF%E9%97%AE%EF%BC%9A"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">对类成员访问：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">1.5.</span> <span class="toc-text">类的方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF%EF%BC%9A"><span class="toc-number">1.6.</span> <span class="toc-text">类的继承：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F"><span class="toc-number">2.</span> <span class="toc-text">结束</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1635059569695"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
