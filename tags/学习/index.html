@@ -24,9 +24,9 @@
 <meta property="article:tag" content="记录,学习,分享">
 <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1635059569738">
+    <link rel="stylesheet" href="/css/style.css?v=1635076921802">
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1635059569738">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1635076921802">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -50,7 +50,7 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>11</div>
+        <div><span>文章</span>12</div>
         <div><span>标签</span>2</div>
         <div><span>分类</span>0</div>
     </div>
@@ -131,6 +131,85 @@
     <div id="nexmoe-content">
         <div class="nexmoe-primary">
             <section class="nexmoe-posts">
+    
+    <div class="nexmoe-post">
+        <a href="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg" data-sizes="auto" alt="python学习之异常处理和单元测试" class="lazyload">
+                    <h1>python学习之异常处理和单元测试</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2021年10月24日</a>
+            <a><i class="nexmoefont icon-areachart"></i>1.5k 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+        </div>
+
+        <article>
+            
+                <h1 id="异常类和异常处理"><a href="#异常类和异常处理" class="headerlink" title="异常类和异常处理"></a>异常类和异常处理</h1><h2 id="异常和异常类："><a href="#异常和异常类：" class="headerlink" title="异常和异常类："></a>异常和异常类：</h2><p>程序编译通过后，并不意味着运行就能获得正确结果，可能由于编程时考虑不周或运行时出现一些特殊情况（除数为零，越界，文件不存在等），结果出现中断程序正常运行，导致程序中断运行的错误称为异常（exception）又称例外。</p>
+<p>异常是一个事件，该事件会在程序执行过程中发生，影响程序的正常执行，在python无法处理程序时就会产生异常，发生异常要捕获否则终止执行程序。</p>
+<p><strong>常用异常类：</strong></p>
+<p><img src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/1.jpg"></p>
+<h2 id="异常处理："><a href="#异常处理：" class="headerlink" title="异常处理："></a>异常处理：</h2><h3 id="异常处理的格式："><a href="#异常处理的格式：" class="headerlink" title="异常处理的格式："></a>异常处理的格式：</h3><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">try</span>:<br>	语句块						<span class="hljs-comment">#包含可能发生的异常</span><br><span class="hljs-keyword">except</span> 异常类型 <span class="hljs-number">1</span> [ <span class="hljs-keyword">as</span> 错误描述]:<br>	语句块						<span class="hljs-comment">#异常处理语句块</span><br>	...<br><span class="hljs-keyword">except</span> 异常类型 <span class="hljs-number">2</span> [ <span class="hljs-keyword">as</span> 错误描述]:<br>	语句块						<span class="hljs-comment">#异常处理语句块</span><br><span class="hljs-keyword">except</span>:<br>	语句块						<span class="hljs-comment">#默认异常处理语句块</span><br>[<span class="hljs-keyword">else</span>:<br>	语句块]					<span class="hljs-comment">#没有异常时执行的语句</span><br>[<span class="hljs-keyword">finally</span>:<br>	语句块]					<span class="hljs-comment">#任何情况下都执行的语句块</span><br><br></code></pre></td></tr></table></figure>
+
+<p>try子句：包含可能抛出异常的语句块</p>
+<p>except子句：负责处理抛出的异常，处理的尝试顺序与多个except子句的编写顺序一致。当尝试发现第一个异常类型匹配的except子句时就执行其后的语句块。最后一个不指定异常类型的except子句匹配任何类型的异常。</p>
+<p>else子句：当try子句中的语句块没有发生异常时执行，可选。</p>
+<p>finally子句：无论是否抛出异常只要finally子句存在就会被最终执行。</p>
+<p>try-except-else-finally语句的执行情况分为以下两种：</p>
+<ol>
+<li>try子句中的语句块没有发生异常，在执行完try子句中的语句块后，直接执行else子句块中语句块，最后执行finally子句中的语句块</li>
+<li>try子句中的语句块发生异常，发生异常的类型将和except子句的异常类型进行匹配并执行其后的语句块，最后执行finally子句中的语句块。</li>
+</ol>
+<p>except子句else子句finally子句语句块可以为用户输出异常消息或提示信息，异常信息可以通过异常对象的message成员给出，也可以根据用户需求给出。</p>
+<p>列表索引异常：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#try-except语句处理列表索引范围异常：</span><br>list1=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>]<br><span class="hljs-keyword">try</span>:<br>    <span class="hljs-built_in">print</span>(list1[<span class="hljs-number">10</span>])<br><span class="hljs-keyword">except</span> IndexError <span class="hljs-keyword">as</span> e:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;列表索引超出范围&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/8.jpg"></p>
+<p>处理不确定异常：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#try-except处理不确定异常：</span><br>a=<span class="hljs-number">100</span><br><span class="hljs-keyword">try</span>:<br>    b=a+<span class="hljs-string">&quot;python&quot;</span><br><span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;异常类型：%s&quot;</span>%<span class="hljs-built_in">type</span>(e))<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;异常信息：%s&quot;</span>%e)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/9.jpg"></p>
+<p>整除处理：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#整除处理：</span><br>x,y=<span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;请输入两个整数：&quot;</span>))<br><span class="hljs-keyword">try</span>:<br>    z=x/y<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;z=&quot;</span>,z)<br><span class="hljs-keyword">except</span> TypeError <span class="hljs-keyword">as</span> e1:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;数据类型异常：&quot;</span>,e1)<br><span class="hljs-keyword">except</span> ZeroDivisionError:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;除数为零异常！&quot;</span>)<br><span class="hljs-keyword">except</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;程序运行异常&quot;</span>)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;程序正常执行！&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/10.jpg"></p>
+<p><img src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/11.jpg"></p>
+<p><img src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/12.jpg"></p>
+<p>处理文件访问异常：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#处理文件访问异常：</span><br><span class="hljs-keyword">try</span>:<br>    f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./1.txt&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>)<span class="hljs-comment">#报错的化指定编码格式encoding=&#x27;utf=8&#x27;</span><br>    <span class="hljs-built_in">str</span>=f.read()<br><span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;出现异常：%s&quot;</span>%e)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;执行成功！&quot;</span>)<br><span class="hljs-keyword">finally</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;执行完毕！&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/13.jpg" alt="未指定编码格式" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/14.jpg" alt="指定了编码格式" class="lazyload"></p>
+<h3 id="异常抛出："><a href="#异常抛出：" class="headerlink" title="异常抛出："></a>异常抛出：</h3><p>在except子句、else子句、finally子句的语句块中还可以将异常抛出，提供给调用它的上一级处理。抛出异常有raise语句执行。</p>
+<p>格式：raise[Exception [,args [,traceback]]]  Exception为异常类型，args为用户提供的参数，可选。traceback跟踪异常对象，可选。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#抛出异常：</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">greaterZero</span>(<span class="hljs-params">n</span>):</span><br>    <span class="hljs-keyword">if</span> n&lt;<span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">&quot;你传入了一个小于0的整数&quot;</span>) <span class="hljs-comment">#抛出异常</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;n=&quot;</span>,n)<br><span class="hljs-keyword">try</span>:<br>    x=<span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;请输入一个整数&quot;</span>))<br>    greaterZero(x)<span class="hljs-comment">#调用函数</span><br><span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>    <span class="hljs-built_in">print</span>(e)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/6.jpg"></p>
+<p><img src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/7.jpg"></p>
+<h3 id="断言语句："><a href="#断言语句：" class="headerlink" title="断言语句："></a>断言语句：</h3><p>assert断言语句是一种在程序测试中比较常用的技术，常用于在程序的某个位置判断是否满足某个条件。assert语句格式：</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><code class="hljs tex">assert  expression[,atguments]<br></code></pre></td></tr></table></figure>
+
+<p>其中express是结果为布尔值的表达式。arguments为参数，一般为错误提示信息，可选。assert断言语句的执行过程：如果expression的值为真，则程序忽略expression后面的参数，执行assert语句后面的语句；否则，assert语句触发异常。</p>
+<p><img src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/5.jpg"></p>
+<p>上述表达式为真不抛出异常，表达式为假抛出异常</p>
+<p>在程序测试中未发现错误后，将python源程序编译为字节码文件时可以用优化参数-o或-oo将assert语言从程序语句中删除</p>
+<h1 id="单元测试："><a href="#单元测试：" class="headerlink" title="单元测试："></a>单元测试：</h1><p>软件测试一般分为白盒测试和黑盒测试，对于业务比较复杂代码量大的软件白盒测试的难度较高，通常以黑盒测试为主，黑盒测试也称功能测试，通过测试来检测每一个功能能否正常使用。黑盒测试着眼于程序外部结构，不考虑内部逻辑结构，主要对软件界面和软件功能进行测试。单元测试是保证软件开发质量的基本方法，用于检验被测代码的一个很小的很明确的功能是否正确。一个单元测试判断某个特定函数的行为在各个情形下都符合要求，单元测试是最低级的测试活动。</p>
+<p>python中用于进行单元测试的常用库是Unittest，其中最常用的是testcase类，其常用函数如下：</p>
+<p><img src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/2.jpg"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#Unittest模块测试函数功能的正确性</span><br><span class="hljs-keyword">import</span> unittest<br><span class="hljs-comment">#定义测试类：</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestCaseOfArea</span>(<span class="hljs-params">unittest.TestCase</span>):</span><br>    <span class="hljs-comment">#定义测试方法，必须以test开头</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_are</span>(<span class="hljs-params">self</span>):</span><br>        area=getArea(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)<br>        <span class="hljs-comment">#断言方法用来核实得到的结果是否与期望的结果一致</span><br>        self.assertEqual(area,<span class="hljs-number">12</span>,msg=<span class="hljs-string">&quot;测试未通过！&quot;</span>)<br><span class="hljs-comment">#定义求矩形面积函数：</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getArea</span>(<span class="hljs-params">x,y</span>):</span><br>    <span class="hljs-keyword">return</span> x*y<br><span class="hljs-comment">#执行测试</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    unittest.main()<br></code></pre></td></tr></table></figure>
+
+<img src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/3.jpg" style="zoom: 80%;">
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2021/10/24/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/4.jpg" alt="当计算结果和预测结果不同时" class="lazyload"></p>
+
+            
+        </article>
+    </div>
     
     <div class="nexmoe-post">
         <a href="/2021/10/20/python%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE/">
@@ -1833,7 +1912,7 @@
 
  
 
-<script async src="/js/app.js?v=1635059569739"></script>
+<script async src="/js/app.js?v=1635076921802"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
