@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>sqlmap使用教程 - Jay的个人博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="记录分享学习">
+    <meta name="keywords" content="记录,学习,分享">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/assets/logoko.png" type="image/png" />
+    <meta name="description" content="SQLmap简介sqlmap是一个开源渗透测试工具，可以用来进行自动化检测，利用sql注入漏洞获取数据库服务器的权限。它具有强大的检测引擎，针对各种不同类型的数据库的渗透测试功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接方式操作系统命令。它支持五种注入模式：  基于布尔的盲注，即可以根据返回页面判断条件真假的注入 基于报错注入，即页面会返回错误信息，或者把注入的语句">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqlmap使用教程">
+<meta property="og:url" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Jay的个人博客">
+<meta property="og:description" content="SQLmap简介sqlmap是一个开源渗透测试工具，可以用来进行自动化检测，利用sql注入漏洞获取数据库服务器的权限。它具有强大的检测引擎，针对各种不同类型的数据库的渗透测试功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接方式操作系统命令。它支持五种注入模式：  基于布尔的盲注，即可以根据返回页面判断条件真假的注入 基于报错注入，即页面会返回错误信息，或者把注入的语句">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-14-42-27.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-14-43-35.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-14-49-17.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-27-36.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-36-12.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-03-03.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-09-41.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-16-54-00.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-16-59-01.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-14-30.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-02-32.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-08-58.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-11-34.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-33-32.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-09-23.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-39-02.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-48-42.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-50-12.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-19-04-44.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-05-51.png">
+<meta property="article:published_time" content="2023-03-26T06:13:15.000Z">
+<meta property="article:modified_time" content="2023-03-26T11:30:37.374Z">
+<meta property="article:author" content="Jay jay">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-14-42-27.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1679977717722">
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1679977717722">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(/assets/background.gif)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Jay jay" class="mdui-btn mdui-btn-icon"><img src="/assets/avatar.jpg" alt="Jay jay"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Jay jay">
+            <img src="/assets/avatar.jpg" alt="Jay jay" alt="Jay jay">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>20</div>
+        <div><span>标签</span>2</div>
+        <div><span>分类</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://www.baidu.com/s?wd=" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/436182677" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/yyj-xx/yyj-xx.github.io" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%86%99%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">学习写博客</a>
+    </div>
+    
+  </div>
+
+    
+    
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2023 Jay jay
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br>人生需要不断的探索
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-src="/assets/background.gif" data-sizes="auto" alt="sqlmap使用教程" class="lazyload">
+              <h1>sqlmap使用教程</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月26日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.8k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 11 分钟</a>
+</div>
+
+      
+
+      <h2 id="SQLmap简介"><a href="#SQLmap简介" class="headerlink" title="SQLmap简介"></a>SQLmap简介</h2><p>sqlmap是一个开源渗透测试工具，可以用来进行自动化检测，利用sql注入漏洞获取数据库服务器的权限。它具有强大的检测引擎，针对各种不同类型的数据库的渗透测试功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接方式操作系统命令。<br>它支持五种注入模式：</p>
+<ol>
+<li>基于布尔的盲注，即可以根据返回页面判断条件真假的注入</li>
+<li>基于报错注入，即页面会返回错误信息，或者把注入的语句结果直接返回在页面中</li>
+<li>基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行来判断。</li>
+<li>联合查询注入，可以使用union的情况下的注入。</li>
+<li>对查询注入，可以同时执行多条语句的执行时的注入。</li>
+</ol>
+<p>sqlmap是一个跨屏台的工具，很好用，是sql注入的强大工具。</p>
+<h2 id="sqlmap的安装"><a href="#sqlmap的安装" class="headerlink" title="sqlmap的安装"></a>sqlmap的安装</h2><p>首先它是基于python的首先需要在电脑中安装好python环境然后到sqlmap官网<a target="_blank" rel="noopener" href="http://sqlmap.org/">http://sqlmap.org/</a>下载和python环境相匹配的版本的压缩包，然后解压到python安装的文件下通过命令行启动即可。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-14-42-27.png" alt="解压位置" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-14-43-35.png" alt="启动" class="lazyload"></p>
+<h2 id="sqlmap使用参数详解"><a href="#sqlmap使用参数详解" class="headerlink" title="sqlmap使用参数详解"></a>sqlmap使用参数详解</h2><p>在这里我们使用自己虚拟机搭建的sqli-labs靶场作为演示来学习使用sqlmap。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-14-49-17.png" alt="靶场" class="lazyload"></p>
+<p><strong>选项</strong><br>一些参数选项</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">-h,--help显示本地帮助信息并退出<br>-hh 显示高级帮助信息并退出<br>--version 显示程序版本信息并退出<br>-v 数字 :信息级别：0-6（1缺省），具体含义为<br>    0只显示python错误以及严重的信息<br>    1同时显示基本信息和警告信息（默认）<br>    2同时显示debug信息<br>    3同时显示注入的payload信息<br>    4同时显示http请求<br>    5同时显示http响应头<br>    6同时显示http响应页面<br>    如果想看到sqlmap发送的payload最好的等级为3<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-27-36.png" alt="查看版本新信息" class="lazyload"><br><strong>目标</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">-d direct 直接连接数据库的连接字符串 如：python sqlmap.py -d &quot;mysql://root:root@192.168.23.128:3306/security&quot; 需要有python-pymysql这个库<br><br>-u url ,--url=url 目标url<br>-p 指定注入参数<br>-l logfile 从不让拍或者webscarab代理日志文件中分析目标<br>-x sitemapurl 从远程网站地图sitemap.xml文件来解析<br>-m BULKFILE 将目标地址保存在文件中，一行为一个url地址进行批量检测<br>-r REQUESTFILE 从文件中加载http请求，sqlmap可以从一个文件中获取http请求，这样就可以跳过设置一些其他参数如cookie、post数据等等，请求是https的时需要配合--force-ssl参数来使用，或者可以在host头后加443<br>-g GOOGLEDORK 从谷歌中加载结果目标url（只获取前100个结果，需要魔法）<br>-c configfile 从配置ini文件中加载选项<br></code></pre></td></tr></table></figure>
+
+<p>使用-d尝试连接<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-36-12.png" alt="连接数据库" class="lazyload"></p>
+<p>使用-u参数尝试<br>sqlmap.py -u 选项对于不常使用的网站可以直接使用 -u参数指定url地址探测是否存在注入<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-03-03.png" alt="扫描" class="lazyload"><br>也可以直接添加–batch省区询问直接选择默认项<br>扫描出id存在boolean盲注，并且给出结果mysql版本和服务器类型和php版本<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-09-41.png" alt="出现boolean盲注" class="lazyload"></p>
+<p>使用-r指定文件从文件中加载目标<br>sqlmap.py -r 文件路径 使用该命令时必须指明文件的绝对路径，验证过程与-u参数类似，判断可注入的参数，判断那种sql注入进行注入<br>可以使用-p参数来指定注入点，使用–skip参数来跳过注入点，也可以使用*来表注注入点，星号添加位置是你认为可能存在的注入点<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-16-54-00.png" alt="数据包" class="lazyload"><br>保存为txt用sqlmap跑<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-16-59-01.png" alt="星号指定注入点" class="lazyload"></p>
+<p><strong>获取信息</strong><br>–current-db获取当前数据库名<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-14-30.png" alt="获取当前数据库名" class="lazyload"><br>–dbs是获取数据库（暴库）<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-02-32.png" alt="获取数据库" class="lazyload"><br>-D指定数据库名 –tables参数是获取数据库中的表(暴表)<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-08-58.png" alt="指定库名暴表名" class="lazyload"><br>-T指定表名 –columns参数是获取数据库表中的字段名(暴字段)<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-11-34.png" alt="指定表名暴字段" class="lazyload"><br>-C指定字段名用,分隔 –dump参数获取字段的值<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-33-32.png" alt="获取指定字段值" class="lazyload"><br>–start指定开始行 –stop指定结束行指定第几行到第几行的数据<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-09-23.png" alt="获取指定行数据" class="lazyload"><br>–dump-all获取数据库中所有数据<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-39-02.png" alt="获取所有数据" class="lazyload"></p>
+<p><strong>其他命令</strong><br>level是测试等级一共有五个级别，级别越高检测内容越多，级别大于等于2时会检测cookie是否含有注入，大于等于3时会检测user-angent和referer是否有注入。推荐使用3</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txet">--level 5：探测等级<br><br>探测等级随着等级的变高探测的东西会更更多，不加命令默认探测等级为1，最高为5,。并且随着探测等级越来越高，所需要花费的时间会更多<br><br>--level 共有五个等级，sqlmap使用的payload可以在xml/payloads.xml中看到，自己也可以根据相应的格式添加自己的payload。<br><br>level&gt;=2的时候就会测试HTTP Cookie。<br><br>level&gt;=3的时候就会测试HTTP User-Agent/Referer头。<br><br>level=5 的时候会测试HTTP Host<br><br>为了保证全面性建议使用更高的探测等级进行他探测<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>–risk=RISK 执行测试的风险（0-3，默认为1）<br>risk 2：基于事件的测试;risk 3：or语句的测试;risk 4：update的测试<br>升高风险等级会增加数据被篡改的风险。 常用就是默认1</p>
+<hr>
+<p>os是检测数据库版信息的一个命令，但sqlmap默认会自动检测,–os-shell当数据库为mysql、postgresql或sqlserver时可以通过sqlmap执行操作系统命令</p>
+<p>当数据库是mysql时满足当前用户为root知道网站根目录<br><code>sqlmap -u &quot;xxx&quot; --os-shell</code><br>会让我们选择网站脚本<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-48-42.png" alt="选脚本" class="lazyload"><br>接下来让我们判断网站可写目录的方法<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-50-12.png" alt="可写目录的方法" class="lazyload"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">【1】使用公共的默认目录(C:/xampp/htdocs/，C:/wamp/www，C:/Inetpub/wwwroot/)<br>【2】自定义网络根目录绝对路径<br>【3】指定自定义的路径文件<br>【4】暴力破解<br></code></pre></td></tr></table></figure>
+
+<p>执行os-shell时sqlmap会向网站根目录写入两个文件tmpblwkd.php和tmpueqch.php。真正的木马文件是前者，如果是非正常退出sqlmap的话，这两个文件不会被删除。只有当我们输入x或q退出时sqlmap才会将该文件自动删除<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-19-04-44.png" alt="命令成功执行" class="lazyload"></p>
+<hr>
+<p><em>用来表注注入点：sqlmap可以区分一个url中的参数来进行注入点测试，但在遇到一些做了伪静态的网页就无法自动识别了<br>类似于/admin/1，sqlmap无法进行注入测试，但实际上可能是/admin.php?id=1 只是把参数隐藏在了url中，对于这样只需要在参数后加上一个星号即可如/admin/1</em> 星号之后众生平等</p>
+<hr>
+<p>post数据可以使用–data参数将要提交的数据添加进来就能测试如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">sqlmap.py -u &quot;url&quot; --data=&quot;id=1&amp;admin=2&quot;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>cookie可以使用–cookie参数来添加参数如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">sqlmap.py -u &quot;url&quot; --cookie &#x27;customer=xxxxxxx&#x27;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>-g参数会主动爬取google上搜索结果来进行注入，对带有get参数的url进行挨个测试，前提魔法</p>
+<hr>
+<p>超时延迟-timeout 如超时30秒 -timeout 30</p>
+<hr>
+<p>注入测试脚本参数-tamper：sqlmap自带一个脚本库，内置的脚本库对payload进行了混淆，可以绕过一些waf在sqlmap的安装目录tamper下，脚本可以自己编写</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">sqlmap.py -u &quot;url&quot; -tamper &quot;脚本文件&quot;<br></code></pre></td></tr></table></figure>
+
+<p>tamper文件夹下个脚本功能</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">space2comment.py用/**/代替空格<br><br>apostrophemask.py用utf8代替引号<br><br>equaltolike.pylike代替等号<br><br>space2dash.py　绕过过滤‘=’ 替换空格字符（”），（’–‘）后跟一个破折号注释，一个随机字符串和一个新行（’n’）<br><br>greatest.py　绕过过滤’&gt;’ ,用GREATEST替换大于号。<br><br>space2hash.py空格替换为#号,随机字符串以及换行符<br><br>apostrophenullencode.py绕过过滤双引号，替换字符和双引号。<br><br>halfversionedmorekeywords.py当数据库为mysql时绕过防火墙，每个关键字之前添加mysql版本评论<br><br>space2morehash.py空格替换为 #号 以及更多随机字符串 换行符<br><br>appendnullbyte.py在有效负荷结束位置加载零字节字符编码<br><br>ifnull2ifisnull.py　绕过对IFNULL过滤,替换类似’IFNULL(A,B)’为’IF(ISNULL(A), B, A)’<br><br>space2mssqlblank.py(mssql)空格替换为其它空符号<br><br>base64encode.py　用base64编码替换<br><br>space2mssqlhash.py　替换空格<br><br>modsecurityversioned.py过滤空格，包含完整的查询版本注释<br><br>space2mysqlblank.py　空格替换其它空白符号(mysql)<br><br>between.py用between替换大于号（&gt;）<br><br>space2mysqldash.py替换空格字符（”）（’ – ‘）后跟一个破折号注释一个新行（’ n’）<br><br>multiplespaces.py围绕SQL关键字添加多个空格<br><br>space2plus.py用+替换空格<br><br>bluecoat.py代替空格字符后与一个有效的随机空白字符的SQL语句,然后替换=为like<br><br>nonrecursivereplacement.py双重查询语句,取代SQL关键字<br><br>space2randomblank.py代替空格字符（“”）从一个随机的空白字符可选字符的有效集<br><br>sp_password.py追加sp_password’从DBMS日志的自动模糊处理的有效载荷的末尾<br><br>chardoubleencode.py双url编码(不处理以编码的)<br><br>unionalltounion.py替换UNION ALLSELECT UNION SELECT<br><br>charencode.py　url编码<br><br>randomcase.py随机大小写<br><br>unmagicquotes.py宽字符绕过 GPCaddslashes<br><br>randomcomments.py用/**/分割sql关键字<br><br>charunicodeencode.py字符串 unicode 编码<br><br>securesphere.py追加特制的字符串<br><br>versionedmorekeywords.py注释绕过<br><br>space2comment.py替换空格字符串(‘‘) 使用注释‘/**/’<br><br>halfversionedmorekeywords.py关键字前加注释<br><br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>–current-user当前数据库使用账户<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-05-51.png" alt="查看当前账户" class="lazyload"></p>
+<hr>
+<p>–mobile模拟手机进行测试  –smart智能判断 –passwords -v1对加密的密码尝试进行哈希对撞 –roles可以查看数据管理员的角色<br>–is-dba查看是否是管理员权限</p>
+<hr>
+<p>–file-read当数据库为mysql、postgresql或sqlserver并且当前用户有权限时可以读取指定文件，可以时文本文件或者二进制文件<br>如我们读取目标服务器c盘test.txt<br>sqlmap -u “url” –file-read “文件路径”</p>
+<hr>
+<p>–file-write –file-dest上传文件到数据库服务器中<br>当数据库为mysql、postgresql或sqlserver通过powershell，并且当前用户有权限向任意目录写文件时，可以上传文件到数据库服务器，文件可以是文本，也可以是二进制文件，所以利用文件上传一句话木马或者shell<br>前提我们必须知道服务器的绝对路径：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">python2 sqlmap.py -u http://xxx/sqli-labs/Less-<span class="hljs-number">2</span>/?<span class="hljs-built_in">id</span>=<span class="hljs-number">1</span> <br>--file-write C:\Users\mi\Desktop\<span class="hljs-number">1.</span>php <br>--file-dest <span class="hljs-string">&quot;C:\phpStudy\PHPTutorial\WWW\2.php&quot;</span>  <br><span class="hljs-comment">#将本地的C:\Users\mi\Desktop\1.php文件上传到目标服务器C:\phpStudy\PHPTutorial\WWW\2.php</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>–proxy挂代理：</p>
+<ol>
+<li>直接代理可直接在-u之后直接输入–proxy “代理地址:端口”此时就使用代理访问了</li>
+<li>简介代理：利用burp将sqlmap代理写成监听地址那么sqlmap数据就会通过burp发出这样做可以监听sqlmap发出的请求包能防ip被封。</li>
+</ol>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>Jay jay<br>
+        <strong>本文链接：</strong><a href="https://yyj-xx.github.io/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2023&#x2F;03&#x2F;26&#x2F;sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2023&#x2F;03&#x2F;26&#x2F;sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '906d60a925bbfc786e36',
+        clientSecret: 'eef34b48d710958974d793333753521d0474c243',
+        id: window.location.pathname,
+        repo: 'yyj-xx.github.io',
+        owner: 'yyj-xx',
+        admin: 'yyj-xx'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQLmap%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">SQLmap简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqlmap%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">sqlmap的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqlmap%E4%BD%BF%E7%94%A8%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">sqlmap使用参数详解</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1679977717725"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

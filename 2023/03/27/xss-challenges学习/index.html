@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>xss challenges学习 - Jay的个人博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="记录分享学习">
+    <meta name="keywords" content="记录,学习,分享">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/assets/logoko.png" type="image/png" />
+    <meta name="description" content="xss challenge简介xss challenge是一个xss漏洞练习的平台，安装很简单，解压到phpstuday的www目录下访问即可。 xsschallecge通关学习level 1 学习可以在url中看到有一个参数传递源码可以看到php代码中接收到name并没有做任何处理直接展示，我们直接在参数中输入&lt;script&gt;alert(1)&lt;&#x2F;script&gt;点击确定后跳">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xss challenges学习">
+<meta property="og:url" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Jay的个人博客">
+<meta property="og:description" content="xss challenge简介xss challenge是一个xss漏洞练习的平台，安装很简单，解压到phpstuday的www目录下访问即可。 xsschallecge通关学习level 1 学习可以在url中看到有一个参数传递源码可以看到php代码中接收到name并没有做任何处理直接展示，我们直接在参数中输入&lt;script&gt;alert(1)&lt;&#x2F;script&gt;点击确定后跳">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-39-50.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-44-47.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-45-52.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-46-16.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-49-34.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-50-44.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-52-45.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-54-10.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-09-13.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-15-31.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-21-47.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-23-53.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-26-38.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-28-56.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-37-55.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-21-44.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-23-27.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-26-00.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-38-33.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-39-42.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-55-27.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-20-34.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-24-19.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-26-54.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-32-43.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-40-31.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-42-40.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-06-57.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-09-40.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-11-48.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-18-17.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-25-34.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-30-25.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-34-09.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-35-01.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-37-47.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-41-54.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-42-49.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-48-40.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-51-39.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-53-09.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-54-07.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-14-07.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-18-08.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-22-18.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-24-22.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-27-35.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-37-21.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-39-07.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-42-16.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-44-26.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-47-54.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-56-41.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-00-56.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-07-08.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-08-25.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-12-04.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-14-23.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-17-44.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-30-24.png">
+<meta property="article:published_time" content="2023-03-27T02:14:26.000Z">
+<meta property="article:modified_time" content="2023-03-27T10:09:53.336Z">
+<meta property="article:author" content="Jay jay">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-39-50.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1679977717689">
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1679977717690">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(/assets/background.gif)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Jay jay" class="mdui-btn mdui-btn-icon"><img src="/assets/avatar.jpg" alt="Jay jay"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Jay jay">
+            <img src="/assets/avatar.jpg" alt="Jay jay" alt="Jay jay">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>20</div>
+        <div><span>标签</span>2</div>
+        <div><span>分类</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://www.baidu.com/s?wd=" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/436182677" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/yyj-xx/yyj-xx.github.io" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%86%99%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">学习写博客</a>
+    </div>
+    
+  </div>
+
+    
+    
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2023 Jay jay
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br>人生需要不断的探索
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-src="/assets/background.gif" data-sizes="auto" alt="xss challenges学习" class="lazyload">
+              <h1>xss challenges学习</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月27日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.7k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 12 分钟</a>
+</div>
+
+      
+
+      <h2 id="xss-challenge简介"><a href="#xss-challenge简介" class="headerlink" title="xss challenge简介"></a>xss challenge简介</h2><p>xss challenge是一个xss漏洞练习的平台，安装很简单，解压到phpstuday的www目录下访问即可。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-39-50.png" alt="xss challenge" class="lazyload"></p>
+<h2 id="xsschallecge通关学习"><a href="#xsschallecge通关学习" class="headerlink" title="xsschallecge通关学习"></a>xsschallecge通关学习</h2><h3 id="level-1-学习"><a href="#level-1-学习" class="headerlink" title="level 1 学习"></a>level 1 学习</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-44-47.png" alt="第一关" class="lazyload"><br>可以在url中看到有一个参数传递<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-45-52.png" alt="参数" class="lazyload"><br>源码<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-46-16.png" alt="第一关源码" class="lazyload"><br>可以看到php代码中接收到name并没有做任何处理直接展示，我们直接在参数中输入<code>&lt;script&gt;alert(1)&lt;/script&gt;</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-49-34.png" alt="可以看到成功弹窗" class="lazyload"><br>点击确定后跳转到第二关</p>
+<h3 id="level-2-学习"><a href="#level-2-学习" class="headerlink" title="level 2 学习"></a>level 2 学习</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-50-44.png" alt="第二关" class="lazyload"><br>我们直接尝试第一关的语句，没有弹窗但显示到了页面上语句<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-52-45.png" alt="没有弹窗" class="lazyload"><br>查看源码<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-10-54-10.png" alt="源码" class="lazyload"><br>发现使用htmlspecialchars函数把预定义的字符转换成了html实体<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-09-13.png" alt="没有弹窗" class="lazyload"><br>但是下边input框中的没有使用这个函数就可以构造闭和输入框来产生xss</p>
+<p><strong>法1</strong><br>闭合搜索框来弹窗<br>直接输入<code>&lt;img src=&quot;#&quot; onerror=alert(1)&gt;</code>查看源码<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-15-31.png" alt="直接输入" class="lazyload"><br>我们闭合搜索框输入<code>&quot;&gt;&lt;img src=&quot;#&quot; onerror=alert(1)&gt;</code><br>前边加一个”&gt;首先闭合输入框然后再执行构造语句<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-21-47.png" alt="弹窗" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-23-53.png" alt="闭合" class="lazyload"><br><strong>法2</strong><br>鼠标滑过<code>&quot;onmouseover=alert(1)&gt;</code>弹窗<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-26-38.png" alt="鼠标滑过弹窗" class="lazyload"><br><strong>法3</strong><br>点击搜索框弹窗<code>&quot; onclick=alert(1)&gt;</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-28-56.png" alt="点击框弹" class="lazyload"></p>
+<h3 id="level-3-学习"><a href="#level-3-学习" class="headerlink" title="level 3 学习"></a>level 3 学习</h3><p><strong>补充知识</strong><br>js中一共有三种注释方式</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/*xxxxx*/</span>多行注释<br><span class="hljs-comment">//xxxx 单行注释</span><br>&lt;!- xxx 这种注释内容用混淆一般不推荐<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-11-37-55.png" alt="第三关" class="lazyload"><br>可以看到两个地方都加了转换实体的函数，但是这个函数没有对单引号转换所以可以使用单引号闭合绕过，直接输入<code>&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;&quot;</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-21-44.png" alt="双引号" class="lazyload"><br>发现双引号直接被转义，我们尝试单引号<code>&#39;&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;&#39;</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-23-27.png" alt="单引号绕过" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-26-00.png" alt="尖括号过滤" class="lazyload"><br>可以发现左右尖括号被转义，这里需要右键查看网页源码才能看到<br>我们需要语句中没有被转义的字符我们构造<code>&#39; onclick=alert(1)</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-38-33.png" alt="尝试" class="lazyload"><br>尝试点击输入框没有弹窗出现，尝试分析页面<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-39-42.png" alt="页面源码" class="lazyload"><br>发现alert后边的单引号没有闭合，我们在语句中加上单引号来闭合</p>
+<figure class="highlight plaintext"><figcaption><span>onclick</span></figcaption><table><tr><td class="code"><pre><code class="hljs '">![成功绕过](xss-challenges学习/2023-03-27-12-42-44.png)<br>**法2**<br>在这里我们也可以使用注释方法注释掉后边的单引号内容<br>写法有一下三种<br><br>```js<br>1  &#x27; onclick=alert(1) //haha<br>2  &#x27; onclick=alert(1) &lt;!-haha<br>3  &#x27; onclick=alert(1) /*haha*/<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-12-55-27.png" alt="注释绕过" class="lazyload"><br>这里也可以使用鼠标移动事件<code>&#39; onmouseover=alert(1) //</code></p>
+<h3 id="level-4学习"><a href="#level-4学习" class="headerlink" title="level 4学习"></a>level 4学习</h3><p><strong>补充知识</strong><br>str_replace()函数以其他字符替换字符串中的一些字符（区分大小写）<br>str_ireplace()函数执行不区分大小写的搜索<br>首先查看靶场和源码<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-20-34.png" alt="查看靶场详细" class="lazyload"><br>查看源码我们发现不仅使用了htmlspecialchars函数，并且使用str_replace()函数将左右尖括号替换为空。同样在这里不能使用尖括号，使用<code>onclick=alert(1)</code>尝试<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-24-19.png" alt="尝试语句" class="lazyload"><br>分析可知使用双引号将前面的value进行闭合，再注释掉后面的双引号，或者将双引号闭合<br><strong>法1</strong><br><code>&quot; onclick=alert(1) &quot;</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-26-54.png" alt="成功" class="lazyload"><br>点击成功弹窗<br><strong>其他方法</strong><br>使用三种注释来闭合，使用鼠标移动事件来弹窗</p>
+<h3 id="level-5-学习"><a href="#level-5-学习" class="headerlink" title="level 5 学习"></a>level 5 学习</h3><p><strong>补充知识</strong><br>strtolower()把所有字符转换为小写函数</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-32-43.png" alt="五关" class="lazyload"><br>通关分析代码首先将大小写统一，然后直接过滤了<code>&lt;script</code>和on关键词，这里无法在使用上述方式绕过，可没有过滤尖括号，可以使用伪协议来进行构造</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">a标签的一种写法: <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;javascript:;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>因此构造语句</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-string">&quot;&gt;&lt;a href=&quot;</span>javascript:alert(<span class="hljs-number">1</span>)<span class="hljs-string">&quot;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>这里需要点击才可以触发<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-40-31.png" alt="绕过成功" class="lazyload"></p>
+<p>也可以直接使用iframe标签直接触发<code>&quot;&gt;&lt;iframe src=javascript:alert(1)&gt;</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-13-42-40.png" alt="直接执行" class="lazyload"></p>
+<h3 id="level-6-学习"><a href="#level-6-学习" class="headerlink" title="level 6 学习"></a>level 6 学习</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-06-57.png" alt="第六关" class="lazyload"><br>可以从代码中看到能过滤的都过滤了，但是与第五关相比，没有对大小写进行限制，因此大小写绕过<code>&quot; &gt;&lt;a hrEF=&quot;Javascript:alert(1)&quot;&gt;</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-09-40.png" alt="大小写绕过" class="lazyload"><br>同样iframe标签也可以。</p>
+<h3 id="level-7-学习"><a href="#level-7-学习" class="headerlink" title="level 7 学习"></a>level 7 学习</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-11-48.png" alt="第七关" class="lazyload"><br>查看代码得知，使用str_replace()函数将常用标签过滤了，而且做了大小写处理，这里利用双写方式绕过</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-string">&quot;&gt;&lt;a hhrefref=&quot;</span>javascscriptript:alert(<span class="hljs-number">1</span>)<span class="hljs-string">&quot;&gt;</span><br><span class="hljs-string">&quot;</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">Ssrcrc</span>=<span class="hljs-string">javasscriptcript:alert(1)</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-18-17.png" alt="双写绕过" class="lazyload"><br>tips：包裹关键词的时候并不是每一个单词都要进行双写，这里一定要保留一个完整的需要被替换的词</p>
+<h3 id="level-8-学习"><a href="#level-8-学习" class="headerlink" title="level 8 学习"></a>level 8 学习</h3><p><strong>补充知识</strong><br>html字符实体：html实体是一段以连字号（&amp;）开头，以分号(;)结尾的文本（字符串）实体名称对大小写敏感。它主要是为了解决一下的问题：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">1. 解决HTML代码编写中的一些问题。例如需要在网页上显示小于号（&lt;）和大于号（&gt;），由于它们是HTML的预留标签，可能会被误解析为标签。这时就需要将小于号和大于号写成字符实体：<br>小于号这样写：&amp;lt; 或 &amp;#60;<br>大于号这样写：&amp;gt; 或 &amp;#62;<br>2. 键盘上无法打印的符号<br>3. 连续的空格<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-25-34.png" alt="第八关" class="lazyload"><br>查看代码发现，输入的str先进行了小写转换，然后再经过一些列关键词替换，这里无法使用过滤的关键词和引号进行绕过，在这里面一共有两个输出点，第一是采用htmlspecialchars()函数实体化，第二进行了其次过滤处理，首先尝试伪协议绕过：<br><code>javascript:alert(1)</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-30-25.png" alt="尝试" class="lazyload"><br>发现确实过滤替换了，在这里尝试用html字符实体进行尝试绕过可以再在线网站<a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/zifushiti.php">HTML字符实体转换</a>进行转换<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-34-09.png" alt="转换" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-35-01.png" alt="成功绕过" class="lazyload"><br>同时也可以对script的任意字母进行编码，如对s进行编码从而绕过<code>java&amp;#x73;cript:alert(1)</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-37-47.png" alt="部分实体" class="lazyload"><br>也可以使用tab和回车键进行编码绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">javascrip&amp;#x09;t:alert(1) <br>javascrip&amp;#x0a;t:alert(1)<br></code></pre></td></tr></table></figure>
+
+<h3 id="level-9-学习"><a href="#level-9-学习" class="headerlink" title="level 9 学习"></a>level 9 学习</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-41-54.png" alt="第九关" class="lazyload"><br>源码：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-42-49.png" alt="源码" class="lazyload"><br>通过源码可知首先对输入的字符串进行了过滤处理，在最后一步的时候判断是否存在<code>http://</code>头，没有则判定为非法操作，因此在这里可以通过注释符的方式添加进来进行绕过即可。输入<code>javascrip&amp;#x09;t:alert(1)</code>提示连接不合法<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-48-40.png" alt="提示" class="lazyload"><br>这里可以加注释绕过<code>javascrip&amp;#x09;t:alert(1) // http://</code><br>添加http头绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-51-39.png" alt="成功弹窗" class="lazyload"></p>
+<h3 id="level-10-学习"><a href="#level-10-学习" class="headerlink" title="level 10 学习"></a>level 10 学习</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-53-09.png" alt="第十关" class="lazyload"><br>源码<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-14-54-07.png" alt="源码" class="lazyload"><br>通过源码分析可知需要传入两个参数一个keyword，另一个t_sort。而且过滤了尖括号，页面中还隐藏了三个元素，并且前两个将值替换为空，最后一个值是过滤了尖括号之后的结果，因此首先尝试基础语句：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-14-07.png" alt="尝试" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-18-08.png" alt="t_sort参数尝试" class="lazyload"><br>可以看到尖括号被过滤了，尝试绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">payload:<br>&quot; type=&quot;password&quot; onclick=alert(1) //<br>完整的payload：<br>keyword=hacked by crow&amp;t_sort=&quot; type=&quot;text&quot; onclick=alert(1) //<br>其中//属于必须要的注释符，可以使用其他的注释符进行替换也可<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-22-18.png" alt="成功绕过" class="lazyload"><br>也可以更换事件onmouseover事件</p>
+<h3 id="level-11-学习"><a href="#level-11-学习" class="headerlink" title="level 11 学习"></a>level 11 学习</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-24-22.png" alt="第11关" class="lazyload"><br>分析源代码，可以知道对输入的keyword和t_sort进行了关键词过滤，但是对于str11到str33过滤尖括号，先尝试一下语句看看页面的返回<br><code>keyword=hacked by crow &amp; t_sort= &lt;script&gt;alert(1)&lt;/script&gt;</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-27-35.png" alt="查看页面响应" class="lazyload"><br>在这里看源码str11参数接受的是http_referer中的值，我们可以使用burp或者hackbr向http_referer参数中构造语句</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">payload1:<br>&quot; type=&#x27;text&#x27; onclick=alert(1) // <br>payload2:<br>&quot; type=&#x27;text&#x27; onmouseover=alert(1) //<br>//  tips:需要在referer中进行构造<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-37-21.png" alt="成功弹窗" class="lazyload"></p>
+<h3 id="level-12-学习"><a href="#level-12-学习" class="headerlink" title="level 12 学习"></a>level 12 学习</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-39-07.png" alt="第12关" class="lazyload"><br>同过源码分析可知与11关很像只不过将http_referer替换为了UA因此直接用hackbr等工具直接替换即可</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">payload1:<br>&quot; type=&#x27;text&#x27; onclick=alert(1) // <br>payload2:<br>&quot; type=&#x27;text&#x27; onmouseover=alert(1) //<br>// tips:需要在user-agent中进行构造<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-42-16.png" alt="ua中xss" class="lazyload"></p>
+<h3 id="level-13-学习"><a href="#level-13-学习" class="headerlink" title="level 13 学习"></a>level 13 学习</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-44-26.png" alt="第13关" class="lazyload"><br>经过分析可得出和11、12关一样这里只不过指定的是cookie因此构造如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">payload1:<br>&quot; type=&#x27;text&#x27; onclick=alert(1) // <br>payload2:<br>&quot; type=&#x27;text&#x27; onmouseover=alert(1) //<br><br>// tips:需要在cookies中进行构造<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-15-47-54.png" alt="cookie中" class="lazyload"></p>
+<h3 id="level-14-学习"><a href="#level-14-学习" class="headerlink" title="level 14 学习"></a>level 14 学习</h3><p><strong>补充知识</strong><br>exif:可交换图像文件格式（exchangeable image file format 简称exif）是专门为数码相机的照片设定的，可以记录数码照片的属性信息和拍摄数据。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-56-41.png" alt="事例" class="lazyload"><br>Windows下可以直接右键修改这些属性，有些网站可以读取exif信息，当传入一张含有恶意信息的图片的时候，就可以触发payload</p>
+<p>14关代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php">&lt;html&gt;<br>&lt;head&gt;<br>&lt;meta http-equiv=<span class="hljs-string">&quot;content-type&quot;</span> content=<span class="hljs-string">&quot;text/html;charset=utf-8&quot;</span>&gt;<br>&lt;title&gt;欢迎来到level14&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;h1 align=center&gt;欢迎来到level14&lt;/h1&gt;<br>&lt;center&gt;&lt;iframe name=<span class="hljs-string">&quot;leftframe&quot;</span> marginwidth=<span class="hljs-number">10</span> marginheight=<span class="hljs-number">10</span> src=<span class="hljs-string">&quot;http://www.exifviewer.org/&quot;</span> frameborder=no width=<span class="hljs-string">&quot;80%&quot;</span> scrolling=<span class="hljs-string">&quot;no&quot;</span> height=<span class="hljs-number">80</span>%&gt;&lt;/iframe&gt;&lt;/center&gt;&lt;center&gt;这关成功后不会自动跳转。成功者&lt;a href=/xss/level15.php?src=<span class="hljs-number">1</span>.gif&gt;点我进level15&lt;/a&gt;&lt;/center&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+
+<p>分析代码可以看出是跳转到一个能够读取exif信息的网站，但是这个网站存在exif xss漏洞，因此可以直接触发xss，所以只要将src后面的网址进行替换到一个有这样漏洞的网站即可。</p>
+<h3 id="level-15-学习"><a href="#level-15-学习" class="headerlink" title="level 15 学习"></a>level 15 学习</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-00-56.png" alt="第15关" class="lazyload"><br>引入了angular.min.js而且使用ng-include指令包含外部html文件，包含的内容将作为指定元素的子节点。ng-include属性值可以是一个表达式，返回一个文件名，默认情况下，包含文件需要包含在同一个域名下因此可以直接构造<code>src=&#39;level1.php?name=&lt;img src=1 onerror=alert(1)&gt;&#39;</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-07-08.png" alt="成功弹窗" class="lazyload"></p>
+<h3 id="level-16-学习"><a href="#level-16-学习" class="headerlink" title="level 16 学习"></a>level 16 学习</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-08-25.png" alt="第16关" class="lazyload"></p>
+<p>从源码可以看出script等均被替换为空格符号，但是这里没有过滤尖括号，可以尝试尖括号过滤<code>&lt;img src=1 onerror=alert(1)&gt;</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-12-04.png" alt="尝试" class="lazyload"><br>出现了新问题空格被替换为空格符号，这里尝试使用%0a来替换空格<br>当然也可以使用别的符号替换如%0d回车符号等<br><code>&lt;img%0dsrc=1 %0donerror=alert(1)&gt;</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-14-23.png" alt="成功弹窗" class="lazyload"></p>
+<h3 id="level-17-学习"><a href="#level-17-学习" class="headerlink" title="level 17 学习"></a>level 17 学习</h3><p>源码<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-17-44.png" alt="源码" class="lazyload"><br>通过源代码和基础的xss反弹代码发现，arg01和arg02的参数在处理之后进行了拼接<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/2023-03-27-17-30-24.png" alt="拼接" class="lazyload"><br>而htmlspecialchars函数会将输入的数据变成html实体，过滤了尖括号和双引号，尝试其他方式绕过<code>?arg01=a&amp;arg02= onmouseover=alert(1)</code>这里在arg02参数后面有一个空格，不然就是将属性与之前的xsf01.swf?进行了连接但是这里由于插件不支持无法演示18、19、20关</p>
+<h2 id="后续推荐学习"><a href="#后续推荐学习" class="headerlink" title="后续推荐学习"></a>后续推荐学习</h2><p>推荐学习靶场haozi的靶场<a target="_blank" rel="noopener" href="https://github.com/haozi/xss-demo">https://github.com/haozi/xss-demo</a></p>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>Jay jay<br>
+        <strong>本文链接：</strong><a href="https://yyj-xx.github.io/2023/03/27/xss-challenges%E5%AD%A6%E4%B9%A0/" title="https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2023&#x2F;03&#x2F;27&#x2F;xss-challenges%E5%AD%A6%E4%B9%A0&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2023&#x2F;03&#x2F;27&#x2F;xss-challenges%E5%AD%A6%E4%B9%A0&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '906d60a925bbfc786e36',
+        clientSecret: 'eef34b48d710958974d793333753521d0474c243',
+        id: window.location.pathname,
+        repo: 'yyj-xx.github.io',
+        owner: 'yyj-xx',
+        admin: 'yyj-xx'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#xss-challenge%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">xss challenge简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xsschallecge%E9%80%9A%E5%85%B3%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.</span> <span class="toc-text">xsschallecge通关学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level-1-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.1.</span> <span class="toc-text">level 1 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-2-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.2.</span> <span class="toc-text">level 2 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-3-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.3.</span> <span class="toc-text">level 3 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-4%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.4.</span> <span class="toc-text">level 4学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-5-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.5.</span> <span class="toc-text">level 5 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-6-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.6.</span> <span class="toc-text">level 6 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-7-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.7.</span> <span class="toc-text">level 7 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-8-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.8.</span> <span class="toc-text">level 8 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-9-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.9.</span> <span class="toc-text">level 9 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-10-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.10.</span> <span class="toc-text">level 10 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-11-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.11.</span> <span class="toc-text">level 11 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-12-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.12.</span> <span class="toc-text">level 12 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-13-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.13.</span> <span class="toc-text">level 13 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-14-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.14.</span> <span class="toc-text">level 14 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-15-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.15.</span> <span class="toc-text">level 15 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-16-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.16.</span> <span class="toc-text">level 16 学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level-17-%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.17.</span> <span class="toc-text">level 17 学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E6%8E%A8%E8%8D%90%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">后续推荐学习</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1679977717697"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

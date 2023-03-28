@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>burpsuite使用方法 - Jay的个人博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="记录分享学习">
+    <meta name="keywords" content="记录,学习,分享">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/assets/logoko.png" type="image/png" />
+    <meta name="description" content="Burpsuite简介Burp Suite简称BP，是用于攻击web应用程序的集成平台，它包含了许多工具，并为这些工具设计了很多接口，以促进加快攻击应用程序的过程。 中间人攻击中间人攻击简称MITM攻击是一种间接的入侵攻击，这种攻击模式是通过各种技术手段将受入侵者控制的一台计算机虚拟放置在网络连接中的两台通信计算机之间，这台计算机就称为中间人。burpsuite抓包就是用的是这种方式。 burps">
+<meta property="og:type" content="article">
+<meta property="og:title" content="burpsuite使用方法">
+<meta property="og:url" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Jay的个人博客">
+<meta property="og:description" content="Burpsuite简介Burp Suite简称BP，是用于攻击web应用程序的集成平台，它包含了许多工具，并为这些工具设计了很多接口，以促进加快攻击应用程序的过程。 中间人攻击中间人攻击简称MITM攻击是一种间接的入侵攻击，这种攻击模式是通过各种技术手段将受入侵者控制的一台计算机虚拟放置在网络连接中的两台通信计算机之间，这台计算机就称为中间人。burpsuite抓包就是用的是这种方式。 burps">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-10-58-28.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-51-17.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-13-37-58.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-13-46-53.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-13-55-47.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-06-58.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-21-01.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-16-51.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-17-47.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-18-27.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-25-28.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-31-01.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-22-42.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-34-46.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-45-07.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-51-50.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-53-51.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-56-41.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-20-42.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-22-38.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-24-10.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-29-39.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-42-00.png">
+<meta property="article:published_time" content="2023-03-24T02:58:57.000Z">
+<meta property="article:modified_time" content="2023-03-25T10:03:12.460Z">
+<meta property="article:author" content="Jay jay">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-10-58-28.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1679977717699">
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1679977717699">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(/assets/background.gif)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Jay jay" class="mdui-btn mdui-btn-icon"><img src="/assets/avatar.jpg" alt="Jay jay"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Jay jay">
+            <img src="/assets/avatar.jpg" alt="Jay jay" alt="Jay jay">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>20</div>
+        <div><span>标签</span>2</div>
+        <div><span>分类</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://www.baidu.com/s?wd=" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/436182677" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/yyj-xx/yyj-xx.github.io" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%86%99%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">学习写博客</a>
+    </div>
+    
+  </div>
+
+    
+    
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2023 Jay jay
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br>人生需要不断的探索
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-src="/assets/background.gif" data-sizes="auto" alt="burpsuite使用方法" class="lazyload">
+              <h1>burpsuite使用方法</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月24日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.6k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+</div>
+
+      
+
+      <h2 id="Burpsuite简介"><a href="#Burpsuite简介" class="headerlink" title="Burpsuite简介"></a>Burpsuite简介</h2><p>Burp Suite简称BP，是用于攻击web应用程序的集成平台，它包含了许多工具，并为这些工具设计了很多接口，以促进加快攻击应用程序的过程。</p>
+<h2 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a>中间人攻击</h2><p>中间人攻击简称MITM攻击是一种间接的入侵攻击，这种攻击模式是通过各种技术手段将受入侵者控制的一台计算机虚拟放置在网络连接中的两台通信计算机之间，这台计算机就称为中间人。burpsuite抓包就是用的是这种方式。</p>
+<h2 id="burpsuite安装"><a href="#burpsuite安装" class="headerlink" title="burpsuite安装"></a>burpsuite安装</h2><p>到官网下载jar包，由于它是在java环境下运行的所以需要首先本地配置好java运行环境，用java命令启动。安装完成后抓包提示不安全无页面响应则需要安装根证书才能成功抓包。<br>根证书的安装：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-10-58-28.png" alt="安装根证书" class="lazyload"><br>根证书导入完成就可以抓取到数据包了。</p>
+<h2 id="burpsuite功能介绍"><a href="#burpsuite功能介绍" class="headerlink" title="burpsuite功能介绍"></a>burpsuite功能介绍</h2><h3 id="Doshboard模块"><a href="#Doshboard模块" class="headerlink" title="Doshboard模块"></a>Doshboard模块</h3><p>这个模块分为三小块：tasks 任务  event log 事件日志 issue activity动态发现的问题<br>task的默认开关：</p>
+<ul>
+<li>live passive crawl from proxy（all traffic） 被动抓取来自代理流量</li>
+<li>live audit from proxy （all traffic）实时审计来自代理流量</li>
+</ul>
+<p><strong>new scan（主动扫描）</strong><br>主动扫描：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">scan details 选项有两个，一个是爬虫加审计，一个是只有审计，然后填上url即可<br>scan configuration 可以设置自己的ua，或者按照默认配置即可<br>application login options 应用登录选项，只有爬虫检测到登录表单会自动提交 可自定义配置账号<br>resource pool option 并发数配置默认为10<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-51-17.png" alt="主动扫描" class="lazyload"></p>
+<p><strong>new live scan （被动扫描）</strong><br>live audit 动态审计<br>live passive crawl 动态被动爬虫<br>tools scope 选择proxy repeater intruder审计那些流量<br>everything 包含所有<br>suite scope 使用burpsuite里加入scope<br>custom scope 自定义选项，可以使用suite scope，可以新增等<br>deduplication 删除重复url，减少重复扫描，默认没有选<br>其他功能和主动扫描一样<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-13-37-58.png" alt="被动扫描" class="lazyload"></p>
+<h3 id="target模块"><a href="#target模块" class="headerlink" title="target模块"></a>target模块</h3><p>target是帮助渗透更好地了解目标应用的整体状况、当前工作设计哪些目标域，分析可能存在的攻击面等信息有三个部分site map、scope、issue definitions。</p>
+<p><strong>site map 网站地图</strong><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-13-46-53.png" alt="网站地图" class="lazyload"><br>功能模块：<br>include in scope 定义范围内规则<br>exclude from scope 定义排除范文内规则<br>渗透测试过程中，可以通过域名或主机名去限制拦截内容，比如只想拦截login目录下的所有请求，此时的作用域就是目录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">1 限制站点地图和proxy历史的显示结果<br>2 告诉burp proxy拦截那些请求<br>3 burp spider抓取那些内容<br>4 burp scanner 自动扫描那些作用域的安全漏洞<br>5 在burp intruder和repeater中指定url<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-13-55-47.png" alt="范围" class="lazyload"></p>
+<p><strong>issue definitions</strong><br>安全专业的词汇和定义说明。</p>
+<h3 id="核心功能-Proxy代理"><a href="#核心功能-Proxy代理" class="headerlink" title="核心功能-Proxy代理"></a>核心功能-Proxy代理</h3><p>数据是一切的基础，proxy代理模块主要用于拦截浏览器的http回话内容，给模块提供数据，proxy模块如下图<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-06-58.png" alt="代理" class="lazyload"><br>代理模块有四个部分intercept、http history、websockets history、options。</p>
+<p><strong>intercept</strong><br>这个功能是截断，就是控制整个代理模块是否抓包，用于显示和修改http请求和响应。新版本中增加了专用的浏览器方便使用。低版本则需要手动在浏览器中设置网络代理。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-21-01.png" alt="抓包模块" class="lazyload"><br><strong>http history</strong><br>这里记录了每一个http数据包，可以通过此功能查看历史数据包。也可以过滤数据包，还可以查看数据包的详细信息。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-16-51.png" alt="http history" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-17-47.png" alt="还可以数据包过滤" class="lazyload"><br><strong>websockets history</strong><br>和http history功能十分类似，用于记录websockets，实际很少用。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-18-27.png" alt="websockets" class="lazyload"><br><strong>options</strong><br>这个部分主要用来配置代理：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-25-28.png" alt="配置" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-31-01.png" alt="配置" class="lazyload"></p>
+<h3 id="intruder模块"><a href="#intruder模块" class="headerlink" title="intruder模块"></a>intruder模块</h3><p>为web应用程序自定义攻击模块，首先将proxy抓取到的数据包发送到intruder中然后根据模块说明自定义修改配置进行攻击。<br>positions 选择攻击模式和攻击范围<br>payloads 有效载荷攻击字典模块配置<br>resource pool 资源池管理情况<br>options intruder攻击配置模块<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-22-42.png" alt="intruder" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-34-46.png" alt="使用" class="lazyload"></p>
+<h3 id="repeater模块-–-中继器"><a href="#repeater模块-–-中继器" class="headerlink" title="repeater模块 – 中继器"></a>repeater模块 – 中继器</h3><p>它根据抓到的数据包，修改数据包中的内容重发查看响应的反馈信息。<br>一些词的简单说明</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">send 发送数据包<br>cancel 中断发送<br>request 请求包<br>response 响应包<br>raw 接受到的数据包信息包括响应包数据<br>render 反馈数据包的响应包页面不是代码形式<br>hex 十六进制数据消息<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-45-07.png" alt="repeater" class="lazyload"></p>
+<h3 id="sequencer模块–定序器"><a href="#sequencer模块–定序器" class="headerlink" title="sequencer模块–定序器"></a>sequencer模块–定序器</h3><p>这个模块是检测数据包质量的工具，主要是为检测数据包代码质量，检测数据是否有被伪造的风险，很少用，不熟悉不要再生产环境下使用。</p>
+<h3 id="decoder模块"><a href="#decoder模块" class="headerlink" title="decoder模块"></a>decoder模块</h3><p>这个模块是编码和解码工具有多种编码格式，多重解码加密模式<br>decode 解码<br>encode 加密<br>hash 散列<br>smart decode 智能解码</p>
+<p>编码类型：<br>url、html、base64、ascll、16进制、8进制、2进制、GZIP</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-51-50.png" alt="解码" class="lazyload"></p>
+<h3 id="comparer模块"><a href="#comparer模块" class="headerlink" title="comparer模块"></a>comparer模块</h3><p>数据对比模块，举例来说，类似登录页面，登录成功和失败的响应包是不同的，因此可以对比寻找差异找突破点。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-53-51.png" alt="对比模块" class="lazyload"><br>words 选项文本数据对比结果<br>bytes 字节16进制对比结果</p>
+<h3 id="logger模块"><a href="#logger模块" class="headerlink" title="logger模块"></a>logger模块</h3><p>日志模块，查看日志，方便筛选需要的数据包然后也方便看到数据包的响应包。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-56-41.png" alt="日志" class="lazyload"></p>
+<h3 id="extender模块"><a href="#extender模块" class="headerlink" title="extender模块"></a>extender模块</h3><p>扩展模块：<br>extender 支持第三方拓展插件功能，主要有四个功能<br>extender 扩展<br>Bappstore 应用程序商店<br>APIS 接口<br>setting 选项</p>
+<p><strong>extender</strong><br>允许使用自己的或者第三方代码扩展<br>details 细节 output 输出 error 错误<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-20-42.png" alt="扩展" class="lazyload"></p>
+<p><strong>Bapp store</strong><br>插件商店：refresh list 刷新列表 manual install 自定义安装<br>installing 安装<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-22-38.png" alt="插件商店" class="lazyload"></p>
+<p><strong>apis</strong><br>通过拓展程序api常见自己的扩展，自定义burpsuite的行为<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-24-10.png" alt="apis" class="lazyload"></p>
+<p><strong>setting</strong><br>扩展的相关设置<br>automatically reload extensions on startup 启动时自动重新加载扩展<br>automatically update installed bapp on startup 启动时自动更新已安装的插件<br>java environment java环境 加载jar文件的文件夹<br>python environment python环境 在jiava中实现python解释器<br>    第一个选项 jython独立的jar文件<br>    第二个选项 加载模块<br>ruby environment ruby环境<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-29-39.png" alt="插件环境" class="lazyload"></p>
+<h3 id="setting模块"><a href="#setting模块" class="headerlink" title="setting模块"></a>setting模块</h3><p>对burp进行设置的选项具体内容不进行详细解释<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-42-00.png" alt="设置" class="lazyload"></p>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>Jay jay<br>
+        <strong>本文链接：</strong><a href="https://yyj-xx.github.io/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2023&#x2F;03&#x2F;24&#x2F;burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2023&#x2F;03&#x2F;24&#x2F;burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '906d60a925bbfc786e36',
+        clientSecret: 'eef34b48d710958974d793333753521d0474c243',
+        id: window.location.pathname,
+        repo: 'yyj-xx.github.io',
+        owner: 'yyj-xx',
+        admin: 'yyj-xx'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Burpsuite%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">Burpsuite简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB"><span class="toc-number">2.</span> <span class="toc-text">中间人攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#burpsuite%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">burpsuite安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#burpsuite%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="toc-number">4.</span> <span class="toc-text">burpsuite功能介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doshboard%E6%A8%A1%E5%9D%97"><span class="toc-number">4.1.</span> <span class="toc-text">Doshboard模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#target%E6%A8%A1%E5%9D%97"><span class="toc-number">4.2.</span> <span class="toc-text">target模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD-Proxy%E4%BB%A3%E7%90%86"><span class="toc-number">4.3.</span> <span class="toc-text">核心功能-Proxy代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#intruder%E6%A8%A1%E5%9D%97"><span class="toc-number">4.4.</span> <span class="toc-text">intruder模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repeater%E6%A8%A1%E5%9D%97-%E2%80%93-%E4%B8%AD%E7%BB%A7%E5%99%A8"><span class="toc-number">4.5.</span> <span class="toc-text">repeater模块 – 中继器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sequencer%E6%A8%A1%E5%9D%97%E2%80%93%E5%AE%9A%E5%BA%8F%E5%99%A8"><span class="toc-number">4.6.</span> <span class="toc-text">sequencer模块–定序器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#decoder%E6%A8%A1%E5%9D%97"><span class="toc-number">4.7.</span> <span class="toc-text">decoder模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#comparer%E6%A8%A1%E5%9D%97"><span class="toc-number">4.8.</span> <span class="toc-text">comparer模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logger%E6%A8%A1%E5%9D%97"><span class="toc-number">4.9.</span> <span class="toc-text">logger模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extender%E6%A8%A1%E5%9D%97"><span class="toc-number">4.10.</span> <span class="toc-text">extender模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setting%E6%A8%A1%E5%9D%97"><span class="toc-number">4.11.</span> <span class="toc-text">setting模块</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1679977717705"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
