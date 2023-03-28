@@ -24,9 +24,9 @@
 <meta property="article:tag" content="记录,学习,分享">
 <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1679977717834">
+    <link rel="stylesheet" href="/css/style.css?v=1679978628681">
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1679977717834">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1679978628681">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -1151,7 +1151,7 @@
 <li>过滤:根据业务需求进行过滤，比如输入点要求输入手机号，则只允许输入手机号格式的数字</li>
 <li>转义:所有输出到前端的数据都根据输出点进行转义,比如输出到html中进行htm|实体转义,输入到JS里面的进行js转义。</li>
 </ul>
-<h3 id="CSRF（跨站请求伪造漏洞）"><a href="#CSRF（跨站请求伪造漏洞）" class="headerlink" title="CSRF（跨站请求伪造漏洞）"></a>CSRF（跨站请求伪造漏洞）</h3><h4 id="csrf漏洞概述"><a href="#csrf漏洞概述" class="headerlink" title="csrf漏洞概述"></a>csrf漏洞概述</h4><p>cross-site request forgery（csrf跨站请求伪造）。在csrf攻击中，攻击者会伪造一个请求（一般是一个链接），欺骗用户点击，用户一旦点击整个攻击就完成了，所以也叫one click攻击。<br>例子：A用户在某网站的信息修改页面修改完信息点击提交即可修改成功，修改的链接地址为：<a href="http://#/csrf_mem_">http://#/csrf_mem_</a> edit.php?sex= 女&amp;phonenum= 12345678922&amp;add=地球村504号&amp;email=lucy@pi ka’ chu.com&amp;submit=submit<br>这时攻击者B想修改A的用户信息如何完成？必须需要有A的权限，修改个人信息的请求<br>攻击者B注册该网站抓包获取到修改信息的请求，然后伪造一个请求地址为<a href="http://#/csrf">http://#/csrf</a> mem. edit.php?sex=女&amp;phonenum= 13856564455&amp;add=火星村111号&amp;email=<a href="mailto:&#x6c;&#x75;&#x63;&#121;&#x40;&#112;&#105;&#x6b;&#x61;&#x63;&#104;&#117;&#x2e;&#99;&#x6f;&#109;">&#x6c;&#x75;&#x63;&#121;&#x40;&#112;&#105;&#x6b;&#x61;&#x63;&#104;&#117;&#x2e;&#99;&#x6f;&#109;</a>&amp;tsubmit=submit引诱A在登录的情况下点击，此时攻击就完成了。<br><strong>攻击成功的条件</strong></p>
+<h3 id="CSRF（跨站请求伪造漏洞）"><a href="#CSRF（跨站请求伪造漏洞）" class="headerlink" title="CSRF（跨站请求伪造漏洞）"></a>CSRF（跨站请求伪造漏洞）</h3><h4 id="csrf漏洞概述"><a href="#csrf漏洞概述" class="headerlink" title="csrf漏洞概述"></a>csrf漏洞概述</h4><p>cross-site request forgery（csrf跨站请求伪造）。在csrf攻击中，攻击者会伪造一个请求（一般是一个链接），欺骗用户点击，用户一旦点击整个攻击就完成了，所以也叫one click攻击。<br>例子：A用户在某网站的信息修改页面修改完信息点击提交即可修改成功，修改的链接地址为：<a href="http://#/csrf_mem_">http://#/csrf_mem_</a> edit.php?sex= 女&amp;phonenum= 12345678922&amp;add=地球村504号&amp;email=lucy@pi ka’ chu.com&amp;submit=submit<br>这时攻击者B想修改A的用户信息如何完成？必须需要有A的权限，修改个人信息的请求<br>攻击者B注册该网站抓包获取到修改信息的请求，然后伪造一个请求地址为<a href="http://#/csrf">http://#/csrf</a> mem. edit.php?sex=女&amp;phonenum= 13856564455&amp;add=火星村111号&amp;email=<a href="mailto:&#x6c;&#117;&#99;&#x79;&#64;&#x70;&#x69;&#107;&#97;&#99;&#x68;&#x75;&#46;&#99;&#x6f;&#x6d;">&#x6c;&#117;&#99;&#x79;&#64;&#x70;&#x69;&#107;&#97;&#99;&#x68;&#x75;&#46;&#99;&#x6f;&#x6d;</a>&amp;tsubmit=submit引诱A在登录的情况下点击，此时攻击就完成了。<br><strong>攻击成功的条件</strong></p>
 <ol>
 <li>网站对个人信息修改的请求没有做csrf处理，导致该请求容易伪造。因此在判断一个网站是否存在csrf漏洞其实就是判断其对关键信息的操作（增删改）是否易伪造</li>
 <li>A要登录的情况下点击伪造请求，若未登录或没有点击伪造请求链接则攻击不会成功</li>
@@ -2014,7 +2014,7 @@
 
  
 
-<script async src="/js/app.js?v=1679977717835"></script>
+<script async src="/js/app.js?v=1679978628682"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
