@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>常用命令学习 - Jay的个人博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="记录分享学习">
+    <meta name="keywords" content="记录,学习,分享">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/assets/logoko.png" type="image/png" />
+    <meta name="description" content="windows系统系统目录服务端口注册表windows安装目录，重要的文件在windows下system32目录比较重要常用命令在这里，也容易感染病毒，drivers&#x2F;etc&#x2F;hosts文件比较重要，system32&#x2F;config&#x2F;sam文件记录账号和密码，在pe中删除可以免密登录。perflogs是日志文件夹还有隐藏目录有可能感染病毒创建账号登录会在用户目录下生成账号文件夹无法完全删除，尽量不要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用命令学习">
+<meta property="og:url" content="https://yyj-xx.github.io/2023/04/05/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Jay的个人博客">
+<meta property="og:description" content="windows系统系统目录服务端口注册表windows安装目录，重要的文件在windows下system32目录比较重要常用命令在这里，也容易感染病毒，drivers&#x2F;etc&#x2F;hosts文件比较重要，system32&#x2F;config&#x2F;sam文件记录账号和密码，在pe中删除可以免密登录。perflogs是日志文件夹还有隐藏目录有可能感染病毒创建账号登录会在用户目录下生成账号文件夹无法完全删除，尽量不要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/04/05/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/2023-04-09-11-55-07.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/04/05/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/2023-04-09-11-57-58.png">
+<meta property="article:published_time" content="2023-04-05T08:47:39.000Z">
+<meta property="article:modified_time" content="2023-04-09T04:20:34.905Z">
+<meta property="article:author" content="Jay jay">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yyj-xx.github.io/2023/04/05/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/2023-04-09-11-55-07.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1681535802625">
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1681535802625">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(/assets/background.gif)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Jay jay" class="mdui-btn mdui-btn-icon"><img src="/assets/avatar.jpg" alt="Jay jay"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Jay jay">
+            <img src="/assets/avatar.jpg" alt="Jay jay" alt="Jay jay">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>25</div>
+        <div><span>标签</span>2</div>
+        <div><span>分类</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://www.baidu.com/s?wd=" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/436182677" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/yyj-xx/yyj-xx.github.io" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%86%99%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">学习写博客</a>
+    </div>
+    
+  </div>
+
+    
+    
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2023 Jay jay
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br>人生需要不断的探索
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-src="/assets/background.gif" data-sizes="auto" alt="常用命令学习" class="lazyload">
+              <h1>常用命令学习</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2023年04月05日</a>
+    <a><i class="nexmoefont icon-areachart"></i>3.3k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
+</div>
+
+      
+
+      <h2 id="windows系统"><a href="#windows系统" class="headerlink" title="windows系统"></a>windows系统</h2><p>系统目录服务端口注册表<br>windows安装目录，重要的文件在windows下system32目录比较重要常用命令在这里，也容易感染病毒，drivers/etc/hosts文件比较重要，system32/config/sam文件记录账号和密码，在pe中删除可以免密登录。perflogs是日志文件夹还有隐藏目录有可能感染病毒<br>创建账号登录会在用户目录下生成账号文件夹无法完全删除，尽量不要创建账号登录<br>cmd相关命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">dir 打开目录<br>move移动文件 盘的格式：盘符名：\目录\名字<br>ren 重命名文件名  直接将文件位置写出来再将新命名的文件加到最后<br>replace 替换文件<br>copy命令用来复制文件 源文件地址 新文件地址<br>xcopy复制文件夹 /e 全部复制 /c终止<br>ping 网络连接<br>ping localhost 或者127.0.0.1 检测本地TCP/IP连接是否正常<br>ping 网关检查网络是否正常<br>ping 外网检测网络是否正常<br>pathping路由追踪<br>ipconfig获取本机地址/all更详细<br>gpedit 网络编辑器用来提升网络带宽限制设置小点 看网络环境有可能无影响<br>ipconfig /flushdns 刷新dns缓存 快速打开一个网站<br>netsh interface tcp show global  查阅活动状态<br>netsh interface tcp set global autotuninglevel =normal 接收窗口自动自动调节级别为正常<br>net user 名 密码/add添加管理员<br>ner user 名 /del删除管理员<br>net localgroup administrators 名 /add 提权<br>telnet还没开启<br>net start telnet <br>net localgroup administrators添加到控制远程桌面<br>mstsc 远程控制窗口<br>cd  进入一个文件夹<br>mkdir创建一个文件夹<br>rmdir删除一个目录<br>批处理将一些命令写在文档里然后更改文件后缀为.bat<br>合并文件 copy /b以二进制合并 文件名+文件名 生成文件名<br>删除文件del 名<br>文件捆绑iexpress未学会产生的.exe文件无法运行的问题<br>ie主页的修改还没有学会代码太长<br>cmd进入管理员命令提示符的方法runas /user:adminisitrator <br>一分钟自动关机问题修复 netsh winsock rese 可以解决<br>administrator找回 (超级管理员使超级管理员可用）net user administrator/active :yes<br>将磁盘格式从fat32改为ntfs convert D：fs：ntfs 全y<br><br>第一条 netsh wlan show profiles 第二条netsh wlan show profile name=&quot;wifi名称&quot;key=clear    获取WiFi密码<br>&#123;<br>清除无法格式化的u盘<br>disk part 提示相关版本号和信息，打开此工具<br>list disk 查看你的u盘<br>selecdisk 3 显示磁盘三现在是所选磁盘<br>claen 清除u盘<br>&#125;<br>运行窗口下输入control 打开系统自带的卸载工具<br>批处理编程教学http://www.cnblogs.com/phyllis/archive/2011/05/19/2051131.html<br>		http://blog.csdn.net/windone0109/article/category/479067<br>cmd变量：使用set来定义变量：set 变量名=值；<br> 	使用 set 变量名= （空）来删除定义的变量<br>	set /a 是用来进行运算的<br>	set /p用来接收用户键盘输入的 人机交互<br>   	用set可以来写脚本文件.bat后缀的文件<br>	echo cmd中的打印 用法 echo %变量名%<br>	setx path “%path%：文件夹路径”设置永久变量<br>@echo off 关闭回显<br>attrib +h/-h +加文件名（+隐藏-取消隐藏）<br>diskpart 磁盘<br>list disk看磁盘信息<br>chkdsk命令来检查和修复硬盘<br>detail详细信息<br>set id =一个命令参数可以隐藏磁盘<br>&gt;nul重定义到空不会显示信息<br>wget 下载网络资源<br>gpedit网络带宽设小一点<br>ipconfig /flushdns重新刷新缓存<br>netsh intface tcp show global 查询tcp信息<br>netsh intface tcp show global autotuninglevel=normal 设为正常<br><br>cmd清理磁盘垃圾：del删除文件  rd删除文件加 写bat文件<br>cmd解决系统故障：系统文件缺失 被病毒或误删<br>		system windos 系统文件不去修改 重装系统获取拷贝缺失文件<br>		sfc /？系统文件缺失解决 里面有修复功能  windos下log下cbs里面有系统故障的日志 管理员权限下 需重启<br>强制关机会对磁盘造成损伤：chkdsk检测盘符内的相关信息查看错误情况 /f修复 /r恢复可读信息<br>convert可以将磁盘格式转化为ntfs：convert 盘： /fs<br>diskpart 分区格式化磁盘 compmgmt查看计算机管理<br>net share查看共享并且删除<br>死亡之ping 拒绝服务攻击 不断地发送很大的数据包对服务器 /l发送很大的数据包 /t不断发送<br>if  /i 不区分大小写<br>&amp;如果前面运行成功就执行后面的语句<br>if exist 文件   用来判断是否存在这样一个文件（echo    ）else（echo   ）<br>if define 用来判断是否存在一个这样的变量（echo    ）else（echo   ）<br>当运用定义的变量时要用%%引起来使用<br>echo 回显 （echo 返回的值）会将值显示在屏幕上<br>pause &gt;nul;批处理停止<br>set /p 和用户交互<br>type nul&gt;文件名创建一个空文件(要写类型）<br>dos界面的for循环 用一个%引用变量 而批处理需要两个在第二个百分号后写变量名<br>for %%i in（范围）do 执行的命令 （echo %%i） 通配符* 范围前要加in<br>for /l %%变量 in（起始值 间隔值 结束值）do 执行语句<br><br>netstat -ano |find /I &quot;listening&quot;  产看本地开放端口<br></code></pre></td></tr></table></figure>
+
+<p>windows下常用快捷键</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">win+d最小化所有窗口			alt+F4关闭当前窗口<br>win+e开启资源管理器			alt+tab切换应用程序<br>win+f打开搜所窗口				alt+D选中地址栏<br>win+l锁定当前用户				col+alt+delete终止某一进程<br>win+r运行				alt+下 下拉列表<br>win+u设置个性化				alt+回车 快速查看属性<br>win+tab切换窗口				alt+空格 打开控制选单<br>					alt+空格+n最小化当前窗口 <br>regedit 注册表				alt+ 空格+r回复最小化窗口<br>F2重命名					alt+空格+x最大化当前窗口<br>					alt+空格+s改变窗口大小<br>					alt+空格+m移动窗口<br><br>ctrl+A全选				shift+del永久删除	<br>ctrl+b加粗				shift+ctrl切换输入法<br>ctrl+c复制					shift+空格输入法全半角切换<br>ctrl+d打开添加收藏面板			shift+F10选中文件右菜单<br>ctrl+e打开浏览器搜索栏			shift+F3切换大小写<br>ctrl+f查找面板				shift+tab选项之间向后移<br>ctrl+n新建空白窗口				shift+CTRL+t还原关闭标签<br>ctrl+s保存					shift+CTRL+n新建文件夹<br>ctrl+t平铺所有				shift+CTRL+esc打开任务管理器<br>ctrl+v黏贴<br>ctrl+x剪切<br>ctrl+y返回上一步<br>ctrl+z撤销上一步<br></code></pre></td></tr></table></figure>
+
+<p>服务service.msc打开计算机服务利用net start|stop可以开启或停止服务<br>sc config 服务名 start=disable这条命令可以禁止开机加载某些服务可以关闭一些安全防护软件。</p>
+<p>端口是用来区别服务的端口不能复用，端口一共有1-65535个1-1024系统使用，可以通过端口确定服务<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/05/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/2023-04-09-11-55-07.png" alt="常见端口服务" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/05/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/2023-04-09-11-57-58.png" alt="渗透测试常用端口" class="lazyload"><br>本来端口无法服用但是通过上传端口复用程序可以实现或者使用隧道工具可以访问内网服务。</p>
+<p>注册表可以进行某些操作留后门。regedit可以打开第三个跟腱重要在这里可以克隆账号。windows是根据uid号判断是否为管理员（500）<br>开机启动项的注册表也很重要</p>
+<p>systeminfo可以查看系统信息<br>重启命令shutdown -r -t 0 -s关机<br>net start和net stop 有空格使用双引号包起来<br>net use k: 映射磁盘 走smb 端口445<br>mstsc远程桌面连接连接远程时会把自己的盘符交出去很危险。</p>
+<h2 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h2><p>linux有点开源、免费、稳定、安全、性能高</p>
+<p>linux内核版本xx.yy.zz xx代表主版本号  yy代表次版本号 zz代表更新次数 次版本号奇数是开发版偶数是稳定版</p>
+<p>linux磁盘分区硬件设备所在的目录/dev/hda5(hd表示ide设备,sd表示scsi设备)硬盘顺序号以字母abc…表示，分区号以数字123…表示（前四个分区给了主分区了新逻辑分区从5开始）使用df -T命令可以查看<br>使用-h可以查看大小</p>
+<p>mount命令可以挂载存储介质 umount可以卸载挂载的分区</p>
+<p>linux文件系统类型ext4、swap交换文件系统，支持的类型有fat16、fat32（单个文件不能超过4G）、ntfs（单个文件不能超过2T）、xfs、jfs、exfat格式支持各种操作系统跨系统</p>
+<p>修改红帽密码按键操作ee2es回车b引导输入passwd修改密码</p>
+<p>linux目录结构：<br>根目录下分很多 bin目录是命令 boot引导分区开机启动项 dev存放存储介质 etc存放配置文件 home普通用户家目录 lib库文件 media、mnt用来挂载存放介质 opt大型应用程序 proc系统开机生成的临时文件 root超级管理员家目录 sbin超级管理员命令 selinux防护体系 srv、sys系统文件 tmp有编译权限 usr存放源代码安装路径 var存放日志或消息或者网站根目录</p>
+<p>#号代表的是管理员 $是普通用户</p>
+<p>内部命令安装完系统自带的命令，外部命令安装的应用程序产生的命令<br>短命令一个- 长命令两个- 可以用–help查看帮助<br>uname -r（版本号） -a（详细信息）<br>hostname查看或临时修改计算机名称<br>ifconfig查看ip信息 dhclient加名称 重新获取ip<br>cat /proc/cpuinfo 查看cpu信息<br>cat /proc/meminfo 查看系统内存信息<br>halt 关机<br>reboot 重启<br>pwd 查看当前目录<br>cd 切换目录<br>du 统计目录及文件空间占用情况 -sh统计目录大小<br>ls 产看文件命令 -l查看详细的文件信息 -h查看大小 -a查看隐藏文件</p>
+<hr>
+<p>chmod 更改文件权限 chmod o+x其他人加x chmod g+x给组加x权限 chmod u-x给所有者减x权限 chmod a+x给所有人加x权限 也可以用数字修改权限 r4 w2 x1 值相加 例如chmod 777 xxx<br>chomn修改所有者 -R递归继承</p>
+<hr>
+<p>touch创建新文件 touch * 更新所有文件创建时间<br>mkdir创建目录 -p递归创建<br>cp复制文件或目录 -r递归复制 -f强制复制 -p保持源文件属性不变 -i覆盖目录提醒<br>rm 删除文件或目录 -r递归删除 -f强制删除不提醒 -i删除时提醒<br>mv 移动或重命名目录或文件<br>wc 统计文件中出现的单词数量字节数量和行数<br>cat查看文件内容<br>find命令查找文件 -name 指定文件名查找 -size指定文件大小查找 -user指定文件属性查找 -type指定文件类型查找</p>
+<hr>
+<p>vi编辑器 -r用于恢复系统突然崩溃时正在编辑的文件 -R用于只读方式打开文件 +n定位光标行号打开<br>shift+：底边模式 set nu设置显示行号<br>:n快速定位几行 d删除<br>dd删除一行 yy复制 p粘贴 n+dd删除多行<br>i进入插入模式 esc推出进入底边模式<br>w保存 q推出 ！强制 /向下搜索 ？向上搜索 %代表全文 $代表文本结尾 .代表当前位置 s搜索<br>e！取消所有修改</p>
+<hr>
+<p>压缩命令：<br>gzip -d解压 -9高度压缩 后缀用gz<br>bzip2 -d解压 -9高度压缩 后缀名bz2<br>tar归档 -c创建归档文件 -v输出详细信息 -f表示使用归档文件<br>tar -cvf 4.tar 1 2 3 将1 2 3 归档为4.tar<br>tar -xvf 4.tar 解归档 -t查看归档中有哪些文件但不解归档<br>tar zxvf 解压解归档tar.gz格式 tar jxvf加压解归档bz2格式<br>tar -rvf 4.tar 4 向4.tar中追加4</p>
+<hr>
+<p>useradd命令添加用户 -u指定uid -d指定宿主目录缺省为/home/用户名<br>-e指定账号失效时间 -g指定用户基本组名或uid -G指定用户附加组名Gid号 -M不为用户创建并初始化宿主目录 -s指定用户的登录shell<br>userdel删除用户-r表示连宿主目录一并删除</p>
+<hr>
+<p>ps -aux 查看系统进程 top动态查看系统进程 kill 1234 杀死进程<br>netstat -an查看与外部连接的 netstat -tnlp查看本地开放端口</p>
+<hr>
+<p>rpm 和 yum安装软件<br>rpm -ivh 加包名 rpm -qi 包名 查看包信息 rpm -e 包名 卸载包<br>yum -y install 包名 安装软件 源在/etc/yum.repos.d/rhel*<br>yum -y remove 包名 删除安装的软件<br>安装网站启动环境：httpd php php-mysql mysql mysql-server<br>然后启动service 服务名 start<br>iptables -F关闭防火墙 setenforce 0<br>service mysqld start启动mysql<br>创建mysql账号mysqladmin -uroot password 密码<br>给路径权限chomn</p>
+<hr>
+<p>service network restart重启网络服务<br>在/etc/resolv.conf文件下修改dns<br>修改apche配置文件/etc/httpd/conf/httpd.conf文件<br>Listen 80 网站侦听的端口<br>DocumentRoot 网站根目录<br>Directoryindex 首页<br>虚拟主机配置网站</p>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>Jay jay<br>
+        <strong>本文链接：</strong><a href="https://yyj-xx.github.io/2023/04/05/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/" title="https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2023&#x2F;04&#x2F;05&#x2F;%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2023&#x2F;04&#x2F;05&#x2F;%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '906d60a925bbfc786e36',
+        clientSecret: 'eef34b48d710958974d793333753521d0474c243',
+        id: window.location.pathname,
+        repo: 'yyj-xx.github.io',
+        owner: 'yyj-xx',
+        admin: 'yyj-xx'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#windows%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">windows系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.</span> <span class="toc-text">Linux系统</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1681535802630"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

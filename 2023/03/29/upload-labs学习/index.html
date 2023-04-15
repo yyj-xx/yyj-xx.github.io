@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>upload-labs学习 - Jay的个人博客</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="记录分享学习">
+    <meta name="keywords" content="记录,学习,分享">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/assets/logoko.png" type="image/png" />
+    <meta name="description" content="靶场介绍upload-labs是一个用php语言编写、专注于文件上传漏洞的闯关式的网络安全靶场，练习该靶场可以有效的了解并掌握文件上传漏洞的原理和利用方法和修复方案。源码地址：https:&#x2F;&#x2F;github.com&#x2F;c0ny1&#x2F;upload-labs  安装从官网下载下源码解压到phpstudy的www路径下，访问即可。访问路径 文件上传漏洞介绍文件上传漏洞，顾名思义，就是攻击者通过一些方法绕过了客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="upload-labs学习">
+<meta property="og:url" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Jay的个人博客">
+<meta property="og:description" content="靶场介绍upload-labs是一个用php语言编写、专注于文件上传漏洞的闯关式的网络安全靶场，练习该靶场可以有效的了解并掌握文件上传漏洞的原理和利用方法和修复方案。源码地址：https:&#x2F;&#x2F;github.com&#x2F;c0ny1&#x2F;upload-labs  安装从官网下载下源码解压到phpstudy的www路径下，访问即可。访问路径 文件上传漏洞介绍文件上传漏洞，顾名思义，就是攻击者通过一些方法绕过了客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-18-25-22.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-18-27-08.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-18-27-57.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-18-50-55.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-18-55-24.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-14-16.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-32-45.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-33-52.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-57-13.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-57-40.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-58-40.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-59-56.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-21-01-07.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-21-12-53.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-21-16-18.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-21-20-09.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-48-41.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-47-33.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-30-10-45-20.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-19-17-40.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-19-19-54.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-10-42-25.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-01-41.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-11-05-40.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-11-11-26.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-17-19.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-11-25-45.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-21-22.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-12-01-26.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-12-07-58.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-43-51.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-19-26-08.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-19-30-10.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-19-27-55.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-10-22-00.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-10-23-03.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-10-29-23.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-10-34-53.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-10-36-49.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-01-40.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-02-03.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-02-35.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-02-59.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-09-45.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-13-56.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-21-22.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-26-22.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-51-50.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-12-13-32.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-12-18-18.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-12-35-52.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-12-47-30.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-12-54-32.png">
+<meta property="og:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-13-01-16.png">
+<meta property="article:published_time" content="2023-03-29T10:16:08.000Z">
+<meta property="article:modified_time" content="2023-04-04T06:05:07.215Z">
+<meta property="article:author" content="Jay jay">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-18-25-22.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
+    <link rel="stylesheet" href="/css/style.css?v=1681535802597">
+    
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1681535802597">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(/assets/background.gif)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Jay jay" class="mdui-btn mdui-btn-icon"><img src="/assets/avatar.jpg" alt="Jay jay"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Jay jay">
+            <img src="/assets/avatar.jpg" alt="Jay jay" alt="Jay jay">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>25</div>
+        <div><span>标签</span>2</div>
+        <div><span>分类</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://www.baidu.com/s?wd=" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/436182677" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/yyj-xx/yyj-xx.github.io" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%86%99%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">学习写博客</a>
+    </div>
+    
+  </div>
+
+    
+    
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2023 Jay jay
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br>人生需要不断的探索
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-src="/assets/background.gif" data-sizes="auto" alt="upload-labs学习" class="lazyload">
+              <h1>upload-labs学习</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月29日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.3k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
+</div>
+
+      
+
+      <h2 id="靶场介绍"><a href="#靶场介绍" class="headerlink" title="靶场介绍"></a>靶场介绍</h2><p>upload-labs是一个用php语言编写、专注于文件上传漏洞的闯关式的网络安全靶场，练习该靶场可以有效的了解并掌握文件上传漏洞的原理和利用方法和修复方案。源码地址：<a target="_blank" rel="noopener" href="https://github.com/c0ny1/upload-labs">https://github.com/c0ny1/upload-labs</a></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-18-25-22.png" alt="文件上传靶场" class="lazyload"></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>从官网下载下源码解压到phpstudy的www路径下，访问即可。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-18-27-08.png" alt="安装路径" class="lazyload"><br>访问路径<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-18-27-57.png" alt="访问地址" class="lazyload"></p>
+<h2 id="文件上传漏洞介绍"><a href="#文件上传漏洞介绍" class="headerlink" title="文件上传漏洞介绍"></a>文件上传漏洞介绍</h2><p>文件上传漏洞，顾名思义，就是攻击者通过一些方法绕过了客户端验证（JavaScript前端验证，100%可以用中间人绕过）和服务端验证（如后缀名、mime类型验证）上传了非预期的脚本文件导致服务器被植入了木马获得了服务器的命令执行权限，一般为高位漏洞。</p>
+<p>常见的预防方法：</p>
+<ol>
+<li>前端验证（防君子）：在前端进行上传文件后缀限制，很容易绕过</li>
+<li>后端文件名验证：在后端对文件名执行白名单校验，不在白名单内的禁止上传</li>
+<li>文件头检验：查看文件头与后缀名是否匹配</li>
+<li>最终要的安全策略：将上传的文件存到另一个专用文件服务器（类似于跨站分离）；如果没有专用的文件服务器，就取消上传目录执行权限，将上传的文件进行重命名，必要时不显示上传路径。</li>
+</ol>
+<h2 id="万能的webshell"><a href="#万能的webshell" class="headerlink" title="万能的webshell"></a>万能的webshell</h2><figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php">php一句话：<span class="hljs-meta">&lt;?php</span> @<span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_post</span>([<span class="hljs-string">&#x27;cmd&#x27;</span>]));<span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="正文开始"><a href="#正文开始" class="headerlink" title="正文开始"></a>正文开始</h2><h3 id="pass-01"><a href="#pass-01" class="headerlink" title="pass-01"></a>pass-01</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-18-50-55.png" alt="任务" class="lazyload"><br>这一关是前端js验证，对文件上传类型做了限制，我们直接修改前端代码添加php类型进行绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-18-55-24.png" alt="修改代码" class="lazyload"><br>上传一句话这里抓包绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-14-16.png" alt="上传成功" class="lazyload"><br>访问upload/就可以看到上传的脚本<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-32-45.png" alt="可以连接" class="lazyload"></p>
+<h3 id="pass-02"><a href="#pass-02" class="headerlink" title="pass-02"></a>pass-02</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-33-52.png" alt="任务" class="lazyload"><br>查看提示说是后端进行了mime验证，查看代码也只进行了这一项验证<br>这里依旧抓包伪造mime进行绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-57-13.png" alt="抓包绕过" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-57-40.png" alt="出现" class="lazyload"></p>
+<h3 id="pass-03"><a href="#pass-03" class="headerlink" title="pass-03"></a>pass-03</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-58-40.png" alt="第三关" class="lazyload"><br>上传php提示<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-20-59-56.png" alt="提示" class="lazyload"><br>查看源码<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-21-01-07.png" alt="源码" class="lazyload"><br>这里进行了黑名单限制：asp，aspx，php，jsp，这些是不允许上传的<br>删除文件名首位空格，删除文件名末尾的点，将后缀名转为小写<br>去除::$data数据流标记，使用随机数重命名文件名。我们可以上传php文件的别名进行黑名单绕过。别名有.phtml .phps .php5 .pht进行绕过,这里直接上传一个.php5文件<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-21-12-53.png" alt="上传" class="lazyload"><br>访问<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-21-16-18.png" alt="没有解析" class="lazyload"><br>需要在apache的httpd中配置以下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs code">AddType application/x-httpd-php .php .phtml .phps .php5 .pht<br></code></pre></td></tr></table></figure>
+
+<p>不配置无法解析，配置好后重启<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-29-21-20-09.png" alt="配置" class="lazyload"><br>然后我们重新上传<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-48-41.png" alt="重新上传" class="lazyload"><br>成功解析<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-47-33.png" alt="成功" class="lazyload"></p>
+<h3 id="pass-04"><a href="#pass-04" class="headerlink" title="pass-04"></a>pass-04</h3><p>这一关查看提示发现禁止上传的类型很多<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-30-10-45-20.png" alt="禁止上传的类型" class="lazyload"><br>这种情况我们尝试上传一个.htaccess配置文件，将4.png图片当作php代码执行，创建一个htaccess配置文集其内容为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs code">&lt;FilesMatch &quot;4.png&quot;&gt;<br>    SetHandler application/x-httpd-php<br>&lt;/FilesMatch&gt;<br></code></pre></td></tr></table></figure>
+
+<p>意思是如果文件中有4.png就会被解析成.php，我们先上传这个文件然后再上传一个名为4.png的图片马。<br>这里需要注意文件名必须是.htaccess改为其他加上前缀是无法解析的，实战有可能上传的文件被重命名，被重命名就失效了，还需要去phpstudy中修改httpd配置文件，箭头的位置由none改为all保存重启即可<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-19-17-40.png" alt="配置" class="lazyload"><br>成功绕过并解析<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-19-19-54.png" alt="成功" class="lazyload"></p>
+<h3 id="pass-05"><a href="#pass-05" class="headerlink" title="pass-05"></a>pass-05</h3><p>这一关也是禁止了一大堆上传类型.htaccess文件也禁止了<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-10-42-25.png" alt="进行了一大堆限制" class="lazyload"><br>这里它没有进行循环验证，也就是说首位去空，删除末尾的点，去除字符串::$data,转换为小写这些东西只进行了一次验证，绕过思路就是在数据包中把后缀名改为<code>.php. .</code>验证过程，首先发现一个点这时就会去除，发现有空格就会去掉，这时还有一个点由于只验证一次不会在去除就可以上传成功也可以解析。这里php版本为5.4.45<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-01-41.png" alt="成功绕过" class="lazyload"></p>
+<h3 id="pass-06"><a href="#pass-06" class="headerlink" title="pass-06"></a>pass-06</h3><p>这一关查看源码进行了一大堆过滤但是没有进行大写转小写，我们可以上传纯大写或大小写结合的后缀名，可以加空格绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-11-05-40.png" alt="成功" class="lazyload"></p>
+<h3 id="pass-07"><a href="#pass-07" class="headerlink" title="pass-07"></a>pass-07</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-11-11-26.png" alt="源码" class="lazyload"><br>看源码发现没有首尾去空，我们上传php抓包加空格绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-17-19.png" alt="成功绕过" class="lazyload"></p>
+<h3 id="pass-08"><a href="#pass-08" class="headerlink" title="pass-08"></a>pass-08</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-11-25-45.png" alt="源码" class="lazyload"><br>发现没有删除文件名末尾的点，和第七关一样，把空格换成点尝试绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-21-22.png" alt="成功" class="lazyload"></p>
+<h3 id="pass-09"><a href="#pass-09" class="headerlink" title="pass-09"></a>pass-09</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-12-01-26.png" alt="源码" class="lazyload"><br>这一关没有去除字符串::$data在php后加上绕过，Windows的特性在磁盘中会忽略::$data并将文件新建。它是一个属性类型代码<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-03-31-12-07-58.png" alt="成功" class="lazyload"></p>
+<h3 id="pass-10"><a href="#pass-10" class="headerlink" title="pass-10"></a>pass-10</h3><p>这一关和第五关一样，第五关如何绕过，第十关就如何绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-18-43-51.png" alt="成功" class="lazyload"></p>
+<h3 id="pass-11"><a href="#pass-11" class="headerlink" title="pass-11"></a>pass-11</h3><p>本关同样使用了黑名单，意思是上传了规定的文件会把文件后缀去掉如7.php就会把php过滤掉，文件没有了后缀名字然无法解析。但是只过滤了一次，也就是说写两个php就可以绕过了如7.phphpp过滤拼接，也就是双写绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-19-26-08.png" alt="源码" class="lazyload"><br>抓包修改看路径<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-19-30-10.png" alt="上传" class="lazyload"><br>可以访问到成功<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-03-19-27-55.png" alt="成功" class="lazyload"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上基本都是黑名单绕过，而且只验证了一次，所以这些关都可以用一个思路解出，那就是php. .都是可以这样，但这样就失去了意义。</p>
+<h3 id="pass-12"><a href="#pass-12" class="headerlink" title="pass-12"></a>pass-12</h3><p>这一关由黑名单变成了白名单，只允许上传几种文件格式，但是这里上传路径是可以控制的，可以使用%00截断。%00只能是用于低于php版本5.3的，这里我们要把php版本切换一下并且把magic_quotes_sgc关闭。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-10-22-00.png" alt="配置" class="lazyload"><br>源码<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-10-23-03.png" alt="源码" class="lazyload"><br>绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-10-29-23.png" alt="成功" class="lazyload"></p>
+<h3 id="pass-13"><a href="#pass-13" class="headerlink" title="pass-13"></a>pass-13</h3><p>这一关和上一关差不多，只不过提交方式改变了，get会自行解码，post不会，我们要对%00进行url编码即可绕过。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-10-34-53.png" alt="编码" class="lazyload"><br>流程<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-10-36-49.png" alt="成功绕过" class="lazyload"></p>
+<h3 id="pass-14"><a href="#pass-14" class="headerlink" title="pass-14"></a>pass-14</h3><p>这一关是用图片马绕过，图片加php代码制作图片马进行绕过，当然还需要由文件包含漏洞将上传的图片解析成php，制作图片马<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-01-40.png" alt="图片木马" class="lazyload"><br>上传查看路径<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-02-03.png" alt="上传查看路径" class="lazyload"><br>文件包含漏洞<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-02-35.png" alt="文件包含" class="lazyload"><br>包含上传的图片执行<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-02-59.png" alt="执行" class="lazyload"><br>成功解析绕过</p>
+<h3 id="pass-15"><a href="#pass-15" class="headerlink" title="pass-15"></a>pass-15</h3><p>这一关我们需要了解一个函数<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-09-45.png" alt="这个函数" class="lazyload"><br>其功能是通过调用getimagesize函数获取文件头判断是否为图片，符合要求可以通过。这一关和上一关一样需要上传图片马然后配合文件包含漏洞解析。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-13-56.png" alt="成功绕过" class="lazyload"></p>
+<h3 id="pass-16"><a href="#pass-16" class="headerlink" title="pass-16"></a>pass-16</h3><p>这一关和14、15思路一样，操作一样，但是要打开php_exif，phpstudy的其他选项菜单打开配置文件php.ini修改配置文件，删除分号是打开扩展<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-21-22.png" alt="配置" class="lazyload"><br>重启exif_imagetype函数读取图像的第一个字节并检查其签名，本函数可以用来避免调用其它exif函数用到了不支持的文件类型上传和$_SERVER[‘HTTP_ACCEPT’] 结合使用来检查浏览器是否可以显示某个指定的图像。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-26-22.png" alt="绕过" class="lazyload"></p>
+<h3 id="pass-17"><a href="#pass-17" class="headerlink" title="pass-17"></a>pass-17</h3><p>这一关主要是二次渲染绕过，imagecreatefromjpeg函数是由gif文件或url创建一个新图象，成功则返回一个图像标识符，图像资源，失败则返回false，导致图片马的数据丢失，上传图片马失败。<br>按照原来的方法上传绕过发现可以上传但是二次渲染把里边的php代码删掉了，我们可以把修改过的和没修改过的进行比较把php代码放到没有修改的部分里，可以使用010进行操作，操作完成后在配合包含漏洞进行解析。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-11-51-50.png" alt="对比" class="lazyload"><br>在相同的地方插入php代码,这里需要编写python代码来构造绕过渲染函数的图片webshell。</p>
+<h3 id="pass-18"><a href="#pass-18" class="headerlink" title="pass-18"></a>pass-18</h3><p>这一关主要是对竞争条件的考察，看代码是先将图片上传然后才开始进行判断后缀名、二次渲染，我们在上传的一瞬间访问这个文件，就不能进行删除和二次渲染了，这就相当于我们打开了一个文件在去删除这个文件就会提示已打开无法修改一样。<br>这里我们直接上传一个php然后抓包一直发送然后访问即可绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-12-13-32.png" alt="成功绕过" class="lazyload"></p>
+<h3 id="pass-19"><a href="#pass-19" class="headerlink" title="pass-19"></a>pass-19</h3><p>这一关的上传路径有问题不是上传到upload中进入19关修改myupload.php文件<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-12-18-18.png" alt="修改文件" class="lazyload"><br>重启，这关是检查了后缀名然后上传，然后二次渲染，这时我们只能上传图片马，而且得配合解析漏洞进行通过，和上关一样需要竞争我们访问的地址是加上包含漏洞的<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-12-35-52.png" alt="成功" class="lazyload"><br>这时逻辑漏洞，二次渲染本身是没有问题的，如果先验证在上传就没办法了。</p>
+<h3 id="pass-20"><a href="#pass-20" class="headerlink" title="pass-20"></a>pass-20</h3><p>这一关两种方法：<br><strong>第一种</strong><br>move_uploaded_file()函数中的img_path是由post参数save_name控制的，可以在save_name利用%00截断（注意php版本低于5.3）如图<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-12-47-30.png" alt="成功" class="lazyload"></p>
+<p><strong>第二种</strong><br>move_uploaded_file函数有一个特性会忽略掉文件末尾的/.所以我们把末尾修改为/.绕过<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-12-54-32.png" alt="成功" class="lazyload"></p>
+<h3 id="pass-21"><a href="#pass-21" class="headerlink" title="pass-21"></a>pass-21</h3><p>这一关是利用数组绕过验证<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/2023-04-04-13-01-16.png" alt="成功绕过" class="lazyload"></p>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>Jay jay<br>
+        <strong>本文链接：</strong><a href="https://yyj-xx.github.io/2023/03/29/upload-labs%E5%AD%A6%E4%B9%A0/" title="https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2023&#x2F;03&#x2F;29&#x2F;upload-labs%E5%AD%A6%E4%B9%A0&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;yyj-xx.github.io&#x2F;2023&#x2F;03&#x2F;29&#x2F;upload-labs%E5%AD%A6%E4%B9%A0&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '906d60a925bbfc786e36',
+        clientSecret: 'eef34b48d710958974d793333753521d0474c243',
+        id: window.location.pathname,
+        repo: 'yyj-xx.github.io',
+        owner: 'yyj-xx',
+        admin: 'yyj-xx'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E5%9C%BA%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">靶场介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.</span> <span class="toc-text">文件上传漏洞介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%87%E8%83%BD%E7%9A%84webshell"><span class="toc-number">4.</span> <span class="toc-text">万能的webshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87%E5%BC%80%E5%A7%8B"><span class="toc-number">5.</span> <span class="toc-text">正文开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-01"><span class="toc-number">5.1.</span> <span class="toc-text">pass-01</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-02"><span class="toc-number">5.2.</span> <span class="toc-text">pass-02</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-03"><span class="toc-number">5.3.</span> <span class="toc-text">pass-03</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-04"><span class="toc-number">5.4.</span> <span class="toc-text">pass-04</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-05"><span class="toc-number">5.5.</span> <span class="toc-text">pass-05</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-06"><span class="toc-number">5.6.</span> <span class="toc-text">pass-06</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-07"><span class="toc-number">5.7.</span> <span class="toc-text">pass-07</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-08"><span class="toc-number">5.8.</span> <span class="toc-text">pass-08</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-09"><span class="toc-number">5.9.</span> <span class="toc-text">pass-09</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-10"><span class="toc-number">5.10.</span> <span class="toc-text">pass-10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-11"><span class="toc-number">5.11.</span> <span class="toc-text">pass-11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.12.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-12"><span class="toc-number">5.13.</span> <span class="toc-text">pass-12</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-13"><span class="toc-number">5.14.</span> <span class="toc-text">pass-13</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-14"><span class="toc-number">5.15.</span> <span class="toc-text">pass-14</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-15"><span class="toc-number">5.16.</span> <span class="toc-text">pass-15</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-16"><span class="toc-number">5.17.</span> <span class="toc-text">pass-16</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-17"><span class="toc-number">5.18.</span> <span class="toc-text">pass-17</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-18"><span class="toc-number">5.19.</span> <span class="toc-text">pass-18</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-19"><span class="toc-number">5.20.</span> <span class="toc-text">pass-19</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-20"><span class="toc-number">5.21.</span> <span class="toc-text">pass-20</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-21"><span class="toc-number">5.22.</span> <span class="toc-text">pass-21</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1681535802606"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
